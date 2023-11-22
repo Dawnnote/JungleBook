@@ -3,7 +3,6 @@ package com.example.junglebook.data.dto;
 import com.example.junglebook.data.category.Category;
 import com.example.junglebook.data.entity.BuyBookPost;
 import lombok.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -13,7 +12,7 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class BuyBookRequest {
+public class BuyBookPostRequest {
     //삽니다 상품이미지
     private String filename;
     private String filepath;
@@ -52,7 +51,7 @@ public class BuyBookRequest {
     //거래 완료 여부
     private Boolean completion;
 
-    public BuyBookRequest(BuyBookPost entity){
+    public BuyBookPostRequest(BuyBookPost entity){
         this.filename = entity.getFilename();
         this.filepath = entity.getFilepath();
         this.bookName = entity.getBookName();

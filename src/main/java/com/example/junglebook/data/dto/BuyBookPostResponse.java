@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @Component
-public class BuyBookResponse {
+public class BuyBookPostResponse {
     private String filename;
     private String filepath;
     private int buyBookId;
@@ -33,7 +33,7 @@ public class BuyBookResponse {
     private LocalDateTime modifiedDate;
     private LocalDateTime createdDate;
 
-    public BuyBookResponse(BuyBookPost entity){
+    public BuyBookPostResponse(BuyBookPost entity){
         this.filename = entity.getFilename();
         this.filepath = entity.getFilepath();
         this.buyBookId = entity.getBuyBookId();
