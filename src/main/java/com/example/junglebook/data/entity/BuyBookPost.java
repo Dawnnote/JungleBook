@@ -20,6 +20,7 @@ public class BuyBookPost extends BaseTimeEntity {
     private int buyBookId;
 
     //게시물 작성자 (User)
+//    @ManyToOne
 //    private User userId;
 
     //책 제목(= 게시물 제목)
@@ -54,21 +55,6 @@ public class BuyBookPost extends BaseTimeEntity {
 
     //거래 완료 여부
     private Boolean completion;
-
-    public BuyBookPostDto toDto(){
-        return BuyBookPostDto.builder()
-                .bookName(bookName)
-                .category(category)
-                .author(author)
-                .publisher(publisher)
-                .field(field)
-                .field2(field2)
-                .price(price)
-                .content(content)
-                .payment(payment)
-                .completion(completion)
-                .build();
-    }
 
 
 }
