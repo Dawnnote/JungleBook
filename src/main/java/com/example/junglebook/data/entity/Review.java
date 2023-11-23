@@ -1,7 +1,6 @@
 package com.example.junglebook.data.entity;
 
 import com.example.junglebook.data.common.BaseTimeEntity;
-import com.example.junglebook.data.dto.ReviewDto;
 import lombok.*;
 
 import javax.persistence.*;
