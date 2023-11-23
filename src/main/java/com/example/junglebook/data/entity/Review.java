@@ -1,15 +1,16 @@
 package com.example.junglebook.data.entity;
 
 import com.example.junglebook.data.common.BaseTimeEntity;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.example.junglebook.data.dto.ReviewDto;
+import lombok.*;
 
 import javax.persistence.*;
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 @Entity
+@Builder
 public class Review extends BaseTimeEntity {
     //거래후기 Id
     @Id
@@ -28,5 +29,12 @@ public class Review extends BaseTimeEntity {
     //후기 내용
     @Column(length = 255, columnDefinition = "TEXT")
     private String message;
+
+    public ReviewDto toDto(){
+        return ReviewDto.builder()
+                .likeDislike(likeDislike)
+                .message(message)
+                .build();
+    }
 
 }

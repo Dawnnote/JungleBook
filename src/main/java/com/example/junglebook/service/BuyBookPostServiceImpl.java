@@ -1,4 +1,4 @@
 package com.example.junglebook.service;
 
-public interface BuyBookPostService {
+public class BuyBookPostServiceImpl {
 }

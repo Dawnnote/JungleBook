@@ -1,34 +1,27 @@
-package com.example.junglebook.data.entity;
+package com.example.junglebook.data.dto;
 
 import com.example.junglebook.data.category.Category;
-import com.example.junglebook.data.common.BaseTimeEntity;
-import com.example.junglebook.data.dto.BuyBookPostDto;
+import com.example.junglebook.data.entity.BuyBookPost;
 import lombok.*;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
-@Entity
+@ToString
 @Builder
-public class BuyBookPost extends BaseTimeEntity {
-
-    //삽니다 상품ID
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int buyBookId;
-
-    //게시물 작성자 (User)
-//    private User userId;
+@Data
+public class BuyBookPostDto {
 
     //책 제목(= 게시물 제목)
-    @Column(length = 30)
+    @NotNull(message = "이름은 필수 항목입니다")
     private String bookName;
 
     //책 카테고리
-    @Column(name = "category")
     private Category category;
 
     //저자
@@ -47,7 +40,6 @@ public class BuyBookPost extends BaseTimeEntity {
     private Long price;
 
     //상품 설명
-    @Column(columnDefinition = "TEXT", length = 255)
     private String content;
 
     //거래 방법(직거래 or 택배 배송)
@@ -56,8 +48,8 @@ public class BuyBookPost extends BaseTimeEntity {
     //거래 완료 여부
     private Boolean completion;
 
-    public BuyBookPostDto toDto(){
-        return BuyBookPostDto.builder()
+    public BuyBookPost toEntity(){
+        return BuyBookPost.builder()
                 .bookName(bookName)
                 .category(category)
                 .author(author)
@@ -70,6 +62,4 @@ public class BuyBookPost extends BaseTimeEntity {
                 .completion(completion)
                 .build();
     }
-
-
 }
