@@ -26,7 +26,7 @@ import java.security.Principal;
 public class BuyBookPostController {
     private final BuyBookPostService buyBookPostService;
     private final BuyBookPostResponse buyBookPostResponse;
-    private final UserService userService;
+//    private final UserService userService;
 
     //삽니다 게시물 화면 불러오기
     //여기 나오는 id 물어보기!!
