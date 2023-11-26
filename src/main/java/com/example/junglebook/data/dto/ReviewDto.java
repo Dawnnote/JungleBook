@@ -26,11 +26,11 @@ public class ReviewDto {
                 .build();
     }
 
-    public static ReviewDto toDto(Review review){
-        return ReviewDto.builder()
-                .reviewId(review.getReviewId())
-                .nickName(review.getUser().getNickName())
-                .message(review.getMessage())
-                .build();
-    }
+//    public static ReviewDto toDto(Review review){
+//        return ReviewDto.builder()
+//                .reviewId(review.getReviewId())
+//                .nickName(review.getUser().getNickName())
+//                .message(review.getMessage())
+//                .build();
+//    }
 }

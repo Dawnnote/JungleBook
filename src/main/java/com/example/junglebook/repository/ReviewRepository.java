@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface ReviewRepository extends JpaRepository<Review, Integer> {
 
-    @EntityGraph(attributePaths = {"user"})
-    List<Review> findAllByUserNickName(User nickName);
+//    @EntityGraph(attributePaths = {"user"})
+//    List<Review> findAllByUserNickName(User nickName);
 }

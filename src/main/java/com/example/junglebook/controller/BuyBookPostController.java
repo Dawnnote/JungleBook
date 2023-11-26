@@ -29,6 +29,7 @@ public class BuyBookPostController {
     private final UserService userService;
 
     //삽니다 게시물 화면 불러오기
+    //여기 나오는 id 물어보기!!
     @GetMapping(value = "/detail/{id}")
     public String detail(Model model, @PathVariable("id") Integer id) {
         BuyBookPostResponse post = this.buyBookPostService.getPost(id);
@@ -44,23 +45,23 @@ public class BuyBookPostController {
     }
 
     //삽니다 게시물 등록 화면
-    @PreAuthorize("isAuthenticated()")
-    @PostMapping("/post")
-    public String postCreate(@Valid BuyBookPostRequest buyBookPostRequest, BindingResult bindingResult, Principal principal){
-        if (bindingResult.hasErrors()){
-            return "buy_post_form";
-        }
-        if (principal == null){
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN), "등록 권한이 없습니다");
-        }
-        //나중에 userService랑 합치고 getUser 다시 확인
-        UserResponse userResponse = this.userService.getUser(principal.getName());
-        this.buyBookPostService.create(buyBookPostRequest.getBookName(), buyBookPostRequest.getCategory(),
-                buyBookPostRequest.getBookAuthor(), buyBookPostRequest.getPublisher(), buyBookPostRequest.getField(),
-                buyBookPostRequest.getField2(), buyBookPostRequest.getPrice(), buyBookPostRequest.getContent(),
-                buyBookPostRequest.getPayment(), buyBookPostRequest.getCompletion(), userResponse);
-        return "redirect:/buy_post/list";
-    }
+//    @PreAuthorize("isAuthenticated()")
+//    @PostMapping("/post")
+//    public String postCreate(@Valid BuyBookPostRequest buyBookPostRequest, BindingResult bindingResult, Principal principal){
+//        if (bindingResult.hasErrors()){
+//            return "buy_post_form";
+//        }
+//        if (principal == null){
+//            throw new ResponseStatusException(HttpStatus.FORBIDDEN), "등록 권한이 없습니다");
+//        }
+//        //나중에 userService랑 합치고 getUser 다시 확인
+//        UserResponse userResponse = this.userService.getUser(principal.getName());
+//        this.buyBookPostService.create(buyBookPostRequest.getBookName(), buyBookPostRequest.getCategory(),
+//                buyBookPostRequest.getBookAuthor(), buyBookPostRequest.getPublisher(), buyBookPostRequest.getField(),
+//                buyBookPostRequest.getField2(), buyBookPostRequest.getPrice(), buyBookPostRequest.getContent(),
+//                buyBookPostRequest.getPayment(), buyBookPostRequest.getCompletion(), userResponse);
+//        return "redirect:/buy_post/list";
+//    }
 
     //삽니다 게시물 수정 화면 불러오기
     @PreAuthorize("isAuthenticated()")

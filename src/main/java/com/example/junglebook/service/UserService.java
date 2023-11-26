@@ -18,19 +18,19 @@ import java.util.stream.Collectors;
 @Transactional(readOnly = true)
 public class UserService {
 
-    @Transactional
-    public void addReview(ReviewDto reviewDto){
-        User user = userRepository.findMemberByNickName(reviewDto.getNickName())
-                .orElseThrow(NoSuchElementException::new);
-        Review review = reviewDto.toEntity(reviewDto);
-        review.addUser(user);
-    }
-
-    public List<ReviewDto> getReviewsByNickName(User nickName){
-        User user = userRepository.findUserByNickName(nickName).orElseThrow(NoSuchElementException::new);
-        return user.getReviews().stream()
-                .map(ReviewDto::toDto)
-                .sorted(Comparator.comparing(ReviewDto::getReviewId, Comparator.reverseOrder()))
-                .collect(Collectors.toList());
-    }
+//    @Transactional
+//    public void addReview(ReviewDto reviewDto){
+//        User user = userRepository.findMemberByNickName(reviewDto.getNickName())
+//                .orElseThrow(NoSuchElementException::new);
+//        Review review = reviewDto.toEntity(reviewDto);
+//        review.addUser(user);
+//    }
+//
+//    public List<ReviewDto> getReviewsByNickName(User nickName){
+//        User user = userRepository.findUserByNickName(nickName).orElseThrow(NoSuchElementException::new);
+//        return user.getReviews().stream()
+//                .map(ReviewDto::toDto)
+//                .sorted(Comparator.comparing(ReviewDto::getReviewId, Comparator.reverseOrder()))
+//                .collect(Collectors.toList());
+//    }
 }
