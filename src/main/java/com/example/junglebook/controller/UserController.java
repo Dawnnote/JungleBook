@@ -1,6 +1,7 @@
 package com.example.junglebook.controller;
 
 import com.example.junglebook.data.dto.ReviewDto;
+import com.example.junglebook.data.entity.User;
 import com.example.junglebook.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

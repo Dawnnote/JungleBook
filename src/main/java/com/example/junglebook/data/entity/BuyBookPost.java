@@ -19,20 +19,23 @@ public class BuyBookPost extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int buyBookId;
 
-    //게시물 작성자 (User)
-//    @ManyToOne
-//    private User userId;
+    //게시물 작성자(User)
+    @ManyToOne
+    private User id;
+
+    //게시물 작성자 닉네임(User)
+    private User nickname;
 
     //책 제목(= 게시물 제목)
     @Column(length = 30)
     private String bookName;
 
-    //책 카테고리
+    //책 카테고리(Enum)
     @Column(name = "category")
     private Category category;
 
-    //저자
-    private String author;
+    //책 저자
+    private String bookAuthor;
 
     //출판사
     private String publisher;
@@ -55,6 +58,5 @@ public class BuyBookPost extends BaseTimeEntity {
 
     //거래 완료 여부
     private Boolean completion;
-
 
 }

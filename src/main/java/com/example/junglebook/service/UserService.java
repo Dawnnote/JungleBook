@@ -2,6 +2,7 @@ package com.example.junglebook.service;
 
 import com.example.junglebook.data.dto.ReviewDto;
 import com.example.junglebook.data.entity.Review;
+import com.example.junglebook.data.entity.User;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

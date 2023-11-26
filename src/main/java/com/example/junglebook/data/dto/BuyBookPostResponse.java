@@ -2,6 +2,7 @@ package com.example.junglebook.data.dto;
 
 import com.example.junglebook.data.category.Category;
 import com.example.junglebook.data.entity.BuyBookPost;
+import com.example.junglebook.data.entity.User;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,13 +20,12 @@ import java.time.LocalDateTime;
 @Component
 public class BuyBookPostResponse {
     private int buyBookId;
-    //User Entity 합치면 주석 해제
-//    private User userId;
-//    private User nickName;
+    private User id;
+    private User nickname;
     private String bookName;
     private Category category;
     //글 작성자 아니고 책의 저자
-    private String author;
+    private String bookAuthor;
     private String publisher;
     private String field;
     private String field2;
@@ -39,9 +39,9 @@ public class BuyBookPostResponse {
     public BuyBookPostResponse(BuyBookPost entity){
         this.buyBookId = entity.getBuyBookId();
         this.bookName = entity.getBookName();
-//        this.nickName = entity.getNickName();
+        this.nickname = entity.getNickname();
         this.category = entity.getCategory();
-        this.author = entity.getAuthor();
+        this.bookAuthor = entity.getBookAuthor();
         this.publisher = entity.getPublisher();
         this.field = entity.getField();
         this.field2 = entity.getField2();

@@ -18,7 +18,8 @@ public class BuyBookPostRequest {
     @Size(max=30)
     private String bookName;
     private Category category;
-    private String author;
+    //글 작성자 아니고 책의 저자
+    private String bookAuthor;
     private String publisher;
     private String field;
     private String field2;
@@ -31,7 +32,7 @@ public class BuyBookPostRequest {
     public BuyBookPostRequest(BuyBookPost entity){
         this.bookName = entity.getBookName();
         this.category = entity.getCategory();
-        this.author = entity.getAuthor();
+        this.bookAuthor = entity.getBookAuthor();
         this.publisher = entity.getPublisher();
         this.field = entity.getField();
         this.field2 = entity.getField2();
