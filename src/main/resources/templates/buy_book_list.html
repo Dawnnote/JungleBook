@@ -14,7 +14,7 @@
     </style>
 </head>
 <body>
-<header th:insert="fragment/header.html"></header>
+<include th:insert="fragment/header.html"></include>
 <div id="wrapper">
     <div class="container">
         <div class="col-md-12">
@@ -115,7 +115,7 @@
         document.getElementById('searchForm').submit();
     });
 </script>
-<footer th:insert="fragment/footer.html"></footer>
+<include th:insert="fragment/footer.html"></include>
 <script src="/js/lib/jquery.min.js"></script>
 <script src="/js/lib/bootstrap.min.js"></script>
 </body>

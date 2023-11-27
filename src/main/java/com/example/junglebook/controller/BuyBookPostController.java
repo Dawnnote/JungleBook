@@ -3,18 +3,17 @@ package com.example.junglebook.controller;
 import com.example.junglebook.data.dto.BuyBookPostRequest;
 import com.example.junglebook.data.dto.BuyBookPostResponse;
 import com.example.junglebook.data.dto.UserResponse;
+import com.example.junglebook.data.entity.BuyBookPost;
 import com.example.junglebook.service.BuyBookPostService;
 import com.example.junglebook.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
@@ -118,5 +117,10 @@ public class BuyBookPostController {
         this.buyBookPostService.delete(buyBookPostResponse);
         return "redirect:/buy_post/list";
     }
+
+
+
+
+
 
 }
