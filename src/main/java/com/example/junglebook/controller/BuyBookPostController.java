@@ -38,14 +38,14 @@ public class BuyBookPostController {
 
     //삽니다 게시물 등록 화면 불러오기
     @PreAuthorize("isAuthenticated()")
-    @GetMapping("/post")
+    @GetMapping("/create")
     public String post(BuyBookPostRequest buyBookPostRequest){
         return "buy_post_form";
     }
 
     //삽니다 게시물 등록 화면
     @PreAuthorize("isAuthenticated()")
-    @PostMapping("/post")
+    @PostMapping("/create")
     public String postCreate(@Valid BuyBookPostRequest buyBookPostRequest, BindingResult bindingResult, Principal principal){
         if (bindingResult.hasErrors()){
             return "buy_post_form";
