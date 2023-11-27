@@ -1,5 +1,6 @@
 package com.example.junglebook.controller;
 
+
 import com.example.junglebook.data.dto.UserRequest;
 import com.example.junglebook.data.entity.User;
 import com.example.junglebook.repository.UserRepository;
@@ -51,6 +52,7 @@ public class UserController {
         try {
             userService.create(userRequest.getUsername(), userRequest.getNickname(), userRequest.getPassword1(), userRequest.getName());
 
+
         } catch (DataIntegrityViolationException e) {
             e.printStackTrace();
             bindingResult.reject("signupFailed", "이미 가입된 회원입니다.");
@@ -76,4 +78,17 @@ public class UserController {
     public @ResponseBody String admin() {
         return "admin page";
     }
+
+
+//    //거래후기 조회
+//    @GetMapping("/review")
+//    public ResponseEntity<List<ReviewDto>> getReviewsByNickName(@RequestParam User nickName){
+//        return new ResponseEntity<>(userService.getReviewsByNickName(nickName), HttpStatus.OK);
+//    }
+//    //거래후기 추가
+//    @PostMapping("/review")
+//    public void addReview(@Valid @RequestBody ReviewDto reviewDto){
+//        userService.addReview(reviewDto);
+//    }
+
 }

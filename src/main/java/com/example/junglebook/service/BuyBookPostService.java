@@ -27,7 +27,7 @@ import java.util.Optional;
 public class BuyBookPostService {
     private final BuyBookPostRepository buyBookPostRepository;
     private final ModelMapper modelMapper;
-    private final User user;
+    //private final User user;
 
     private BuyBookPostResponse of(BuyBookPost buyBookPost){
         return modelMapper.map(buyBookPost, BuyBookPostResponse.class);
@@ -57,7 +57,7 @@ public class BuyBookPostService {
         //작성자(User) 정보 (UserResponse)
         User author = new User();
         author.setId(userResponse.getId());
-        buyBookPostResponse.setId(author);
+        buyBookPostResponse.setAuthor(author);
 
         BuyBookPost buyBookPost = of(buyBookPostResponse);
         this.buyBookPostRepository.save(buyBookPost);

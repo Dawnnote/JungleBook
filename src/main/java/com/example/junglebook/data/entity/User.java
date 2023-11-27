@@ -1,5 +1,6 @@
 package com.example.junglebook.data.entity;
 
+
 import com.example.junglebook.data.common.BaseTimeEntity;
 import com.example.junglebook.data.common.UserRole;
 import lombok.*;
@@ -43,3 +44,4 @@ public class User extends BaseTimeEntity{
 //        this.providerId = providerId;
     }
 }
+

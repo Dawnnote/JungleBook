@@ -21,6 +21,7 @@ import java.time.LocalDateTime;
 public class BuyBookPostResponse {
     private int buyBookId;
     private User author;
+
     private String bookName;
     private Category category;
     //글 작성자 아니고 책의 저자
@@ -38,7 +39,9 @@ public class BuyBookPostResponse {
     public BuyBookPostResponse(BuyBookPost entity){
         this.buyBookId = entity.getBuyBookId();
         this.bookName = entity.getBookName();
+
         this.author = entity.getAuthor();
+
         this.category = entity.getCategory();
         this.bookAuthor = entity.getBookAuthor();
         this.publisher = entity.getPublisher();

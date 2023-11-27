@@ -14,7 +14,7 @@
     </style>
 </head>
 <body>
-<header th:insert="fragment/header.html"></header>
+<include th:insert="fragment/header.html"></include>
 <div id="wrapper">
     <div class="container">
         <div class="col-md-12">
@@ -22,9 +22,9 @@
                 <div class="col-6">
                     <div class="input-group">
                         <a href="/buy_post/list" class="navbar-brand" style="font-size: 20px; font-weight: bold;">Home</a>
-                        <a th:href="@{/member/login}" class="btn btn-info ml-2" sec:authorize="isAnonymous()">로그인</a>
-                        <a th:href="@{/member/logout}" class="btn btn-danger ml-2" sec:authorize="isAuthenticated()">로그아웃</a>
-                        <a th:href="@{/member/signup}" class="btn btn-info ml-2">회원가입</a>
+                        <a th:href="@{/user/login}" class="btn btn-info ml-2" sec:authorize="isAnonymous()">로그인</a>
+                        <a th:href="@{/user/logout}" class="btn btn-danger ml-2" sec:authorize="isAuthenticated()">로그아웃</a>
+                        <a th:href="@{/user/signup}" class="btn btn-info ml-2">회원가입</a>
                     </div>
                 </div>
                 <div class="col-6 text-right">
@@ -54,14 +54,14 @@
                 <tr  class="text-center" th:each="post, loop : ${paging}">
                     <td th:text="${paging.getTotalElements - (paging.number * paging.size) - loop.index}"></td>
                     <td>
-                        <a th:href="@{|/post/detail/${post.id}|}" th:text="${post.subject}"></a>
+                        <a th:href="@{|/buy_post/detail/${post.buyBookId}|}" th:text="${post.bookName}"></a>
                     </td>
                     <!--                    <td th:text="${post.author}"></td>-->
                     <td><span th:if="${post.author != null}" th:text="${post.author.nickname}"></span></td>
                     <td th:text="${#temporals.format(post.createdDate, 'yyyy-MM-dd HH:mm')}"></td>
                     <td th:text="${#temporals.format(post.modifiedDate, 'yyyy-MM-dd HH:mm')}"></td>
-                    <td th:text="${post.readCnt}"></td>
-                    <td th:text="${post.commentList.size()}"></td>
+<!--                    <td th:text="${post.readCnt}"></td>-->
+<!--                    <td th:text="${post.commentList.size()}"></td>-->
                 </tr>
                 </tbody>
             </table>
@@ -115,7 +115,7 @@
         document.getElementById('searchForm').submit();
     });
 </script>
-<footer th:insert="fragment/footer.html"></footer>
+<include th:insert="fragment/footer.html"></include>
 <script src="/js/lib/jquery.min.js"></script>
 <script src="/js/lib/bootstrap.min.js"></script>
 </body>

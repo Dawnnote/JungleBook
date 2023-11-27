@@ -1,6 +1,7 @@
 package com.example.junglebook.service;
 
 import com.example.junglebook.config.DataNotFoundException;
+
 import com.example.junglebook.data.common.UserRole;
 import com.example.junglebook.data.dto.UserResponse;
 import com.example.junglebook.data.entity.User;
@@ -29,7 +30,9 @@ private UserResponse of (User user) {
 }
 
 //create
-    public UserResponse create(String username, String name, String nickname, String password) throws IOException {
+
+public UserResponse create(String username, String nickname, String password, String name) throws IOException {
+//public UserResponse create(String username, String name, String nickname, String password) throws IOException {
         User user = new User();
         user.setUsername(username);
         user.setNickname(nickname);
@@ -54,6 +57,7 @@ private UserResponse of (User user) {
 
         //DELETE
     }
+
 
 
 }

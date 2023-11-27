@@ -23,6 +23,7 @@ public class BuyBookPost extends BaseTimeEntity {
     @ManyToOne
     private User author;
 
+
     //책 제목(= 게시물 제목)
     @Column(length = 30)
     private String bookName;
