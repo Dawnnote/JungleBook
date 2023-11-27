@@ -30,7 +30,6 @@ public class BuyBookPostController {
     private final UserService userService;
 
     //삽니다 게시물 화면 불러오기
-    //여기 나오는 id 물어보기!!
     @GetMapping(value = "/detail/{id}")
     public String detail(Model model, @PathVariable("id") Integer id) {
         BuyBookPostResponse post = this.buyBookPostService.getPost(id);
@@ -40,14 +39,14 @@ public class BuyBookPostController {
 
     //삽니다 게시물 등록 화면 불러오기
     @PreAuthorize("isAuthenticated()")
-    @GetMapping("/post")
+    @GetMapping("/create")
     public String post(BuyBookPostRequest buyBookPostRequest){
         return "buy_post_form";
     }
 
     //삽니다 게시물 등록 화면
     @PreAuthorize("isAuthenticated()")
-    @PostMapping("/post")
+    @PostMapping("/create")
     public String postCreate(@Valid BuyBookPostRequest buyBookPostRequest, BindingResult bindingResult, Principal principal){
         if (bindingResult.hasErrors()){
             return "buy_post_form";

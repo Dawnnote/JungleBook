@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequiredArgsConstructor
 @Controller
 public class BuyBookPagingController {
-    private BuyBookPostService buyBookPostService;
+
+    private final BuyBookPostService buyBookPostService;
 
     @GetMapping("/list")
     public String list(Model model, @RequestParam(value = "page", defaultValue = "0")
@@ -22,7 +23,7 @@ public class BuyBookPagingController {
         Page<BuyBookPost> paging = buyBookPostService.getPage(kw, page);
         model.addAttribute("paging", paging);
         model.addAttribute("kw", kw);
-        return "buy_post_list";
+        return "buy_book_list";
     }
 
 }
