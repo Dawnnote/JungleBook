@@ -27,3 +27,4 @@ public class BaseTimeEntity {
         this.createdDate = LocalDateTime.now();
     }
 }
+

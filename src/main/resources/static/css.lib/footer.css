@@ -45,41 +45,20 @@ p {
 }
 
 /*search*/
-.search {
-    position: relative;
-    width: 300px;
-    margin: auto;
-}
+/*.search {*/
+/*    position: relative;*/
+/*    width: 300px;*/
+/*    margin: auto;*/
+/*}*/
 
-input {
-    width: 100%;
-    border: none;
-    border-radius: 8px;
-    padding: 10px 12px;
-    font-size: 14px;
-}
+/*input {*/
+/*    width: 100%;*/
+/*    border: none;*/
+/*    border-radius: 8px;*/
+/*    padding: 10px 12px;*/
+/*    font-size: 14px;*/
+/*}*/
 
-input[type="text"]:hover {
-    /* 마우스를 가져다 대면 텍스트 박스가 조금 커지도록 설정 */
-    transform: scale(1.05);
-}
-
-/*input box click */
-input:focus {
-    outline: 2px solid #506147;
-}
-#search {
-    position: absolute;
-    width: 17px;
-    top: 10px;
-    right: 12px;
-    margin: 0;
-    color: #B0D69C;
-}
-
-#search:hover {
-    color: #506147;
-}
 
 /*footer menu*/
 .footer-menu {
