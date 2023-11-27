@@ -9,69 +9,70 @@
 <body>
 <include th:insert="fragment/header.html"></include>
 <div class="container">
-    <form action="/post" method="post">
-        <div class="form-group row">
+    <h5 class="my-3 border-bottom pb-2">게시글 등록</h5>
+    <form th:object="${buyBookPostRequest}" method="post">
+        <div class="mb-3">
             <label for="bookName" class="col-sm-2 col-form-label"><strong>상품명</strong></label>
             <div class="col-sm-10">
-                <input type="text" name="bookName" class="form-control" id="bookName" />
+                <input type="text" th:field="*{bookName}" class="form-control" id="bookName">
             </div>
         </div>
-        <div class="form-group row">
+        <div class="mb-3">
             <label for="category" class="col-sm-2 col-form-label"><strong>카테고리</strong></label>
             <div class="col-sm-10">
-                <input type="text" name="category" class="form-control" id="category" />
+                <input type="text" th:field="*{category}" class="form-control" id="category" />
             </div>
         </div>
-        <div class="form-group row">
+        <div class="mb-3">
             <label for="bookAuthor" class="col-sm-2 col-form-label"><strong>저자</strong></label>
             <div class="col-sm-10">
-                <input type="text" name="bookAuthor" class="form-control" id="bookAuthor" />
+                <input type="text" th:field="*{bookAuthor}" class="form-control" id="bookAuthor" />
             </div>
         </div>
-        <div class="form-group row">
+        <div class="mb-3">
             <label for="publisher" class="col-sm-2 col-form-label"><strong>출판사</strong></label>
             <div class="col-sm-10">
-                <input type="text" name="publisher" class="form-control" id="publisher" />
+                <input type="text" th:field="*{publisher}" class="form-control" id="publisher" />
             </div>
         </div>
-        <div class="form-group row">
+        <div class="mb-3">
             <label for="field" class="col-sm-2 col-form-label"><strong>판매지역(도시)</strong></label>
             <div class="col-sm-10">
-                <input type="text" name="field" class="form-control" id="field" />
+                <input type="text" th:field="*{field}" class="form-control" id="field" />
             </div>
         </div>
-        <div class="form-group row">
+        <div class="mb-3">
             <label for="field2" class="col-sm-2 col-form-label"><strong>판매지역(읍/면/동)</strong></label>
             <div class="col-sm-10">
-                <input type="text" name="field2" class="form-control" id="field2" />
+                <input type="text" th:field="*{field}" class="form-control" id="field2" />
             </div>
         </div>
-        <div class="form-group row">
+        <div class="mb-3">
             <label for="price" class="col-sm-2 col-form-label"><strong>가격</strong></label>
             <div class="col-sm-10">
-                <input type="text" name="price" class="form-control" id="price" />
+                <input type="text" th:field="*{price}" class="form-control" id="price" />
             </div>
         </div>
-        <div class="form-group row">
+        <div class="mb-3">
             <label for="content" class="col-sm-2 col-form-label"><strong>상품 내용</strong></label>
             <div class="col-sm-10">
-                <textarea type="text" name="content" class="form-control" id="content"></textarea>
+                <textarea type="text" th:field="*{content}" class="form-control" id="content"></textarea>
             </div>
         </div>
-        <div class="form-group row">
+        <div class="mb-3">
             <label for="payment" class="col-sm-2 col-form-label"><strong>거래 방법</strong></label>
             <div class="col-sm-10">
-                <input type="text" name="payment" class="form-control" id="payment" />
+                <input type="text" th:field="*{payment}" class="form-control" id="payment" />
             </div>
         </div>
-        <div class="form-group row">
+        <div class="mb-3">
             <label for="completion" class="col-sm-2 col-form-label"><strong>거래 완료 여부</strong></label>
             <div class="col-sm-10">
-                <input type="text" name="completion" class="form-control" id="completion" />
+                <input type="text" th:field="*{completion}" class="form-control" id="completion" />
             </div>
         </div>
         <input type="submit" value="상품 등록" class="btn btn-primary my-2">
-        <button type="button" class="btn btn-success" onclick="javascript:location.href='/post/list'">상품 목록으로</button>
+        <button type="button" class="btn btn-success" onclick="javascript:location.href='/buy_post/list'">상품 목록으로</button>
     </form>
 </div>
 <include th:insert="fragment/footer.html"></include>

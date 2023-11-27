@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequiredArgsConstructor
 @Controller
 public class BuyBookPagingController {
+
     private final BuyBookPostService buyBookPostService;
 
     @GetMapping("/list")

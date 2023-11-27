@@ -28,7 +28,6 @@ public class BuyBookPostController {
     private final UserService userService;
 
     //삽니다 게시물 화면 불러오기
-    //여기 나오는 id 물어보기!!
     @GetMapping(value = "/detail/{id}")
     public String detail(Model model, @PathVariable("id") Integer id) {
         BuyBookPostResponse post = this.buyBookPostService.getPost(id);
