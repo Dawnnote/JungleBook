@@ -38,32 +38,32 @@ public class BuyBookPostService {
     }
 
     //삽니다 게시물 작성
-//    public BuyBookPostResponse create(String bookName, Category category, String bookAuthor,
-//                                      String publisher, String field, String field2,
-//                                      Long price, String content, Boolean payment,
-//                                      Boolean completion, UserResponse userResponse){
-//        BuyBookPostResponse buyBookPostResponse = new BuyBookPostResponse();
-//        buyBookPostResponse.setBookName(bookName);
-//        buyBookPostResponse.setCategory(category);
-//        buyBookPostResponse.setBookAuthor(bookAuthor);
-//        buyBookPostResponse.setPublisher(publisher);
-//        buyBookPostResponse.setField(field);
-//        buyBookPostResponse.setField2(field2);
-//        buyBookPostResponse.setPrice(price);
-//        buyBookPostResponse.setContent(content);
-//        buyBookPostResponse.setPayment(payment);
-//        buyBookPostResponse.setCompletion(completion);
-//
-//        //작성자(User) 정보 (UserResponse)
-//        User author = new User();
-//        author.setId(userResponse.getId());
-//        buyBookPostResponse.setId(author);
-//
-//        BuyBookPost buyBookPost = of(buyBookPostResponse);
-//        this.buyBookPostRepository.save(buyBookPost);
-//        return buyBookPostResponse;
-//
-//    }
+    public BuyBookPostResponse create(String bookName, Category category, String bookAuthor,
+                                      String publisher, String field, String field2,
+                                      Long price, String content, Boolean payment,
+                                      Boolean completion, UserResponse userResponse){
+        BuyBookPostResponse buyBookPostResponse = new BuyBookPostResponse();
+        buyBookPostResponse.setBookName(bookName);
+        buyBookPostResponse.setCategory(category);
+        buyBookPostResponse.setBookAuthor(bookAuthor);
+        buyBookPostResponse.setPublisher(publisher);
+        buyBookPostResponse.setField(field);
+        buyBookPostResponse.setField2(field2);
+        buyBookPostResponse.setPrice(price);
+        buyBookPostResponse.setContent(content);
+        buyBookPostResponse.setPayment(payment);
+        buyBookPostResponse.setCompletion(completion);
+
+        //작성자(User) 정보 (UserResponse)
+        User author = new User();
+        author.setId(userResponse.getId());
+        buyBookPostResponse.setId(author);
+
+        BuyBookPost buyBookPost = of(buyBookPostResponse);
+        this.buyBookPostRepository.save(buyBookPost);
+        return buyBookPostResponse;
+
+    }
 
     //삽니다 게시물 수정
      public BuyBookPostResponse update(BuyBookPostResponse buyBookPostResponse, String bookName,

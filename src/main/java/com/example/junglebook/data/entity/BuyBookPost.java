@@ -21,10 +21,7 @@ public class BuyBookPost extends BaseTimeEntity {
 
     //게시물 작성자(User)
     @ManyToOne
-    private User id;
-
-    //게시물 작성자 닉네임(User)
-    private User nickname;
+    private User author;
 
     //책 제목(= 게시물 제목)
     @Column(length = 30)

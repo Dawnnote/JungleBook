@@ -26,7 +26,7 @@ import java.security.Principal;
 public class BuyBookPostController {
     private final BuyBookPostService buyBookPostService;
     private final BuyBookPostResponse buyBookPostResponse;
-//    private final UserService userService;
+    private final UserService userService;
 
     //삽니다 게시물 화면 불러오기
     //여기 나오는 id 물어보기!!
@@ -45,30 +45,30 @@ public class BuyBookPostController {
     }
 
     //삽니다 게시물 등록 화면
-//    @PreAuthorize("isAuthenticated()")
-//    @PostMapping("/post")
-//    public String postCreate(@Valid BuyBookPostRequest buyBookPostRequest, BindingResult bindingResult, Principal principal){
-//        if (bindingResult.hasErrors()){
-//            return "buy_post_form";
-//        }
-//        if (principal == null){
-//            throw new ResponseStatusException(HttpStatus.FORBIDDEN), "등록 권한이 없습니다");
-//        }
-//        //나중에 userService랑 합치고 getUser 다시 확인
-//        UserResponse userResponse = this.userService.getUser(principal.getName());
-//        this.buyBookPostService.create(buyBookPostRequest.getBookName(), buyBookPostRequest.getCategory(),
-//                buyBookPostRequest.getBookAuthor(), buyBookPostRequest.getPublisher(), buyBookPostRequest.getField(),
-//                buyBookPostRequest.getField2(), buyBookPostRequest.getPrice(), buyBookPostRequest.getContent(),
-//                buyBookPostRequest.getPayment(), buyBookPostRequest.getCompletion(), userResponse);
-//        return "redirect:/buy_post/list";
-//    }
+    @PreAuthorize("isAuthenticated()")
+    @PostMapping("/post")
+    public String postCreate(@Valid BuyBookPostRequest buyBookPostRequest, BindingResult bindingResult, Principal principal){
+        if (bindingResult.hasErrors()){
+            return "buy_post_form";
+        }
+        if (principal == null){
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "등록 권한이 없습니다");
+        }
+        //나중에 userService랑 합치고 getUser 다시 확인
+        UserResponse userResponse = this.userService.getUser(principal.getName());
+        this.buyBookPostService.create(buyBookPostRequest.getBookName(), buyBookPostRequest.getCategory(),
+                buyBookPostRequest.getBookAuthor(), buyBookPostRequest.getPublisher(), buyBookPostRequest.getField(),
+                buyBookPostRequest.getField2(), buyBookPostRequest.getPrice(), buyBookPostRequest.getContent(),
+                buyBookPostRequest.getPayment(), buyBookPostRequest.getCompletion(), userResponse);
+        return "redirect:/buy_post/list";
+    }
 
     //삽니다 게시물 수정 화면 불러오기
     @PreAuthorize("isAuthenticated()")
     @GetMapping("update/{id}")
     public String postUpdate(BuyBookPostRequest buyBookPostRequest, @PathVariable("id") Integer id, Principal principal) {
-        BuyBookPostResponse buyBookPostResponse1 = this.buyBookPostService.getPost(id);
-        if(!buyBookPostResponse.getId().getNickname().equals(principal.getName())) {
+        BuyBookPostResponse buyBookPostResponse = this.buyBookPostService.getPost(id);
+        if(!buyBookPostResponse.getAuthor().getNickname().equals(principal.getName())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정권한이 없습니다.");
         }
         buyBookPostRequest.setBookName(buyBookPostResponse.getBookName());
@@ -94,7 +94,7 @@ public class BuyBookPostController {
             return "post_update";
         }
         BuyBookPostResponse buyBookPostResponse = this.buyBookPostService.getPost(id);
-        if (!buyBookPostResponse.getId().getNickname().equals(principal.getName())) {
+        if (!buyBookPostResponse.getAuthor().getNickname().equals(principal.getName())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정권한이 없습니다.");
         }
         this.buyBookPostService.update(buyBookPostResponse, buyBookPostRequest.getBookName(), buyBookPostRequest.getCategory(),
@@ -112,7 +112,7 @@ public class BuyBookPostController {
         if (principal == null) {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "삭제권한이 없습니다..");
         }
-        if (!buyBookPostResponse.getId().getNickname().equals(principal.getName())) {
+        if (!buyBookPostResponse.getAuthor().getNickname().equals(principal.getName())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "삭제권한이 없습니다.");
         }
         this.buyBookPostService.delete(buyBookPostResponse);
