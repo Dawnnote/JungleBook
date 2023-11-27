@@ -3,16 +3,20 @@ package com.example.junglebook.data.entity;
 import com.example.junglebook.data.common.UserRole;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
 @Entity
 @Component
+@Getter
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,6 +35,12 @@ public class User {
     //private String deviceToken;
 //refreshTokenValue(String) - 세션유지
     //private String refreshTokenValue;
+
+
+
+
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
+    private Set<Review> reviews = new LinkedHashSet<>();
 
     @Builder
     public User(String nickname, String email, String password) {

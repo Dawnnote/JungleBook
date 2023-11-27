@@ -20,8 +20,7 @@ import java.time.LocalDateTime;
 @Component
 public class BuyBookPostResponse {
     private int buyBookId;
-    private User id;
-    //private User nickname;
+    private User author;
     private String bookName;
     private Category category;
     //글 작성자 아니고 책의 저자
@@ -39,7 +38,7 @@ public class BuyBookPostResponse {
     public BuyBookPostResponse(BuyBookPost entity){
         this.buyBookId = entity.getBuyBookId();
         this.bookName = entity.getBookName();
-       // this.nickname = entity.getNickname();
+        this.author = entity.getAuthor();
         this.category = entity.getCategory();
         this.bookAuthor = entity.getBookAuthor();
         this.publisher = entity.getPublisher();
@@ -50,5 +49,8 @@ public class BuyBookPostResponse {
         this.payment = entity.getPayment();
         this.completion = entity.getCompletion();
 
+    }
+
+    public void setId(User author) {
     }
 }

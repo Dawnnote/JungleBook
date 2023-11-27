@@ -15,17 +15,17 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/user")
 public class UserController {
-//    private final UserService userService;
-//
-//    //거래후기 조회
-//    @GetMapping("/review")
-//    public ResponseEntity<List<ReviewDto>> getReviewsByNickName(@RequestParam User nickName){
-//        return new ResponseEntity<>(userService.getReviewsByNickName(nickName), HttpStatus.OK);
-//    }
-//    //거래후기 추가
-//    @PostMapping("/review")
-//    public void addReview(@Valid @RequestBody ReviewDto reviewDto){
-//        userService.addReview(reviewDto);
-//    }
+    private final UserService userService;
+
+    //거래후기 조회
+    @GetMapping("/review")
+    public ResponseEntity<List<ReviewDto>> getReviewsByNickName(@RequestParam User nickName){
+        return new ResponseEntity<>(userService.getReviewsByNickName(nickName), HttpStatus.OK);
+    }
+    //거래후기 추가
+    @PostMapping("/review")
+    public void addReview(@Valid @RequestBody ReviewDto reviewDto){
+        userService.addReview(reviewDto);
+    }
 
 }
