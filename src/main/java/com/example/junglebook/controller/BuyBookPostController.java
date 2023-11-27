@@ -60,6 +60,7 @@ public class BuyBookPostController {
                 buyBookPostRequest.getBookAuthor(), buyBookPostRequest.getPublisher(), buyBookPostRequest.getField(),
                 buyBookPostRequest.getField2(), buyBookPostRequest.getPrice(), buyBookPostRequest.getContent(),
                 buyBookPostRequest.getPayment(), buyBookPostRequest.getCompletion(), userResponse);
+        System.out.println("post controller - postcreate redirect list");
         return "redirect:/buy_post/list";
     }
 

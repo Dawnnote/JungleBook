@@ -97,12 +97,14 @@ public class BuyBookPostService {
         orders.add(Sort.Order.desc("createdDate"));
 
         Pageable pageable = PageRequest.of(page, 10, Sort.by(orders));
+        System.out.println("post service - list");
 
         if (kw != null && !kw.isEmpty()){
             return buyBookPostRepository.findByBookNameContaining(kw, pageable); //키워드 포함 사항 출력
         }else {
             return this.buyBookPostRepository.findAll(pageable); //검색어 비어 있으면 전체 출력
         }
+
     }
 
     public Page<BuyBookPost> getPage(String kw, int page){
