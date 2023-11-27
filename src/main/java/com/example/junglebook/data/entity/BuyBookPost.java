@@ -24,7 +24,7 @@ public class BuyBookPost extends BaseTimeEntity {
     private User id;
 
     //게시물 작성자 닉네임(User)
-    private User nickname;
+    //private User nickname; <<위에 User 객체에서 불러오면 될거같슴다
 
     //책 제목(= 게시물 제목)
     @Column(length = 30)
