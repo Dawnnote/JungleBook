@@ -7,7 +7,7 @@
           href="../../css/style.css"></link>
 </head>
 <body>
-<header th:insert="fragment/header.html"></header>
+<include th:insert="fragment/header.html"></include>
 <div class="container">
     <form action="/post" method="post">
         <div class="form-group row">
@@ -74,7 +74,7 @@
         <button type="button" class="btn btn-success" onclick="javascript:location.href='/post/list'">상품 목록으로</button>
     </form>
 </div>
-<footer th:insert="fragment/footer.html"></footer>
+<include th:insert="fragment/footer.html"></include>
 <script src="/js/lib/jquery.min.js"></script>
 <script src="/js/lib/bootstrap.min.js"></script>
 </body>
