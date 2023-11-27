@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
 @Component
 public class BuyBookPostResponse {
     private int buyBookId;
-    private User id;
+    private User author;
     //private User nickname;
     private String bookName;
     private Category category;
@@ -39,7 +39,7 @@ public class BuyBookPostResponse {
     public BuyBookPostResponse(BuyBookPost entity){
         this.buyBookId = entity.getBuyBookId();
         this.bookName = entity.getBookName();
-       // this.nickname = entity.getNickname();
+
         this.category = entity.getCategory();
         this.bookAuthor = entity.getBookAuthor();
         this.publisher = entity.getPublisher();
