@@ -1,19 +1,13 @@
-<header th:include="fragment/header :: header"></header>
-<main class="main">
-    <div class="main">
-        <h1>main</h1>
-        <h1>main</h1>
-        <h1>main</h1>
-        <h1>main</h1>
-        <h1>main</h1>
-        <h1>main</h1>
-        <h1>main</h1>
-        <h1>main</h1>
-        <h1>main</h1>
-        v
 
+<!-- index.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="/layout/default">
 
-        <h1>main</h1><h1>main</h1>
-    </div>
-</main>
-<footer th:include="fragment/footer :: footer"></footer>
+<th:block layout:fragment="content">
+    <!-- page content -->
+    <h1>main</h1>
+</th:block>
+</html>
+>>>>>>> 535a2c7795c480876c7784ab61267e6b2fada3f4
