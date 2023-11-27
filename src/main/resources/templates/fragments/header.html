@@ -1,0 +1,76 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="ko">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css.lib/header.css}"/>
+    <script src="https://kit.fontawesome.com/f0556abec9.js" crossorigin="anonymous"></script>
+<th:block th:fragment="headerFragment">
+    <div class="header-container">
+        <nav class="navbar">
+            <div class="nav-logo"><i class="fa-solid fa-book-bookmark"></i>
+                <a href="#"><span class="highlight">J</span>ungle <span class="highlight">B</span>ook</a>
+            </div>
+            <div class="nav-user">
+                <li><a href="#">Login / Join</a></li>
+                <li><a href="#">Logout</a></li>
+                <li><a href="#">My Page</a></li>
+                <li><a href=""><i class="fa-solid fa-bell" id="bell"></i></a></li>
+            </div>
+            <a href="" class="navbar-btn"><i class="fa-solid fa-bars"></i></a>
+        </nav>
+    </div>
+    <!-- search / category / write / cart / chat  -->
+    <div class="header-box">
+        <!--logo-->
+        <div class="logo">
+            <img src="#" />
+        </div>
+        <div class="search-box">
+            <div class="search">
+                <!-- select box -->
+                    <select name="book Category" class="option">
+                        <option value="none">All</option>
+                        <option value="시/소설">시/소설</option>
+                        <option value="자기계발">자기계발</option>
+                        <option value="교양/인문">교양/인문</option>
+                        <option value="경제/경영">경제/경영</option>
+                        <option value="학습/사전/참고서">학습/사전/참고서</option>
+                        <option value="아동/어린이">아동/어린이</option>
+                        <option value="만화">만화</option>
+                        <option value="기타">기타</option>
+                    </select>
+                <label>
+                    <input class="search-input" type="text" placeholder="search">
+                <button class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </label>
+            </div>
+        </div>
+        <!--write / cart / chat-->
+        <ul class="icon-box">
+            <li><a class="li-text" href="#"><i class="fa-solid fa-pen-to-square"></i></a></li>
+            <li><a class="li-text" href="#"><i class="fa-solid fa-cart-arrow-down"></i></a></li>
+            <li><a class="li-text" href="#"><i class="fa-brands fa-rocketchat"></i></a></li>
+        </ul>
+    </div>
+</th:block>
+<!--navbar toggle btn js-->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const navBtn = document.querySelector('.navbar-btn');
+        const menu = document.querySelector('.nav-user');
+
+        navBtn.addEventListener('click', function (event) {
+            event.preventDefault(); // 링크 이동을 막음
+            menu.classList.toggle('active');
+        });
+
+        // 다른 곳을 클릭하면 메뉴를 닫음
+        document.addEventListener('click', function (event) {
+            const isClickInsideMenu = menu.contains(event.target);
+            const isClickOnBtn = navBtn.contains(event.target);
+
+            if (!isClickInsideMenu && !isClickOnBtn) {
+                menu.classList.remove('active');
+            }
+        });
+    });
+</script>
+</html>

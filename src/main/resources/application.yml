@@ -1,0 +1,26 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 185283478737-tgpvk43eb6gv0spoucbvov9k37fspkmv.apps.googleusercontent.com
+            client-secret: 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
+            scope:
+              - email
+              - profile
+          facebook:
+            client-id: 1555006978584294
+            client-secret: 5a58030c9dbd1220f5f50ae3e6ff21ba
+            scope:
+              - email
+              - public_profile
+
+  logging:
+    level:
+      org:
+        thymeleaf: DEBUG
+  thymeleaf:
+    enabled: true
+    mode: HTML
+    cache: false

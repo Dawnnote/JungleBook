@@ -1,51 +1,45 @@
 package com.example.junglebook.data.entity;
 
+import com.example.junglebook.data.common.BaseTimeEntity;
 import com.example.junglebook.data.common.UserRole;
-import lombok.Builder;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Component;
+import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.LinkedHashSet;
+import java.sql.Timestamp;
+import java.util.HashSet;
 import java.util.Set;
 
+@Entity
 @Data
 @NoArgsConstructor
-@Entity
-@Component
-@Getter
-public class User {
+@AllArgsConstructor
+@ToString(exclude = "userRole")
+public class User extends BaseTimeEntity{
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
     @Column(unique = true)
-    private String nickname;
-    @Column(unique = true)
-    private String email;
-    private String password;
-    private Date userBirth;
+    private String username; //email로 받기
+    private String name; //사용자 이름
+    private String password; //비밀번호
+    private String nickname; //별명
     @Enumerated(EnumType.STRING)
     private UserRole userRole;
-    private String userAddress;
-    private String userAddressDetail;
-    //    deviceToken (String) - 푸시알림
-    //private String deviceToken;
-//refreshTokenValue(String) - 세션유지
-    //private String refreshTokenValue;
+//    private String provider; //
+//    private String providerId;
+    //enum
 
 
-
-
-    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
-    private Set<Review> reviews = new LinkedHashSet<>();
-
+    //생성자
     @Builder
-    public User(String nickname, String email, String password) {
+    public User (String username, String name, String nickname, String password, Timestamp createDate) {
+        this.username = username;
         this.nickname = nickname;
-        this.email = email;
+        this.name = name;
         this.password = password;
+//        this.provider = provider;
+//        this.providerId = providerId;
     }
 }
