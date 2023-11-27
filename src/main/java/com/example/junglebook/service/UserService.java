@@ -30,7 +30,9 @@ private UserResponse of (User user) {
 }
 
 //create
-    public UserResponse create(String username, String name, String nickname, String password) throws IOException {
+
+public UserResponse create(String username, String nickname, String password, String name) throws IOException {
+//public UserResponse create(String username, String name, String nickname, String password) throws IOException {
         User user = new User();
         user.setUsername(username);
         user.setNickname(nickname);

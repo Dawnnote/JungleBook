@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class BuyBookMainController {
     @GetMapping("/")
     public String root(){
-        return "redirect:/buy_post/create";
+        return "redirect:/buy_post/list";
     }
 }

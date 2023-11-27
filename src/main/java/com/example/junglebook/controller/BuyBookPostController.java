@@ -31,6 +31,7 @@ public class BuyBookPostController {
     @GetMapping(value = "/detail/{id}")
     public String detail(Model model, @PathVariable("id") Integer id) {
         BuyBookPostResponse post = this.buyBookPostService.getPost(id);
+
         model.addAttribute("post", post);
         return "buy_post_detail";
     }
