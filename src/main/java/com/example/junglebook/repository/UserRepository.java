@@ -22,4 +22,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     @EntityGraph(attributePaths = "userRole")
     Optional<User> findByUserRole(int id);
 
+    //거래후기 관련해서 필요 (UserService)
+    Optional<User> findUserByNickname(String author);
+
 }

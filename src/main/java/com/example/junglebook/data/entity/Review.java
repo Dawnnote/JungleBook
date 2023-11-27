@@ -40,9 +40,8 @@ public class Review extends BaseTimeEntity {
         this.createdDate = LocalDateTime.now();
     }
 
-    //이게 어떤 역할을 하는지 모르겠음
-//    public void addUser(User user){
-//        this.author = author;
-//        this.author.getReviews().add(this);
-//    }
+    public void addUser(User author){
+        this.author = author;
+        this.author.getReviews().add(this);
+    }
 }

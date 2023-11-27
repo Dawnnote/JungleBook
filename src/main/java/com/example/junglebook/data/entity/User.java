@@ -9,6 +9,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
@@ -32,6 +33,9 @@ public class User extends BaseTimeEntity{
 //    private String providerId;
     //enum
 
+    //거래 후기
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
+    private Set<Review> reviews = new LinkedHashSet<>();
 
     //생성자
     @Builder
