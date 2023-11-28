@@ -13,38 +13,34 @@ import java.time.LocalDateTime;
 @Entity
 @Builder
 public class Review extends BaseTimeEntity {
-    //거래후기 Id
+    //거래 후기 ID
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "review_id")
     private int reviewId;
 
-    //게시물 작성자 닉네임
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    private User nickName;
-
     //좋아요 싫어요
-    private Boolean likeDislike;
+    private Boolean like;
 
     //후기 내용
-    @Column(length = 255, columnDefinition = "TEXT")
-    private String message;
+    private String content;
 
     //후기 생성 시간
     private LocalDateTime createdDate;
 
+    //후기 작성자
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
+
     @Builder
-    public Review(Integer reviewId, Boolean likeDislike, String message){
+    public Review (int reviewId, Boolean like, String content){
         this.reviewId = reviewId;
-        this.likeDislike = likeDislike;
-        this.message = message;
+        this.like = like;
+        this.content = content;
         this.createdDate = LocalDateTime.now();
     }
 
-    //뭐 때문에 필요한지 알아봐야함!!
-//    public void addUser(User user){
-//        this.user = user;
-//        this.user.getReviews().add(this);
-//    }
-
+    public void addUser(User user){
+        this.user = user;
+        this.user.getReviews().add(this);
+    }
 }

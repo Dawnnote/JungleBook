@@ -27,7 +27,7 @@ import java.util.Optional;
 public class BuyBookPostService {
     private final BuyBookPostRepository buyBookPostRepository;
     private final ModelMapper modelMapper;
-    private final User user;
+    //private final User user;
 
     private BuyBookPostResponse of(BuyBookPost buyBookPost){
         return modelMapper.map(buyBookPost, BuyBookPostResponse.class);
@@ -38,32 +38,32 @@ public class BuyBookPostService {
     }
 
     //삽니다 게시물 작성
-//    public BuyBookPostResponse create(String bookName, Category category, String bookAuthor,
-//                                      String publisher, String field, String field2,
-//                                      Long price, String content, Boolean payment,
-//                                      Boolean completion, UserResponse userResponse){
-//        BuyBookPostResponse buyBookPostResponse = new BuyBookPostResponse();
-//        buyBookPostResponse.setBookName(bookName);
-//        buyBookPostResponse.setCategory(category);
-//        buyBookPostResponse.setBookAuthor(bookAuthor);
-//        buyBookPostResponse.setPublisher(publisher);
-//        buyBookPostResponse.setField(field);
-//        buyBookPostResponse.setField2(field2);
-//        buyBookPostResponse.setPrice(price);
-//        buyBookPostResponse.setContent(content);
-//        buyBookPostResponse.setPayment(payment);
-//        buyBookPostResponse.setCompletion(completion);
-//
-//        //작성자(User) 정보 (UserResponse)
-//        User author = new User();
-//        author.setId(userResponse.getId());
-//        buyBookPostResponse.setId(author);
-//
-//        BuyBookPost buyBookPost = of(buyBookPostResponse);
-//        this.buyBookPostRepository.save(buyBookPost);
-//        return buyBookPostResponse;
-//
-//    }
+    public BuyBookPostResponse create(String bookName, Category category, String bookAuthor,
+                                      String publisher, String field, String field2,
+                                      Long price, String content, Boolean payment,
+                                      Boolean completion, UserResponse userResponse){
+        BuyBookPostResponse buyBookPostResponse = new BuyBookPostResponse();
+        buyBookPostResponse.setBookName(bookName);
+        buyBookPostResponse.setCategory(category);
+        buyBookPostResponse.setBookAuthor(bookAuthor);
+        buyBookPostResponse.setPublisher(publisher);
+        buyBookPostResponse.setField(field);
+        buyBookPostResponse.setField2(field2);
+        buyBookPostResponse.setPrice(price);
+        buyBookPostResponse.setContent(content);
+        buyBookPostResponse.setPayment(payment);
+        buyBookPostResponse.setCompletion(completion);
+
+        //작성자(User) 정보 (UserResponse)
+        User author = new User();
+        author.setId(userResponse.getId());
+        buyBookPostResponse.setAuthor(author);
+
+        BuyBookPost buyBookPost = of(buyBookPostResponse);
+        this.buyBookPostRepository.save(buyBookPost);
+        return buyBookPostResponse;
+
+    }
 
     //삽니다 게시물 수정
      public BuyBookPostResponse update(BuyBookPostResponse buyBookPostResponse, String bookName,
@@ -97,12 +97,14 @@ public class BuyBookPostService {
         orders.add(Sort.Order.desc("createdDate"));
 
         Pageable pageable = PageRequest.of(page, 10, Sort.by(orders));
+        System.out.println("post service - list");
 
         if (kw != null && !kw.isEmpty()){
             return buyBookPostRepository.findByBookNameContaining(kw, pageable); //키워드 포함 사항 출력
         }else {
             return this.buyBookPostRepository.findAll(pageable); //검색어 비어 있으면 전체 출력
         }
+
     }
 
     public Page<BuyBookPost> getPage(String kw, int page){

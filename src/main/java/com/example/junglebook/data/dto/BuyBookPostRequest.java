@@ -5,6 +5,7 @@ import com.example.junglebook.data.entity.BuyBookPost;
 import lombok.*;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Getter
@@ -23,7 +24,7 @@ public class BuyBookPostRequest {
     private String publisher;
     private String field;
     private String field2;
-    @NotEmpty(message = "가격은 필수 항목입니다")
+    @NotNull(message = "가격은 필수 항목입니다")
     private Long price;
     private String content;
     private Boolean payment;
