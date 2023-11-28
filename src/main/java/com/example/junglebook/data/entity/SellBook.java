@@ -1,5 +1,4 @@
 package com.example.junglebook.data.entity;
-
 import com.example.junglebook.data.category.Category;
 import lombok.*;
 
