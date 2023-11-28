@@ -2,6 +2,7 @@ package com.example.junglebook.service;
 
 import com.example.junglebook.config.DataNotFoundException;
 import com.example.junglebook.data.common.UserRole;
+import com.example.junglebook.data.dto.UserRequest;
 import com.example.junglebook.data.dto.UserResponse;
 import com.example.junglebook.data.entity.User;
 import com.example.junglebook.repository.UserRepository;

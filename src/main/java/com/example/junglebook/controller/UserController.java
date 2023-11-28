@@ -1,28 +1,17 @@
 package com.example.junglebook.controller;
 
 import com.example.junglebook.data.dto.UserRequest;
-import com.example.junglebook.data.entity.User;
-import com.example.junglebook.repository.UserRepository;
 import com.example.junglebook.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
-import java.io.IOException;
 
 @RequiredArgsConstructor
 @RequestMapping("/user")
@@ -70,10 +59,4 @@ public class UserController {
         return "user/loginForm";
     }
 
-    //admin
-    @Secured("ROLE_ADMIN")
-    @GetMapping("/admin")
-    public @ResponseBody String admin() {
-        return "admin page";
-    }
 }
