@@ -43,6 +43,7 @@ public class ImgApiController {
 
         BuyBookPost buyBookPost = buyBookPostService.findById(id);
 
+
         List<Img> img = buyBookPost.getImg();
 
         return ResponseEntity.ok()

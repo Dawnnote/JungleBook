@@ -27,7 +27,7 @@ import java.util.List;
 @Controller
 public class BuyBookPostController {
     private final BuyBookPostService buyBookPostService;
-    private final BuyBookPostResponse buyBookPostResponse;
+   // private final BuyBookPostResponse buyBookPostResponse;
     private final UserService userService;
 
     //삽니다 게시물 화면 불러오기
@@ -182,7 +182,7 @@ public class BuyBookPostController {
     @PreAuthorize("isAuthenticated()")
     @PostMapping("update/{id}")
     public String postUpdate(@Valid BuyBookPostRequest buyBookPostRequest, BindingResult bindingResult, Principal principal,
-                             @PathVariable("id") Integer id) {
+                             @PathVariable("id") Integer id, List<MultipartFile> files) throws IOException {
         if (bindingResult.hasErrors()) {
             return "post_update";
         }
@@ -193,7 +193,7 @@ public class BuyBookPostController {
         this.buyBookPostService.update(buyBookPostResponse, buyBookPostRequest.getBookName(), buyBookPostRequest.getCategory(),
                 buyBookPostRequest.getBookAuthor(), buyBookPostRequest.getPublisher(), buyBookPostRequest.getField(),
                 buyBookPostRequest.getPrice(), buyBookPostRequest.getContent(),
-                buyBookPostRequest.getPayment(), buyBookPostRequest.getCompletion());
+                buyBookPostRequest.getPayment(), buyBookPostRequest.getCompletion(), files);
         return String.format("redirect:/buy_post/detail/%s", id);   //  /buy_post/detail/{id}로 리디렉션
     }
 

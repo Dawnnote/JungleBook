@@ -73,7 +73,7 @@ public class BuyBookPostService {
      public BuyBookPostResponse update(BuyBookPostResponse buyBookPostResponse, String bookName,
                                        String category, String bookAuthor, String publisher, String field,
                                        Long price, String content, String payment,
-                                       String completion){
+                                       String completion , List<MultipartFile> files) throws IOException {
         buyBookPostResponse.setBookName(bookName);
         buyBookPostResponse.setCategory(category);
         buyBookPostResponse.setBookAuthor(bookAuthor);
@@ -87,6 +87,13 @@ public class BuyBookPostService {
         buyBookPostResponse.setModifiedDate(LocalDateTime.now());
         BuyBookPost buyBookPost = of(buyBookPostResponse);
         this.buyBookPostRepository.save(buyBookPost);
+
+        if(!files.isEmpty()){
+            List<Img> img = new ArrayList<>();
+            for(MultipartFile m : files){
+                img.add(imgService.saveImg(m, buyBookPost));
+            }
+        }
         return buyBookPostResponse;
      }
 
@@ -193,7 +200,7 @@ public class BuyBookPostService {
 
     }
 
-    public BuyBookPost findById(Integer id)    {
+    public BuyBookPost findById(int id)    {
         return buyBookPostRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("not found: " + id));
     }
