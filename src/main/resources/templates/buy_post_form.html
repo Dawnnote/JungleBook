@@ -5,10 +5,10 @@
     <title>삽니다 - 게시글 작성</title>
     <link rel="stylesheet" th:href="@{/css/style.css}"
           href="../../css/style.css"></link>
-<!--폰트 변경 (그치만 안됨)-->
+<!--폰트 변경-->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
-        h1 {
+        #title-buy {
             font-family: 'Nanum Gothic', sans-serif;
             font-weight: 400;
         }
@@ -17,7 +17,7 @@
 <body>
 <include th:insert="fragment/header.html"></include>
     <div class="page-header">
-        <h1>삽니다 상품 등록</h1>
+        <h1 id="title-buy">삽니다 상품 등록</h1>
     </div>
     <form th:object="${buyBookPostRequest}" method="post">
         <div class="mb-3 ms-2">

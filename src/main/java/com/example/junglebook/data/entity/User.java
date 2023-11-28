@@ -33,10 +33,6 @@ public class User extends BaseTimeEntity{
 //    private String providerId;
     //enum
 
-    //거래 후기
-//    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
-//    private Set<Review> reviews = new LinkedHashSet<>();
-
     //생성자
     @Builder
     public User (String username, String name, String nickname, String password, Timestamp createDate) {
@@ -47,5 +43,9 @@ public class User extends BaseTimeEntity{
 //        this.provider = provider;
 //        this.providerId = providerId;
     }
+
+    //거래 후기 getUser 위해서 필요
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private Set<Review> reviews = new LinkedHashSet<>();
 }
 

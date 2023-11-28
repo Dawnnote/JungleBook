@@ -3,16 +3,20 @@ package com.example.junglebook.service;
 import com.example.junglebook.config.DataNotFoundException;
 
 import com.example.junglebook.data.common.UserRole;
+import com.example.junglebook.data.dto.ReviewDto;
 import com.example.junglebook.data.dto.UserResponse;
+import com.example.junglebook.data.entity.Review;
 import com.example.junglebook.data.entity.User;
 import com.example.junglebook.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -53,6 +57,24 @@ public UserResponse create(String username, String nickname, String password, St
         //UPDATE
 
         //DELETE
+    }
+
+    //거래 후기 addReview
+    @Transactional
+    public void addReview(ReviewDto reviewDto){
+    User user = userRepository.findUserByNickname(reviewDto.getNickname())
+            .orElseThrow(NoSuchElementException::new);
+        Review review = reviewDto.toEntity(reviewDto);
+        review.addUser(user);
+    }
+
+    //거래 후기 getReviewsByNickname
+    public List<ReviewDto> getReviewsByNickname(String nickname){
+    User user = userRepository.findUserByNickname(nickname).orElseThrow(NoSuchElementException::new);
+    return user.getReviews().stream()
+            .map(ReviewDto::toDto)
+            .sorted(Comparator.comparing(ReviewDto::getReviewId, Comparator.reverseOrder()))
+            .collect(Collectors.toList());
     }
 
 
