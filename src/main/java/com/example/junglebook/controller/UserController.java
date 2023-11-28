@@ -65,11 +65,11 @@ public class UserController {
     }
 
     //admin
-    @Secured("ROLE_ADMIN")
-    @GetMapping("/admin")
-    public @ResponseBody String admin() {
-        return "admin page";
-    }
+//    @Secured("ROLE_ADMIN")
+//    @GetMapping("/admin")
+//    public String admin() {
+//        return "admin/adminMain";
+//    }
 
 
     //거래후기 조회

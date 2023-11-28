@@ -27,9 +27,9 @@ public class WishListService {
         wishListRepository.delete(wishList);
     }
 
-    public List<WishListDto> getLikedProducts(Long id){
-        return wishListRepository.findLikeProducts(id).stream()
-                .map(WishListDto::new)
-                .collect(Collectors.toList());
-    }
+//    public List<WishListDto> getLikedProducts(Long id){
+//        return wishListRepository.findLikeProducts(id).stream()
+//                .map(WishListDto::new)
+//                .collect(Collectors.toList());
+//    }
 }

@@ -15,13 +15,13 @@ public class ReviewDto {
     private int reviewId;
     private String nickname;
     @NotEmpty(message = "좋아요/싫어요 선택은 필수 항목입니다")
-    private Boolean like;
+    private Boolean like1;
     @NotEmpty(message = "거래 후기 내용은 필수 항목입니다")
     private String content;
 
     public Review toEntity(ReviewDto reviewDto){
         return Review.builder()
-                .like(reviewDto.getLike())
+                .like1(reviewDto.getLike1())
                 .content(reviewDto.getContent())
                 .build();
     }
