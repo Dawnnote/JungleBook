@@ -27,7 +27,7 @@ import java.util.Optional;
 public class BuyBookPostService {
     private final BuyBookPostRepository buyBookPostRepository;
     private final ModelMapper modelMapper;
-    //private final User user;
+    private final User user;
 
     private BuyBookPostResponse of(BuyBookPost buyBookPost){
         return modelMapper.map(buyBookPost, BuyBookPostResponse.class);
@@ -57,7 +57,7 @@ public class BuyBookPostService {
         //작성자(User) 정보 (UserResponse)
         User author = new User();
         author.setId(userResponse.getId());
-        buyBookPostResponse.setAuthor(author);
+        buyBookPostResponse.setId(author);
 
         BuyBookPost buyBookPost = of(buyBookPostResponse);
         this.buyBookPostRepository.save(buyBookPost);
@@ -97,14 +97,12 @@ public class BuyBookPostService {
         orders.add(Sort.Order.desc("createdDate"));
 
         Pageable pageable = PageRequest.of(page, 10, Sort.by(orders));
-        System.out.println("post service - list");
 
         if (kw != null && !kw.isEmpty()){
             return buyBookPostRepository.findByBookNameContaining(kw, pageable); //키워드 포함 사항 출력
         }else {
             return this.buyBookPostRepository.findAll(pageable); //검색어 비어 있으면 전체 출력
         }
-
     }
 
     public Page<BuyBookPost> getPage(String kw, int page){
