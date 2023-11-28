@@ -34,8 +34,8 @@ public class User extends BaseTimeEntity{
     //enum
 
     //거래 후기
-    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
-    private Set<Review> reviews = new LinkedHashSet<>();
+//    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
+//    private Set<Review> reviews = new LinkedHashSet<>();
 
     //생성자
     @Builder
