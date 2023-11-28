@@ -37,17 +37,17 @@ public class BuyBookPostService {
     }
 
     //삽니다 게시물 작성
-    public BuyBookPostResponse create(String bookName, Category category, String bookAuthor,
-                                      String publisher, String field, String field2,
-                                      Long price, String content, Boolean payment,
-                                      Boolean completion, UserResponse userResponse){
+    public BuyBookPostResponse create(String bookName, String category, String bookAuthor,
+                                      String publisher, String field,
+                                      Long price, String content, String payment,
+                                      String completion, UserResponse userResponse){
         BuyBookPostResponse buyBookPostResponse = new BuyBookPostResponse();
         buyBookPostResponse.setBookName(bookName);
         buyBookPostResponse.setCategory(category);
         buyBookPostResponse.setBookAuthor(bookAuthor);
         buyBookPostResponse.setPublisher(publisher);
         buyBookPostResponse.setField(field);
-        buyBookPostResponse.setField2(field2);
+        //buyBookPostResponse.setField2(field2);
         buyBookPostResponse.setPrice(price);
         buyBookPostResponse.setContent(content);
         buyBookPostResponse.setPayment(payment);
@@ -66,15 +66,15 @@ public class BuyBookPostService {
 
     //삽니다 게시물 수정
      public BuyBookPostResponse update(BuyBookPostResponse buyBookPostResponse, String bookName,
-                                       Category category, String bookAuthor, String publisher, String field,
-                                       String field2, Long price, String content, Boolean payment,
-                                       Boolean completion){
+                                       String category, String bookAuthor, String publisher, String field,
+                                       Long price, String content, String payment,
+                                       String completion){
         buyBookPostResponse.setBookName(bookName);
         buyBookPostResponse.setCategory(category);
         buyBookPostResponse.setBookAuthor(bookAuthor);
         buyBookPostResponse.setPublisher(publisher);
         buyBookPostResponse.setField(field);
-        buyBookPostResponse.setField2(field2);
+        //buyBookPostResponse.setField2(field2);
         buyBookPostResponse.setPrice(price);
         buyBookPostResponse.setContent(content);
         buyBookPostResponse.setPayment(payment);

@@ -18,23 +18,26 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @Component
-public class BuyBookPostResponse {
+public class BuyBookPostResponse  {
     private int buyBookId;
     private User author;
 
     private String bookName;
-    private Category category;
+    //private Category category;
+    private String category;
     //글 작성자 아니고 책의 저자
     private String bookAuthor;
     private String publisher;
     private String field;
-    private String field2;
+    //private String field2;
     private Long price;
     private String content;
-    private Boolean payment;
-    private Boolean completion;
+   // private Boolean payment;
+    //private Boolean completion;
     private LocalDateTime modifiedDate;
-    private LocalDateTime createDate;
+    private LocalDateTime createdDate;
+    private String payment;
+    private String completion;
 
     public BuyBookPostResponse(BuyBookPost entity){
         this.buyBookId = entity.getBuyBookId();
@@ -46,7 +49,7 @@ public class BuyBookPostResponse {
         this.bookAuthor = entity.getBookAuthor();
         this.publisher = entity.getPublisher();
         this.field = entity.getField();
-        this.field2 = entity.getField2();
+       // this.field2 = entity.getField2();
         this.price = entity.getPrice();
         this.content = entity.getContent();
         this.payment = entity.getPayment();

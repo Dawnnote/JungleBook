@@ -18,17 +18,20 @@ public class BuyBookPostRequest {
     @NotEmpty(message = "상품명은 필수 항목입니다")
     @Size(max=30)
     private String bookName;
-    private Category category;
+    //private Category category;
+    private String category;
     //글 작성자 아니고 책의 저자
     private String bookAuthor;
     private String publisher;
     private String field;
-    private String field2;
+    //private String field2;
     @NotNull(message = "가격은 필수 항목입니다")
     private Long price;
     private String content;
-    private Boolean payment;
-    private Boolean completion;
+   // private Boolean payment;
+    //private Boolean completion;
+    private String payment;
+    private String completion;
 
     public BuyBookPostRequest(BuyBookPost entity){
         this.bookName = entity.getBookName();
@@ -36,7 +39,7 @@ public class BuyBookPostRequest {
         this.bookAuthor = entity.getBookAuthor();
         this.publisher = entity.getPublisher();
         this.field = entity.getField();
-        this.field2 = entity.getField2();
+        //this.field2 = entity.getField2();
         this.price = entity.getPrice();
         this.content = entity.getContent();
         this.payment = entity.getPayment();

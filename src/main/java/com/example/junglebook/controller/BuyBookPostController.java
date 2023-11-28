@@ -33,14 +33,14 @@ public class BuyBookPostController {
         BuyBookPostResponse post = this.buyBookPostService.getPost(id);
 
         model.addAttribute("post", post);
-        return "buy_post_detail";
+        return "buy_post_detail2";
     }
 
     //삽니다 게시물 등록 화면 불러오기
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/create")
     public String post(BuyBookPostRequest buyBookPostRequest){
-        return "buy_post_form";
+        return "buy_post_form2";
     }
 
     //삽니다 게시물 등록 화면
@@ -57,7 +57,7 @@ public class BuyBookPostController {
         UserResponse userResponse = this.userService.getUser(principal.getName());
         this.buyBookPostService.create(buyBookPostRequest.getBookName(), buyBookPostRequest.getCategory(),
                 buyBookPostRequest.getBookAuthor(), buyBookPostRequest.getPublisher(), buyBookPostRequest.getField(),
-                buyBookPostRequest.getField2(), buyBookPostRequest.getPrice(), buyBookPostRequest.getContent(),
+                 buyBookPostRequest.getPrice(), buyBookPostRequest.getContent(),
                 buyBookPostRequest.getPayment(), buyBookPostRequest.getCompletion(), userResponse);
         System.out.println("post controller - postcreate redirect list");
         return "redirect:/buy_post/list";
@@ -76,7 +76,7 @@ public class BuyBookPostController {
         buyBookPostRequest.setBookAuthor(buyBookPostResponse.getBookAuthor());
         buyBookPostRequest.setPublisher(buyBookPostResponse.getPublisher());
         buyBookPostRequest.setField(buyBookPostResponse.getField());
-        buyBookPostRequest.setField2(buyBookPostResponse.getField2());
+        //buyBookPostRequest.setField2(buyBookPostResponse.getField2());
         buyBookPostRequest.setPrice(buyBookPostResponse.getPrice());
         buyBookPostRequest.setContent(buyBookPostResponse.getContent());
         buyBookPostRequest.setPayment(buyBookPostResponse.getPayment());
@@ -99,7 +99,7 @@ public class BuyBookPostController {
         }
         this.buyBookPostService.update(buyBookPostResponse, buyBookPostRequest.getBookName(), buyBookPostRequest.getCategory(),
                 buyBookPostRequest.getBookAuthor(), buyBookPostRequest.getPublisher(), buyBookPostRequest.getField(),
-                buyBookPostRequest.getField2(), buyBookPostRequest.getPrice(), buyBookPostRequest.getContent(),
+                 buyBookPostRequest.getPrice(), buyBookPostRequest.getContent(),
                 buyBookPostRequest.getPayment(), buyBookPostRequest.getCompletion());
         return String.format("redirect:/buy_post/detail/%s", id);   //  /buy_post/detail/{id}로 리디렉션
     }

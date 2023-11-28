@@ -30,7 +30,8 @@ public class BuyBookPost extends BaseTimeEntity {
 
     //책 카테고리(Enum)
     @Column(name = "category")
-    private Category category;
+   // private Category category;
+    private String category;
 
     //책 저자
     private String bookAuthor;
@@ -42,7 +43,7 @@ public class BuyBookPost extends BaseTimeEntity {
     private String field;
 
     //판매 지역(읍, 면, 동)
-    private String field2;
+    //private String field2;
 
     //상품 가격
     private Long price;
@@ -52,9 +53,10 @@ public class BuyBookPost extends BaseTimeEntity {
     private String content;
 
     //거래 방법(직거래 or 택배 배송)
-    private Boolean payment;
+    //private Boolean payment;
+    private String payment;
 
     //거래 완료 여부
-    private Boolean completion;
-
+    //private Boolean completion;
+    private String completion;
 }
