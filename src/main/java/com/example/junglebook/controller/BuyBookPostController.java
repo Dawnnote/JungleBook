@@ -53,7 +53,6 @@ public class BuyBookPostController {
         if (principal == null){
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "등록 권한이 없습니다");
         }
-        //나중에 userService랑 합치고 getUser 다시 확인
         UserResponse userResponse = this.userService.getUser(principal.getName());
         this.buyBookPostService.create(buyBookPostRequest.getBookName(), buyBookPostRequest.getCategory(),
                 buyBookPostRequest.getBookAuthor(), buyBookPostRequest.getPublisher(), buyBookPostRequest.getField(),

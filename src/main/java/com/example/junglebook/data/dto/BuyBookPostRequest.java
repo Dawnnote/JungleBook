@@ -23,7 +23,6 @@ public class BuyBookPostRequest {
     private String bookAuthor;
     private String publisher;
     private String field;
-    private String field2;
     @NotNull(message = "가격은 필수 항목입니다")
     private Long price;
     private String content;
@@ -36,7 +35,6 @@ public class BuyBookPostRequest {
         this.bookAuthor = entity.getBookAuthor();
         this.publisher = entity.getPublisher();
         this.field = entity.getField();
-        this.field2 = entity.getField2();
         this.price = entity.getPrice();
         this.content = entity.getContent();
         this.payment = entity.getPayment();

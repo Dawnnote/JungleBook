@@ -19,7 +19,7 @@ public class Review extends BaseTimeEntity {
     private int reviewId;
 
     //좋아요 싫어요
-    private Boolean like;
+    private Boolean like1;
 
     //후기 내용
     private String content;
@@ -32,9 +32,9 @@ public class Review extends BaseTimeEntity {
     private User user;
 
     @Builder
-    public Review (int reviewId, Boolean like, String content){
+    public Review (int reviewId, Boolean like1, String content){
         this.reviewId = reviewId;
-        this.like = like;
+        this.like1 = like1;
         this.content = content;
         this.createdDate = LocalDateTime.now();
     }

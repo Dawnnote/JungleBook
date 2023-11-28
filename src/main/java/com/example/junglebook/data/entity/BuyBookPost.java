@@ -13,7 +13,6 @@ import javax.persistence.*;
 @Entity
 @Builder
 public class BuyBookPost extends BaseTimeEntity {
-
     //삽니다 상품ID
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +21,6 @@ public class BuyBookPost extends BaseTimeEntity {
     //게시물 작성자(User)
     @ManyToOne
     private User author;
-
 
     //책 제목(= 게시물 제목)
     @Column(length = 30)
@@ -40,9 +38,6 @@ public class BuyBookPost extends BaseTimeEntity {
 
     //판매 지역(도시)
     private String field;
-
-    //판매 지역(읍, 면, 동)
-    private String field2;
 
     //상품 가격
     private Long price;
