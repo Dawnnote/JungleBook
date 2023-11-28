@@ -22,17 +22,17 @@
 
 회의를 진행하며 진행 상황 및 코드 공유
 
-[23.11.13](https://www.notion.so/23-11-13-2deb6ee6d6504b99aeef275542210b6e?pvs=21)
+🔗[23.11.13](https://www.notion.so/23-11-13-2deb6ee6d6504b99aeef275542210b6e?pvs=21)
 
-[23.11.14](https://www.notion.so/23-11-14-a9975f4781494d19b8d59bca4370a8be?pvs=21)
+🔗[23.11.14](https://www.notion.so/23-11-14-a9975f4781494d19b8d59bca4370a8be?pvs=21)
 
-[23.11.17](https://www.notion.so/23-11-17-0cbb14427ecf4520b500988f947f6d7f?pvs=21)
+🔗[23.11.17](https://www.notion.so/23-11-17-0cbb14427ecf4520b500988f947f6d7f?pvs=21)
 
-[23.11.20](https://www.notion.so/23-11-20-7fc09583cf084029bcdf1d4500f7ab37?pvs=21)
+🔗[23.11.20](https://www.notion.so/23-11-20-7fc09583cf084029bcdf1d4500f7ab37?pvs=21)
 
-[23.11.22](https://www.notion.so/23-11-22-929a5c4568734278b4c8304276cd3604?pvs=21)
+🔗[23.11.22](https://www.notion.so/23-11-22-929a5c4568734278b4c8304276cd3604?pvs=21)
 
-[23.11.26](https://www.notion.so/23-11-26-1e52cd63d45b4ab4b6580952cd7746c3?pvs=21)
+🔗[23.11.26](https://www.notion.so/23-11-26-1e52cd63d45b4ab4b6580952cd7746c3?pvs=21)
 
 ## 📑프로젝트 주요 기능
 
