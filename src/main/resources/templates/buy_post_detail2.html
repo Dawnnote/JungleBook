@@ -13,14 +13,14 @@
     <div class="card my-3">
         <div class="card-body">
 
-<!--            <div th:each="img : ${post.imgEntity}">-->
-<!--                &lt;!&ndash;                <div><img th:src="@{${postResponse.imgEntity}}"></div>&ndash;&gt;-->
-<!--                <img th:src="@{${img.filePath}}" class="img-fluid">-->
-<!--            </div>-->
+
 
 
 
             <div class="card-text" style="white-space: pre-line;" >
+                <div th:each="img : ${post.img}">
+                    <img th:src="@{${img.filePath}}" class="img-fluid">
+                </div>
                 <span>카테고리 : </span><span th:text="${post.category}"></span>
                 <span>저자 : </span><span th:text="${post.bookAuthor}"></span>
                 <span>출판사 : </span><span th:text="${post.publisher}"></span>
@@ -46,46 +46,41 @@
             </div>
             <div class="my-3">
 
-                <a th:href="@{|/post/update/${post.id}|}" class="btn btn-sm btn-outline-secondary"
+
+                <a th:href="@{|/buy_post/update/${post.buyBookId}|}" class="btn btn-sm btn-outline-secondary"
                    sec:authorize="isAuthenticated()"
-                   th:if="${post.author != null and #authentication.getPrincipal().getUsername() == post.author.nickname}"
+                   th:if="${post.author != null and #authentication.getPrincipal().getUsername() == post.author.username}"
                    th:text="수정"></a>
-                <a href="javascript:void(0);" th:data-uri="@{|/post/delete/${postResponse.id}|}"
+                <a href="javascript:void(0);" th:data-uri="@{|/buy_post/delete/${post.buyBookId}|}"
                    class="delete btn btn-sm btn-outline-secondary" sec:authorize="isAuthenticated()"
-                   th:if="${post.author != null and #authentication.getPrincipal().getUsername() == post.author.nickname}"
+                   th:if="${post.author != null and #authentication.getPrincipal().getUsername() == post.author.username}"
                    th:text="삭제"></a>
-                <!--                <a th:href="@{|/post/update/${postResponse.id}|}" class="btn btn-info ml-2">수정</a>-->
-                <!--                <a th:href="@{|/post/delete/${postResponse.id}|}" class="btn btn-info ml-2">삭제</a>-->
+<!--                                <a th:href="@{|/post/update/${post.id}|}" class="btn btn-info ml-2">수정</a>-->
+<!--                                <a th:href="@{|/post/delete/${post.id}|}" class="btn btn-info ml-2">삭제</a>-->
+
             </div>
         </div>
     </div>
 
 
 
-        <button type="button" class="btn btn-success" onclick="javascript:location.href='/post/list'">목록으로</button>
+
+
+        <button type="button" class="btn btn-success" onclick="javascript:location.href='/buy_post/list'">목록으로</button>
 
 </div>
 <include th:insert="fragment/footer.html"></include>
 
 <script >
 
-
-
-
     const delete_elements = document.getElementsByClassName("delete");
-    Array.from(delete_elements).forEach(function(element) {
-        element.addEventListener('click', function() {
-            if(confirm("정말로 삭제하시겠습니까?")) {
-                location.href = this.dataset.uri;
-            };
+        Array.from(delete_elements).forEach(function(element) {
+            element.addEventListener('click', function() {
+                if(confirm("정말로 삭제하시겠습니까?")) {
+                    location.href = this.dataset.uri;
+                };
+            });
         });
-    });
-    const recommend_elements = document.getElementsByClassName("recommend");
-    Array.from(recommend_elements).forEach(function(element) {
-        element.addEventListener('click', function() {
-            if(confirm("정말로 추천하시겠습니까?")) {
-                location.href = this.dataset.uri;
-            };
-        });
-    });
+
+
 </script>

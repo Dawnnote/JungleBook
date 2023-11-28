@@ -2,6 +2,7 @@ package com.example.junglebook.data.dto;
 
 import com.example.junglebook.data.category.Category;
 import com.example.junglebook.data.entity.BuyBookPost;
+import com.example.junglebook.data.entity.Img;
 import com.example.junglebook.data.entity.User;
 import lombok.Data;
 import lombok.Getter;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Component;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Getter
@@ -39,6 +41,8 @@ public class BuyBookPostResponse  {
     private String payment;
     private String completion;
 
+    private List<Img> img;
+
     public BuyBookPostResponse(BuyBookPost entity){
         this.buyBookId = entity.getBuyBookId();
         this.bookName = entity.getBookName();
@@ -54,6 +58,7 @@ public class BuyBookPostResponse  {
         this.content = entity.getContent();
         this.payment = entity.getPayment();
         this.completion = entity.getCompletion();
+        this.img = entity.getImg();
 
     }
 

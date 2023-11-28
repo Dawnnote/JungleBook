@@ -2,11 +2,13 @@ package com.example.junglebook.data.dto;
 
 import com.example.junglebook.data.category.Category;
 import com.example.junglebook.data.entity.BuyBookPost;
+import com.example.junglebook.data.entity.Img;
 import lombok.*;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Getter
 @Setter
@@ -33,6 +35,8 @@ public class BuyBookPostRequest {
     private String payment;
     private String completion;
 
+    private List<Img> img;
+
     public BuyBookPostRequest(BuyBookPost entity){
         this.bookName = entity.getBookName();
         this.category = entity.getCategory();
@@ -44,5 +48,6 @@ public class BuyBookPostRequest {
         this.content = entity.getContent();
         this.payment = entity.getPayment();
         this.completion = entity.getCompletion();
+        this.img = entity.getImg();
     }
 }

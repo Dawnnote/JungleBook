@@ -15,7 +15,7 @@ public class Img {
     private Long id;
 
     @ManyToOne
-    private BuyBookPost buyBookPost;
+    private BuyBookPost buyBookPost; //게시글번호
 
     private String fileName; //uuid와 합쳐진 이름
     private String filePath;

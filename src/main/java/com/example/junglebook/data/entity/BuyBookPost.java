@@ -5,6 +5,7 @@ import com.example.junglebook.data.common.BaseTimeEntity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -59,4 +60,8 @@ public class BuyBookPost extends BaseTimeEntity {
     //거래 완료 여부
     //private Boolean completion;
     private String completion;
+
+    //이미지
+    @OneToMany(mappedBy = "buyBookPost", cascade = CascadeType.REMOVE)
+    private List<Img> img;
 }
