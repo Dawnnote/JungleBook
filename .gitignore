@@ -31,3 +31,14 @@ build/
 
 ### VS Code ###
 .vscode/
+<<<<<<< HEAD
+=======
+### Example user template template
+### Example user template
+
+# IntelliJ project files
+.idea
+*.iml
+out
+gen
+>>>>>>> f8ec85f (팝니다)

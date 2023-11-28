@@ -1,23 +1,21 @@
 package com.example.junglebook.data.entity;
 
 import com.example.junglebook.data.category.Category;
-import com.example.junglebook.data.common.BaseTimeEntity;
 import lombok.*;
 
 import javax.persistence.*;
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @Entity
 @Builder
-public class BuyBookPost extends BaseTimeEntity {
+public class SellBookPost {
 
-    //삽니다 상품ID
+    //팝니다 상품ID
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int buyBookId;
+    private int sellBookId;
 
     //게시물 작성자(User)
     @ManyToOne
@@ -55,5 +53,4 @@ public class BuyBookPost extends BaseTimeEntity {
 
     //거래 완료 여부
     private Boolean completion;
-
 }

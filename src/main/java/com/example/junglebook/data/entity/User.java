@@ -1,51 +1,51 @@
 package com.example.junglebook.data.entity;
 
-
-import com.example.junglebook.data.common.BaseTimeEntity;
 import com.example.junglebook.data.common.UserRole;
-import lombok.*;
-import org.hibernate.annotations.CreationTimestamp;
+import lombok.Builder;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
-import java.util.HashSet;
+import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-@Entity
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
-@ToString(exclude = "userRole")
-public class User extends BaseTimeEntity{
-
+@Entity
+@Component
+@Getter
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     @Column(unique = true)
-    private String username; //email로 받기
-    private String name; //사용자 이름
-    private String password; //비밀번호
-    private String nickname; //별명
+    private String nickname;
+    @Column(unique = true)
+    private String email;
+    private String password;
+    private Date userBirth;
     @Enumerated(EnumType.STRING)
     private UserRole userRole;
-//    private String provider; //
-//    private String providerId;
-    //enum
+    private String userAddress;
+    private String userAddressDetail;
+    //    deviceToken (String) - 푸시알림
+    //private String deviceToken;
+//refreshTokenValue(String) - 세션유지
+    //private String refreshTokenValue;
 
-    //거래 후기
-//    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
-//    private Set<Review> reviews = new LinkedHashSet<>();
 
-    //생성자
+
+
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
+    private Set<Review> reviews = new LinkedHashSet<>();
+
     @Builder
-    public User (String username, String name, String nickname, String password, Timestamp createDate) {
-        this.username = username;
+    public User(String nickname, String email, String password) {
         this.nickname = nickname;
-        this.name = name;
+        this.email = email;
         this.password = password;
-//        this.provider = provider;
-//        this.providerId = providerId;
     }
 }
-

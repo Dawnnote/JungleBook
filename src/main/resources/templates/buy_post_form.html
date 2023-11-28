@@ -5,6 +5,7 @@
     <title>삽니다 - 게시글 작성</title>
     <link rel="stylesheet" th:href="@{/css/style.css}"
           href="../../css/style.css"></link>
+<<<<<<< HEAD
 <!--폰트 변경 (그치만 안됨)-->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
@@ -103,6 +104,78 @@
         <input type="submit" value="상품 등록" class="btn btn-primary my-2">
         <button type="button" class="btn btn-primary my-2" onclick="javascript:location.href='/buy_post/list'">상품 목록으로</button>
     </form>
+=======
+</head>
+<body>
+<include th:insert="fragment/header.html"></include>
+<div class="container">
+    <h5 class="my-3 border-bottom pb-2">게시글 등록</h5>
+    <form th:object="${buyBookPostRequest}" method="post">
+        <div class="mb-3">
+            <label for="bookName" class="col-sm-2 col-form-label"><strong>상품명</strong></label>
+            <div class="col-sm-10">
+                <input type="text" th:field="*{bookName}" class="form-control" id="bookName">
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="category" class="col-sm-2 col-form-label"><strong>카테고리</strong></label>
+            <div class="col-sm-10">
+                <input type="text" th:field="*{category}" class="form-control" id="category" />
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="bookAuthor" class="col-sm-2 col-form-label"><strong>저자</strong></label>
+            <div class="col-sm-10">
+                <input type="text" th:field="*{bookAuthor}" class="form-control" id="bookAuthor" />
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="publisher" class="col-sm-2 col-form-label"><strong>출판사</strong></label>
+            <div class="col-sm-10">
+                <input type="text" th:field="*{publisher}" class="form-control" id="publisher" />
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="field" class="col-sm-2 col-form-label"><strong>판매지역(도시)</strong></label>
+            <div class="col-sm-10">
+                <input type="text" th:field="*{field}" class="form-control" id="field" />
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="field2" class="col-sm-2 col-form-label"><strong>판매지역(읍/면/동)</strong></label>
+            <div class="col-sm-10">
+                <input type="text" th:field="*{field}" class="form-control" id="field2" />
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="price" class="col-sm-2 col-form-label"><strong>가격</strong></label>
+            <div class="col-sm-10">
+                <input type="text" th:field="*{price}" class="form-control" id="price" />
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="content" class="col-sm-2 col-form-label"><strong>상품 내용</strong></label>
+            <div class="col-sm-10">
+                <textarea type="text" th:field="*{content}" class="form-control" id="content"></textarea>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="payment" class="col-sm-2 col-form-label"><strong>거래 방법</strong></label>
+            <div class="col-sm-10">
+                <input type="text" th:field="*{payment}" class="form-control" id="payment" />
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="completion" class="col-sm-2 col-form-label"><strong>거래 완료 여부</strong></label>
+            <div class="col-sm-10">
+                <input type="text" th:field="*{completion}" class="form-control" id="completion" />
+            </div>
+        </div>
+        <input type="submit" value="상품 등록" class="btn btn-primary my-2">
+        <button type="button" class="btn btn-success" onclick="javascript:location.href='/buy_post/list'">상품 목록으로</button>
+    </form>
+</div>
+>>>>>>> f8ec85f (팝니다)
 <include th:insert="fragment/footer.html"></include>
 <script src="/js/lib/jquery.min.js"></script>
 <script src="/js/lib/bootstrap.min.js"></script>

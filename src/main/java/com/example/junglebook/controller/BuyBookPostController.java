@@ -7,13 +7,15 @@ import com.example.junglebook.data.entity.BuyBookPost;
 import com.example.junglebook.service.BuyBookPostService;
 import com.example.junglebook.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
@@ -31,7 +33,6 @@ public class BuyBookPostController {
     @GetMapping(value = "/detail/{id}")
     public String detail(Model model, @PathVariable("id") Integer id) {
         BuyBookPostResponse post = this.buyBookPostService.getPost(id);
-
         model.addAttribute("post", post);
         return "buy_post_detail";
     }
@@ -59,7 +60,6 @@ public class BuyBookPostController {
                 buyBookPostRequest.getBookAuthor(), buyBookPostRequest.getPublisher(), buyBookPostRequest.getField(),
                 buyBookPostRequest.getField2(), buyBookPostRequest.getPrice(), buyBookPostRequest.getContent(),
                 buyBookPostRequest.getPayment(), buyBookPostRequest.getCompletion(), userResponse);
-        System.out.println("post controller - postcreate redirect list");
         return "redirect:/buy_post/list";
     }
 
@@ -118,10 +118,5 @@ public class BuyBookPostController {
         this.buyBookPostService.delete(buyBookPostResponse);
         return "redirect:/buy_post/list";
     }
-
-
-
-
-
 
 }

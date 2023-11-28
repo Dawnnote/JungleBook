@@ -1,35 +1,36 @@
 package com.example.junglebook.data.dto;
 
 import com.example.junglebook.data.category.Category;
-import com.example.junglebook.data.entity.BuyBookPost;
+import com.example.junglebook.data.entity.SellBookPost;
+import com.example.junglebook.data.entity.User;
 import lombok.*;
+import org.springframework.stereotype.Component;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
+import java.time.LocalDateTime;
 
+@Data
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
-@Builder
-public class BuyBookPostRequest {
-    //회원이 입력하는 항목들
-    @NotEmpty(message = "상품명은 필수 항목입니다")
-    @Size(max=30)
+@Component
+public class SellBookPostResponse {
+    private int SellBookId;
+    private User author;
     private String bookName;
     private Category category;
-    //글 작성자 아니고 책의 저자
     private String bookAuthor;
     private String publisher;
     private String field;
     private String field2;
-    @NotEmpty(message = "가격은 필수 항목입니다")
     private Long price;
     private String content;
     private Boolean payment;
     private Boolean completion;
+    private LocalDateTime modifiedDate;
+    private LocalDateTime createDate;
 
-    public BuyBookPostRequest(BuyBookPost entity){
+    public SellBookPostResponse(SellBookPost entity){
+        this.SellBookId=entity.getSellBookId();
         this.bookName = entity.getBookName();
         this.category = entity.getCategory();
         this.bookAuthor = entity.getBookAuthor();
@@ -41,4 +42,7 @@ public class BuyBookPostRequest {
         this.payment = entity.getPayment();
         this.completion = entity.getCompletion();
     }
+    public void setId(User author){
+    }
+
 }
