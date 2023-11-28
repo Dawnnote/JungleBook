@@ -172,6 +172,7 @@ public class BuyBookPostController {
         buyBookPostRequest.setPayment(buyBookPostResponse.getPayment());
         buyBookPostRequest.setCompletion(buyBookPostResponse.getCompletion());
         buyBookPostRequest.setImg(buyBookPostResponse.getImg());
+        buyBookPostRequest.setId(buyBookPostResponse.getBuyBookId());
 
         return "buy_post_update2";
     }

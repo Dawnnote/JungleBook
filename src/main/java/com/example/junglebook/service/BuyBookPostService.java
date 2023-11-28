@@ -193,4 +193,9 @@ public class BuyBookPostService {
 
     }
 
+    public BuyBookPost findById(Integer id)    {
+        return buyBookPostRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("not found: " + id));
+    }
+
 }
