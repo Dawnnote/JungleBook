@@ -12,6 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.transaction.Transactional;
 import java.io.File;
 import java.io.IOException;
 import java.util.Optional;
@@ -50,11 +51,11 @@ private UserResponse of (User user) {
         else {
             throw new DataNotFoundException("USER NOT FOUNDED");
         }
-
-        //UPDATE
-
-        //DELETE
     }
+
+    //UPDATE
+
+    //DELETE
 
 
 }

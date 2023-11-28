@@ -3,9 +3,11 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="/layout/default">
-
+<th:block th:insert="fragments/head.html"></th:block>
+<th:block th:insert="fragments/header.html"></th:block>
 <th:block layout:fragment="content">
     <!-- page content -->
     <h1>main</h1>
 </th:block>
+<th:block th:insert="fragments/footer.html"></th:block>
 </html>

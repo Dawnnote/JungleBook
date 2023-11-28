@@ -59,4 +59,7 @@ public class UserController {
         return "user/loginForm";
     }
 
+    //user -> mypage -> update user information -> upload profile photo
+
+
 }

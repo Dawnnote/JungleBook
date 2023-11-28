@@ -20,7 +20,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString(exclude = "userRole")
-public class User extends BaseTimeEntity implements UserDetails {
+public class User extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,44 +32,33 @@ public class User extends BaseTimeEntity implements UserDetails {
     private String nickname; //별명
     @Enumerated(EnumType.STRING)
     private UserRole userRole;
-//    private String provider; //
-//    private String providerId;
-    //enum
+    //create
+    @CreationTimestamp
+    private Timestamp createDate;
+    ////OAuth2.0 login
+    private String provider;
+    private String providerId;
+    //file
+    private String filename;
+    private String filepath;
+    //phone
+    private String phone;
+    //address
+    private String address;
+
+
 
 
     //생성자
     @Builder
-    public User (String username, String name, String nickname, String password, Timestamp createDate) {
+    public User (String username, String name, String password, String nickname, UserRole userRole, Timestamp createDate, String provider, String providerId) {
         this.username = username;
-        this.nickname = nickname;
         this.name = name;
         this.password = password;
-//        this.provider = provider;
-//        this.providerId = providerId;
-    }
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + userRole.name()));
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return false;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return false;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return false;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return false;
+        this.nickname = nickname;
+        this.userRole = userRole;
+        this.createDate = createDate;
+        this.provider = provider;
+        this.providerId = providerId;
     }
 }

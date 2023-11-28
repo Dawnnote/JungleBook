@@ -20,6 +20,8 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     //로그인 시 member role loading
     @EntityGraph(attributePaths = "userRole")
     Optional<User> findByUserRole(int id);
+    //findBynickname
+    Optional<User> findByNickname(String nickname);
 
     boolean existsByUsername(String username);
 }
