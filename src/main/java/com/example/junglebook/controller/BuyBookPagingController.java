@@ -23,8 +23,8 @@ public class BuyBookPagingController {
         Page<BuyBookPost> paging = buyBookPostService.getPage(kw, page);
         model.addAttribute("paging", paging);
         model.addAttribute("kw", kw);
-        System.out.println("paging controller - list");
-        System.out.println("44444");
+
+
         return "buy_book_list";
     }
 

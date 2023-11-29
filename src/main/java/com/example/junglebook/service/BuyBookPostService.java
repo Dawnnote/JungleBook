@@ -122,7 +122,7 @@ public class BuyBookPostService {
         List<Sort.Order> orders = new ArrayList<>();
         orders.add(Sort.Order.desc("createdDate"));
 
-        Pageable pageable = PageRequest.of(page, 10, Sort.by(orders));
+        Pageable pageable = PageRequest.of(page, 3, Sort.by(orders));
 
         //검색해서 보여주는 기능
         if(kw != null && !kw.isEmpty()){
