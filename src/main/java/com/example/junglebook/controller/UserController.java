@@ -60,11 +60,4 @@ public class UserController {
         return "user/loginForm";
     }
 
-    //admin
-    @Secured("ROLE_ADMIN")
-    @GetMapping("/admin")
-    public @ResponseBody String admin() {
-        return "admin page";
-    }
-
 }
