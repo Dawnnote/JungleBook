@@ -1,6 +1,7 @@
 package com.example.junglebook.data.dto;
 
 
+import com.example.junglebook.data.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,6 +25,11 @@ public class UserRequest {
     private String password2;
     @NotEmpty(message = "사용자 이름은 필수 항목입니다.")
     private String name;
+
+    //신고하기 기능 때문에 추가
+    public static UserRequest toDto(User user){
+        return new Us
+    }
 
 
 

@@ -1,6 +1,6 @@
 package com.example.junglebook.data.dto;
 
-import com.example.junglebook.data.Report.ReportType;
+import com.example.junglebook.data.report.ReportType;
 import com.example.junglebook.data.entity.SellBookReport;
 import lombok.AllArgsConstructor;
 import lombok.Data;

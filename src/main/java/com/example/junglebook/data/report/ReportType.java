@@ -1,4 +1,4 @@
-package com.example.junglebook.data.Report;
+package com.example.junglebook.data.report;
 
 public enum ReportType {
     AD, //광고성

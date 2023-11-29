@@ -3,10 +3,7 @@ package com.example.junglebook.data.dto;
 import com.example.junglebook.data.category.Category;
 import com.example.junglebook.data.entity.BuyBookPost;
 import com.example.junglebook.data.entity.User;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.stereotype.Component;
 
 import javax.validation.constraints.NotEmpty;
@@ -17,11 +14,11 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Component
 public class BuyBookPostResponse {
     private int buyBookId;
     private User author;
-
     private String bookName;
     private Category category;
     //글 작성자 아니고 책의 저자
@@ -39,9 +36,7 @@ public class BuyBookPostResponse {
     public BuyBookPostResponse(BuyBookPost entity){
         this.buyBookId = entity.getBuyBookId();
         this.bookName = entity.getBookName();
-
         this.author = entity.getAuthor();
-
         this.category = entity.getCategory();
         this.bookAuthor = entity.getBookAuthor();
         this.publisher = entity.getPublisher();

@@ -1,8 +1,6 @@
 package com.example.junglebook.data.dto;
 
-import com.example.junglebook.data.Report.ReportType;
-import com.example.junglebook.data.entity.SellBookReport;
-import com.example.junglebook.data.entity.User;
+import com.example.junglebook.data.report.ReportType;
 import lombok.*;
 
 import javax.validation.constraints.NotNull;

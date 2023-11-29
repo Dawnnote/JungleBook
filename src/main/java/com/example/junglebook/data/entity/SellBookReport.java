@@ -1,6 +1,6 @@
 package com.example.junglebook.data.entity;
 
-import com.example.junglebook.data.Report.ReportType;
+import com.example.junglebook.data.report.ReportType;
 import com.example.junglebook.data.common.BaseTimeEntity;
 import lombok.*;
 
