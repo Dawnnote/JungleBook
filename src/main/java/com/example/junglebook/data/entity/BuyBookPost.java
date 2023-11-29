@@ -62,4 +62,8 @@ public class BuyBookPost extends BaseTimeEntity {
     //이미지
     @OneToMany(mappedBy = "buyBookPost", cascade = CascadeType.REMOVE)
     private List<Img> img;
+
+    //조회수
+    @Column(columnDefinition = "integer default 0", nullable = false)
+    private int readCnt;
 }
