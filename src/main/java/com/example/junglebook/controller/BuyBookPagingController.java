@@ -24,6 +24,7 @@ public class BuyBookPagingController {
         model.addAttribute("paging", paging);
         model.addAttribute("kw", kw);
         System.out.println("paging controller - list");
+        System.out.println("44444");
         return "buy_book_list";
     }
 

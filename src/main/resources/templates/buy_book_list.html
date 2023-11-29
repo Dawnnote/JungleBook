@@ -60,7 +60,7 @@
                     <td><span th:if="${post.author != null}" th:text="${post.author.nickname}"></span></td>
                     <td th:text="${#temporals.format(post.createdDate, 'yyyy-MM-dd HH:mm')}"></td>
                     <td th:text="${#temporals.format(post.modifiedDate, 'yyyy-MM-dd HH:mm')}"></td>
-<!--                    <td th:text="${post.readCnt}"></td>-->
+                    <td th:text="${post.readCnt}"></td>
 <!--                    <td th:text="${post.commentList.size()}"></td>-->
                 </tr>
                 </tbody>
