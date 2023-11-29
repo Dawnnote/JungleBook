@@ -137,7 +137,7 @@ public class BuyBookPostController {
         this.buyBookPostService.create(buyBookPostRequest.getBookName(), buyBookPostRequest.getCategory(),
                 buyBookPostRequest.getBookAuthor(), buyBookPostRequest.getPublisher(), buyBookPostRequest.getField(),
                 buyBookPostRequest.getPrice(), buyBookPostRequest.getContent(),
-                buyBookPostRequest.getPayment(), buyBookPostRequest.getCompletion(), userResponse, files);
+                buyBookPostRequest.getPayment(), buyBookPostRequest.getCompletion(), userResponse, files, buyBookPostRequest.getPurpose());
         System.out.println("post controller - postcreate redirect list");
         return "redirect:/buy_post/list";
     }

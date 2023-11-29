@@ -44,6 +44,8 @@ public class BuyBookPostResponse  {
     private List<Img> img;
 
     private int readCnt;
+
+    private String purpose;
     public BuyBookPostResponse(BuyBookPost entity){
         this.buyBookId = entity.getBuyBookId();
         this.bookName = entity.getBookName();
@@ -61,6 +63,7 @@ public class BuyBookPostResponse  {
         this.completion = entity.getCompletion();
         this.img = entity.getImg();
         this.readCnt = entity.getReadCnt();
+        this.purpose =entity.getPurpose();
 
     }
 
