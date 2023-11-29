@@ -40,13 +40,13 @@
         </div>
         <div class="mb-3">
             <label  class="form-label">카테고리</label> <br>
-            <label><input type="radio" name="category" value="NOVEL_POEM"> 소설, 시</label>&nbsp;&nbsp;&nbsp;&nbsp;
-            <label><input type="radio" name="category" value="SELF_HELP"> 자기 계발</label>&nbsp;&nbsp;&nbsp;&nbsp;
-            <label><input type="radio" name="category" value="HUMANITIES" > 인문, 교양</label>&nbsp;&nbsp;&nbsp;&nbsp;
-            <label><input type="radio" name="category" value="BUSINESS_MONEY"> 경제, 경영</label>&nbsp;&nbsp;&nbsp;&nbsp;
-            <label><input type="radio" name="category" value="EDUCATION" > 학습</label>&nbsp;&nbsp;&nbsp;&nbsp;
-            <label><input type="radio" name="category" value="CHILDREN"> 어린이</label>&nbsp;&nbsp;&nbsp;&nbsp;
-            <label><input type="radio" name="category" value="COMICS" > 만화</label>
+            <label><input type="radio" name="category" value="NOVEL_POEM" id="NOVEL_POEM"> 소설, 시</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <label><input type="radio" name="category" value="SELF_HELP" id="SELF_HELP"> 자기 계발</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <label><input type="radio" name="category" value="HUMANITIES" id="HUMANITIES"> 인문, 교양</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <label><input type="radio" name="category" value="BUSINESS_MONEY" id="BUSINESS_MONEY"> 경제, 경영</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <label><input type="radio" name="category" value="EDUCATION" id="EDUCATION"> 학습</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <label><input type="radio" name="category" value="CHILDREN" id="CHILDREN"> 어린이</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <label><input type="radio" name="category" value="COMICS" id="COMICS"> 만화</label>
 
         </div>
         <div class="mb-3">
@@ -83,8 +83,8 @@
         </div>
         <div class="mb-3">
             <label  class="form-label">거래 방법</label>
-            <label><input type="radio" name="payment" value="direct"> 직거래</label>
-            <label><input type="radio" name="payment" value="parcel"> 택배거래</label>
+            <label><input type="radio" name="payment" value="direct" id="direct"> 직거래</label>
+            <label><input type="radio" name="payment" value="parcel" id="parcel"> 택배거래</label>
         </div>
         <div class="mb-3"  style="display:none;">
             <label  class="form-label" >거래 상태</label>
@@ -124,6 +124,7 @@
 
         <input type="submit" value="저장하기" id="updateSave" class="btn btn-primary my-2">
         <button type="button" class="btn btn-success" onclick="javascript:location.href='/'">목록으로</button>
+        <button type="button" class="btn btn-success" id="testing">테스트용버튼</button>
     </form>
 </div>
 
@@ -281,6 +282,21 @@
             }
         }).open();
     }
+
+
+
+let category = sessionStorage.getItem("category");
+let payment = sessionStorage.getItem("payment");
+
+    //페이지 이동시 함수실행
+    window.addEventListener('DOMContentLoaded', function(){
+        console.log(category);
+        document.getElementById(category).checked = true;
+        document.getElementById(payment).checked = true;
+        console.log(category);
+
+        console.log(payment);
+    });
 
 
 </script>

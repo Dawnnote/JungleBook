@@ -8,15 +8,15 @@
 <body>
 
 <div class="container">
-    <h5 class="my-3 border-bottom pb-2">사고 싶은 책 등록</h5>
+    <h5 class="my-3 border-bottom pb-2">팔고 싶은 책 등록</h5>
     <form th:object="${buyBookPostRequest}" method="post" enctype="multipart/form-data">
         <div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
             <div th:each="err : ${#fields.allErrors()}" th:text="${err}" />
         </div>
         <div class="mb-3" style="display:none;">
             <label  class="form-label">삽니다/팝니다</label>
-            <label><input type="radio" name="payment" value="direct" checked> 삽니다</label>
-            <label><input type="radio" name="payment" value="parcel"> 팝니다</label>
+            <label><input type="radio" name="payment" value="direct" > 삽니다</label>
+            <label><input type="radio" name="payment" value="parcel" checked> 팝니다</label>
         </div>
 
         <div class="mb-3">
@@ -45,12 +45,12 @@
 
 
 
-<!--        <label className="inputFileCustom" for="realPostBtn">-->
-<!--            <div id="div-selectFile">우편번호 찾기</div>-->
-<!--        </label>-->
+        <!--        <label className="inputFileCustom" for="realPostBtn">-->
+        <!--            <div id="div-selectFile">우편번호 찾기</div>-->
+        <!--        </label>-->
 
         <div class="mb-3" >
-            <label  class="form-label">구매 지역</label> <br>
+            <label  class="form-label">판매 지역</label> <br>
             <input type="text" id="sample4_postcode" placeholder="우편번호">
             <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" id="realPostBtn"><br>
             <input type="text" id="sample4_roadAddress" name="field" placeholder="도로명주소">
@@ -67,7 +67,7 @@
 
 
         <div class="mb-3">
-            <label  class="form-label">구입 가격</label>
+            <label  class="form-label">판매 가격</label>
             <input type="text" th:field="*{price}" class="form-control">
         </div>
         <div class="mb-3">
