@@ -1,0 +1,313 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" th:fragment="header">
+
+<head>
+    <title>Jungle Book</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css.lib/header.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css.lib/style.css}" />
+    <link rel="icon" type="image/png" href="/src/main/resources/static/favicon/icons8-book-32.png" />
+    <script src="https://kit.fontawesome.com/f0556abec9.js" crossorigin="anonymous"></script>
+
+    <style>
+        /*nav bar*/
+        body {
+            margin: 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: #f6fcf2;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #B0D69C;
+            padding: 8px 12px;
+            margin-bottom: 30px;
+        }
+
+        .nav-logo {
+            font-size: 24px;
+            color: #f6fcf2;
+        }
+
+        .nav-logo i {
+            color: #506147;
+        }
+
+        .nav-user {
+            display: flex;
+            list-style: none;
+            padding-left: 0;
+
+        }
+
+        .nav-user li {
+            padding: 8px 12px;
+        }
+
+        #bell {
+            color: #506147;
+            font-size: 24px;
+        }
+
+        .nav-user li:hover {
+            font-weight: bolder;
+        }
+
+        .nav-user li #bell:hover {
+            color: #f6fcf2;
+        }
+
+
+        .navbar-btn {
+            display: none;
+            position: absolute;
+            right: 32px;
+            font-size: 24px;
+            color: #506147;
+        }
+
+        /*select box*/
+        .option {
+            width: 110px;
+            height: 100%;
+            border: 0px;
+            float: left;
+            position: relative;
+            border-right: 1px solid #B0D69C;
+            border: 0 none;
+            outline: 0 none;
+            padding: 0 5px;
+            position: relative;
+            z-index: 3;
+        }
+
+        /*header-box*/
+        .header-box {
+            padding-left: 30px;
+            padding-right: 30px;
+            justify-content: space-between;
+            display: flex;
+            align-items: center;
+            padding-bottom: 30px;
+        }
+
+        .search-box {
+            height: 40px;
+            width: 550px;
+            border: 1px solid #B0D69C;
+            /* background-color: #f6fcf2; */
+            ;
+            display: flex;
+            align-items: center;
+        }
+
+
+
+        input {
+            font-size: 16px;
+            width: 390px;
+            padding: 10px;
+            border: 0px;
+            outline: none;
+            float: left;
+
+        }
+
+        .search-btn {
+            width: 50px;
+            height: 100%;
+            border: 0px;
+            background-color: #B0D69C;
+            color: #f6fcf2;
+            outline: none;
+            float: right;
+
+        }
+
+        .search-btn:hover {
+            background-color: #506147;
+            border: none;
+        }
+
+        .icon-box {
+            display: flex;
+            list-style: none;
+            padding-left: 0;
+            justify-content: space-between;
+            display: flex;
+            align-items: center;
+
+        }
+
+        .icon-box li {
+            padding: 8px 12px;
+        }
+
+        .li-text {
+            color: #B0D69C;
+            font-size: 24px;
+        }
+
+        .icon-box li :hover {
+            color: #506147;
+        }
+
+        /* 각각의 Flex 아이템 내부의 요소들을 가로로 정렬합니다. */
+        .icon-box li {
+            margin-right: 10px;
+            /* 아이콘 간 간격 조정을 위한 속성 */
+        }
+
+
+        @media screen and (max-width:768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 8px 24px;
+            }
+
+            .nav-user {
+                display: none;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+            }
+
+            .nav-user li {
+                width: 100%;
+                text-align: center;
+            }
+
+            .navbar-btn {
+                display: block;
+            }
+
+            .nav-user.active {
+                display: flex;
+            }
+
+            /*header box media query*/
+            .header-box {
+                flex-direction: column;
+                padding-left: 16px;
+                padding-right: 16px;
+            }
+
+            .search-box {
+                width: 100%;
+                margin-bottom: 16px;
+            }
+
+            .search {
+                height: 100%;
+            }
+
+            input {
+                width: 262px;
+            }
+
+            .search-btn {
+                width: 50px;
+                height: 100%;
+                border: 0px;
+                background-color: #B0D69C;
+                color: #f6fcf2;
+                outline: none;
+
+            }
+
+            .icon-box {
+                justify-content: flex-end;
+            }
+
+            .icon-box li {
+                margin-right: 0;
+                margin-left: 10px;
+            }
+
+            .logo {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<header>
+    <div class="header-container">
+        <nav class="navbar">
+            <div class="nav-logo"><i class="fa-solid fa-book-bookmark"></i>
+                <a href="#"><span class="highlight">J</span>ungle <span class="highlight">B</span>ook</a>
+            </div>
+            <div class="nav-user">
+                <li><a href="#">Login / Join</a></li>
+                <li><a href="#">Logout</a></li>
+                <li><a href="#">My Page</a></li>
+                <li><a href=""><i class="fa-solid fa-bell" id="bell"></i></a></li>
+            </div>
+            <a href="" class="navbar-btn"><i class="fa-solid fa-bars"></i></a>
+        </nav>
+    </div>
+    <!-- search / category / write / cart / chat  -->
+    <div class="header-box">
+        <!--logo-->
+        <div class="logo">
+            <img src="#" />
+        </div>
+        <div class="search-box">
+            <!-- select box -->
+            <div class="select-box">
+                <select name="book Category" class="option">
+                    <option value="none">All</option>
+                    <option value="시/소설">시/소설</option>
+                    <option value="자기계발">자기계발</option>
+                    <option value="교양/인문">교양/인문</option>
+                    <option value="경제/경영">경제/경영</option>
+                    <option value="학습/사전/참고서">학습/사전/참고서</option>
+                    <option value="아동/어린이">아동/어린이</option>
+                    <option value="만화">만화</option>
+                    <option value="기타">기타</option>
+                </select>
+            </div>
+            <!--search-->
+            <div class="search-header">
+                <input type="text" placeholder="Search" id="search-header">
+                <button class="search-btn"><i class="bi bi-search" id="search-icon"></i></button>
+
+            </div>
+        </div>
+        <!--write / cart / chat-->
+        <ul class="icon-box">
+            <li><a class="li-text" href="#"><i class="fa-solid fa-pen-to-square"></i></a></li>
+            <li><a class="li-text" href="#"><i class="fa-solid fa-cart-arrow-down"></i></a></li>
+            <li><a class="li-text" href="#"><i class="fa-brands fa-rocketchat"></i></a></li>
+        </ul>
+    </div>
+</header>
+
+<!--navbar toggle btn js-->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const navBtn = document.querySelector('.navbar-btn');
+        const menu = document.querySelector('.nav-user');
+
+        navBtn.addEventListener('click', function (event) {
+            event.preventDefault(); // 링크 이동을 막음
+            menu.classList.toggle('active');
+        });
+
+        // 다른 곳을 클릭하면 메뉴를 닫음
+        document.addEventListener('click', function (event) {
+            const isClickInsideMenu = menu.contains(event.target);
+            const isClickOnBtn = navBtn.contains(event.target);
+
+            if (!isClickInsideMenu && !isClickOnBtn) {
+                menu.classList.remove('active');
+            }
+        });
+    });
+</script>

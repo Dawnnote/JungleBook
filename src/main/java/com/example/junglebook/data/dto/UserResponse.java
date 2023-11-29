@@ -1,6 +1,7 @@
 package com.example.junglebook.data.dto;
 
 import com.example.junglebook.data.common.BaseTimeEntity;
+
 import com.example.junglebook.data.entity.User;
 import lombok.Data;
 
@@ -12,5 +13,6 @@ public class UserResponse extends BaseTimeEntity {
     private String username;
     private String password;
     private String nickname;
+
 
 }
