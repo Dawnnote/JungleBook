@@ -1,15 +1,18 @@
 package com.example.junglebook.data.entity;
 
-
 import com.example.junglebook.data.common.BaseTimeEntity;
 import com.example.junglebook.data.common.UserRole;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
@@ -17,7 +20,6 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString(exclude = "userRole")
-
 public class User extends BaseTimeEntity {
 
     @Id
@@ -43,6 +45,7 @@ public class User extends BaseTimeEntity {
     private String phone;
     //address
     private String address;
+
 
 
 

@@ -1,7 +1,6 @@
 package com.example.junglebook.repository;
 
 import com.example.junglebook.data.entity.User;
-
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -24,7 +23,5 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     //findBynickname
     Optional<User> findByNickname(String nickname);
 
-    //거래후기 findUserByNickname
-    Optional<User> findUserByNickname(String nickname);
-
+    boolean existsByUsername(String username);
 }
