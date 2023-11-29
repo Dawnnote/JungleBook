@@ -5,6 +5,7 @@ import com.example.junglebook.data.category.Category;
 import com.example.junglebook.data.dto.BuyBookPostResponse;
 import com.example.junglebook.data.dto.UserResponse;
 import com.example.junglebook.data.entity.BuyBookPost;
+import com.example.junglebook.data.entity.Img;
 import com.example.junglebook.data.entity.User;
 import com.example.junglebook.repository.BuyBookPostRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +16,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +31,7 @@ import java.util.Optional;
 public class BuyBookPostService {
     private final BuyBookPostRepository buyBookPostRepository;
     private final ModelMapper modelMapper;
+    private final ImgService imgService;
 
     private BuyBookPostResponse of(BuyBookPost buyBookPost){
         return modelMapper.map(buyBookPost, BuyBookPostResponse.class);
@@ -37,44 +42,44 @@ public class BuyBookPostService {
     }
 
     //삽니다 게시물 작성
-    public BuyBookPostResponse create(String bookName, Category category, String bookAuthor,
-                                      String publisher, String field, String field2,
-                                      Long price, String content, Boolean payment,
-                                      Boolean completion, UserResponse userResponse){
-        BuyBookPostResponse buyBookPostResponse = new BuyBookPostResponse();
-        buyBookPostResponse.setBookName(bookName);
-        buyBookPostResponse.setCategory(category);
-        buyBookPostResponse.setBookAuthor(bookAuthor);
-        buyBookPostResponse.setPublisher(publisher);
-        buyBookPostResponse.setField(field);
-        buyBookPostResponse.setField2(field2);
-        buyBookPostResponse.setPrice(price);
-        buyBookPostResponse.setContent(content);
-        buyBookPostResponse.setPayment(payment);
-        buyBookPostResponse.setCompletion(completion);
-
-        //작성자(User) 정보 (UserResponse)
-        User author = new User();
-        author.setId(userResponse.getId());
-        buyBookPostResponse.setAuthor(author);
-
-        BuyBookPost buyBookPost = of(buyBookPostResponse);
-        this.buyBookPostRepository.save(buyBookPost);
-        return buyBookPostResponse;
-
-    }
+//    public BuyBookPostResponse create(String bookName, String category, String bookAuthor,
+//                                      String publisher, String field,
+//                                      Long price, String content, String payment,
+//                                      String completion, UserResponse userResponse){
+//        BuyBookPostResponse buyBookPostResponse = new BuyBookPostResponse();
+//        buyBookPostResponse.setBookName(bookName);
+//        buyBookPostResponse.setCategory(category);
+//        buyBookPostResponse.setBookAuthor(bookAuthor);
+//        buyBookPostResponse.setPublisher(publisher);
+//        buyBookPostResponse.setField(field);
+//        //buyBookPostResponse.setField2(field2);
+//        buyBookPostResponse.setPrice(price);
+//        buyBookPostResponse.setContent(content);
+//        buyBookPostResponse.setPayment(payment);
+//        buyBookPostResponse.setCompletion(completion);
+//
+//        //작성자(User) 정보 (UserResponse)
+//        User author = new User();
+//        author.setId(userResponse.getId());
+//        buyBookPostResponse.setAuthor(author);
+//
+//        BuyBookPost buyBookPost = of(buyBookPostResponse);
+//        this.buyBookPostRepository.save(buyBookPost);
+//        return buyBookPostResponse;
+//
+//    }
 
     //삽니다 게시물 수정
      public BuyBookPostResponse update(BuyBookPostResponse buyBookPostResponse, String bookName,
-                                       Category category, String bookAuthor, String publisher, String field,
-                                       String field2, Long price, String content, Boolean payment,
-                                       Boolean completion){
+                                       String category, String bookAuthor, String publisher, String field,
+                                       Long price, String content, String payment,
+                                       String completion , List<MultipartFile> files) throws IOException {
         buyBookPostResponse.setBookName(bookName);
         buyBookPostResponse.setCategory(category);
         buyBookPostResponse.setBookAuthor(bookAuthor);
         buyBookPostResponse.setPublisher(publisher);
         buyBookPostResponse.setField(field);
-        buyBookPostResponse.setField2(field2);
+        //buyBookPostResponse.setField2(field2);
         buyBookPostResponse.setPrice(price);
         buyBookPostResponse.setContent(content);
         buyBookPostResponse.setPayment(payment);
@@ -82,13 +87,20 @@ public class BuyBookPostService {
         buyBookPostResponse.setModifiedDate(LocalDateTime.now());
         BuyBookPost buyBookPost = of(buyBookPostResponse);
         this.buyBookPostRepository.save(buyBookPost);
+
+        if(!files.isEmpty()){
+            List<Img> img = new ArrayList<>();
+            for(MultipartFile m : files){
+                img.add(imgService.saveImg(m, buyBookPost));
+            }
+        }
         return buyBookPostResponse;
      }
 
-     //삽니다 게시물 삭제
-    public void delete(BuyBookPostResponse buyBookPostResponse){
-        this.buyBookPostRepository.deleteById(buyBookPostResponse.getBuyBookId());
-    }
+//     //삽니다 게시물 삭제
+//    public void delete(BuyBookPostResponse buyBookPostResponse){
+//        this.buyBookPostRepository.deleteById(buyBookPostResponse.getBuyBookId());
+//    }
 
     //삽니다 게시물 전체 리스트 받아오기
     public Page<BuyBookPost> getList(int page, String kw){
@@ -129,6 +141,68 @@ public class BuyBookPostService {
         } else {
             throw new DataNotFoundException("해당 글이 없습니다");
         }
+    }
+
+
+    //삽니다 게시물 작성 version2
+    public BuyBookPostResponse create(String bookName, String category, String bookAuthor,
+                                      String publisher, String field,
+                                      Long price, String content, String payment,
+                                      String completion, UserResponse userResponse, List<MultipartFile> files) throws IOException {
+        BuyBookPostResponse buyBookPostResponse = new BuyBookPostResponse();
+        buyBookPostResponse.setBookName(bookName);
+        buyBookPostResponse.setCategory(category);
+        buyBookPostResponse.setBookAuthor(bookAuthor);
+        buyBookPostResponse.setPublisher(publisher);
+        buyBookPostResponse.setField(field);
+        //buyBookPostResponse.setField2(field2);
+        buyBookPostResponse.setPrice(price);
+        buyBookPostResponse.setContent(content);
+        buyBookPostResponse.setPayment(payment);
+        buyBookPostResponse.setCompletion(completion);
+
+
+        //작성자(User) 정보 (UserResponse)
+        User author = new User();
+        author.setId(userResponse.getId());
+        buyBookPostResponse.setAuthor(author);
+
+        BuyBookPost buyBookPost = of(buyBookPostResponse);
+        this.buyBookPostRepository.save(buyBookPost); //이미지 없이 저장
+
+        List<Img> img = new ArrayList<>();
+
+        for(MultipartFile m : files){
+
+            img.add(imgService.saveImg(m, buyBookPost)); // buyBookPost에 매핑된 이미지 테이블 저장
+        }
+        return buyBookPostResponse;
+
+    }
+
+
+    //삽니다 게시물 삭제 version2
+    public void delete(BuyBookPostResponse buyBookPostResponse){
+        this.buyBookPostRepository.deleteById(buyBookPostResponse.getBuyBookId());
+
+        //업로드한 이미지 삭제 기능
+//        File file = new File(System.getProperty("user.dir") + "/src/main/resources/static/files/" + postResponse.getFileName());
+        for(Img img : buyBookPostResponse.getImg()){
+            File file = new File(System.getProperty("user.dir") + "/src/main/resources/static/files/" + img.getFileName()   );
+            if(file.exists()){
+                file.delete();
+                System.out.println("delete success");
+            }else{
+                System.out.println("delete fail");
+            }
+        }
+
+
+    }
+
+    public BuyBookPost findById(int id)    {
+        return buyBookPostRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("not found: " + id));
     }
 
 }
