@@ -142,6 +142,19 @@ public class BuyBookPostService {
             throw new DataNotFoundException("해당 글이 없습니다");
         }
     }
+    //조회수를 증가시키는 getPost
+    public BuyBookPostResponse getPostReadCnt(Integer id) {
+        Optional<BuyBookPost> post = this.buyBookPostRepository.findById(id);
+        if (post.isPresent()) {
+            BuyBookPost p1 = post.get();
+            p1.setReadCnt(p1.getReadCnt() + 1);
+            System.out.println(p1.getReadCnt());
+            this.buyBookPostRepository.save(p1);
+            return of(post.get());
+        } else {
+            throw new DataNotFoundException("해당 글이 없습니다");
+        }
+    }
 
 
     //삽니다 게시물 작성 version2

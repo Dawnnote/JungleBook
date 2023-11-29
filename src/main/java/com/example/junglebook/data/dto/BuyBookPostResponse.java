@@ -43,6 +43,7 @@ public class BuyBookPostResponse  {
 
     private List<Img> img;
 
+    private int readCnt;
     public BuyBookPostResponse(BuyBookPost entity){
         this.buyBookId = entity.getBuyBookId();
         this.bookName = entity.getBookName();
@@ -59,6 +60,7 @@ public class BuyBookPostResponse  {
         this.payment = entity.getPayment();
         this.completion = entity.getCompletion();
         this.img = entity.getImg();
+        this.readCnt = entity.getReadCnt();
 
     }
 
