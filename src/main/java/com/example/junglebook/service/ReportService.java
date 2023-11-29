@@ -1,30 +1,50 @@
 package com.example.junglebook.service;
 
-import com.example.junglebook.repository.SellBookReportRepository;
+import com.example.junglebook.data.dto.ReportRequest;
+import com.example.junglebook.data.dto.ReportResponse;
+import com.example.junglebook.data.entity.Report;
+import com.example.junglebook.data.entity.SellBookPost;
+import com.example.junglebook.data.entity.User;
+import com.example.junglebook.repository.ReportRepository;
 import com.example.junglebook.repository.SellBookPostRepository;
 import com.example.junglebook.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
+import java.io.IOException;
 
 @Slf4j
 @Service
-//@RequiredArgsConstructor
+@RequiredArgsConstructor
 public class ReportService {
-    private static final int NORMAL_BOARD_REPORT_LIMIT_FOR_BEING_REPORTED = 10;
 
-    public final SellBookReportRepository reportRepository;
-    public final ModelMapper modelMapper;
-    public final UserRepository userRepository;
-    public final SellBookPostRepository sellBookPostRepository;
+   private final ReportRepository reportRepository;
+   private final ModelMapper modelMapper;
 
-    public ReportService(final SellBookReportRepository reportRepository, final ModelMapper modelMapper, final UserRepository userRepository, final SellBookPostRepository sellBookPostRepository){
-        this.reportRepository = reportRepository;
-        this.userRepository = userRepository;
-        this.modelMapper = modelMapper;
-        this.sellBookPostRepository = sellBookPostRepository;
+   private ReportResponse of(Report report){
+       return modelMapper.map(report, ReportResponse.class);
+   }
+
+   private Report of(ReportResponse reportResponse){
+       return modelMapper.map(reportResponse, Report.class);
+   }
+
+    public ReportResponse create(int reportedId, String reportType) throws IOException{
+        ReportResponse reportResponse = new ReportResponse();
+        reportResponse.setReportedId(reportedId);
+        reportResponse.setReportType(reportType);
+
+        User reporter = new User();
+        reporter.setId(reporter.getId());
+        reportResponse.setReporter(reporter);
+
+        Report report = of(reportResponse);
+        this.reportRepository.save(report);
+
+        return reportResponse;
+
     }
 
 
