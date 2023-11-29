@@ -1,9 +1,6 @@
-package com.example.junglebook.data.dto;
+package com.example.junglebook.data.dto.user;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.validation.constraints.NotEmpty;
 
@@ -11,6 +8,7 @@ import javax.validation.constraints.NotEmpty;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class UserRequest {
 
     @NotEmpty(message = "이메일은 필수 항목입니다.")
@@ -23,6 +21,15 @@ public class UserRequest {
     private String password2;
     @NotEmpty(message = "사용자 이름은 필수 항목입니다.")
     private String name;
+    //file
+    private String filename;
+    private String filepath;
+    //phone
+    private String phone;
+    //address
+    private String address;
+
+
 
 
 }

@@ -51,7 +51,7 @@ public class User extends BaseTimeEntity {
 
     //생성자
     @Builder
-    public User (String username, String name, String password, String nickname, UserRole userRole, Timestamp createDate, String provider, String providerId) {
+    public User (String username, String name, String password, String nickname, UserRole userRole, Timestamp createDate, String provider, String providerId, String filename, String filepath, String phone, String address) {
         this.username = username;
         this.name = name;
         this.password = password;
@@ -60,5 +60,9 @@ public class User extends BaseTimeEntity {
         this.createDate = createDate;
         this.provider = provider;
         this.providerId = providerId;
+        this.filename = filename;
+        this.filepath = filepath;
+        this.phone = phone;
+        this.address = address;
     }
 }
