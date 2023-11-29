@@ -21,10 +21,12 @@
             <div class="row my-3">
                 <div class="col-6">
                     <div class="input-group">
-                        <a href="/buy_post/list" class="navbar-brand" style="font-size: 20px; font-weight: bold;">Home</a>
+                        <a href="/book/list" class="navbar-brand" style="font-size: 20px; font-weight: bold;">Home</a>
                         <a th:href="@{/user/login}" class="btn btn-info ml-2" sec:authorize="isAnonymous()">로그인</a>
                         <a th:href="@{/user/logout}" class="btn btn-danger ml-2" sec:authorize="isAuthenticated()">로그아웃</a>
                         <a th:href="@{/user/signup}" class="btn btn-info ml-2">회원가입</a>
+                        <a th:href="@{/sell_post/list}" class="btn btn-info ml-2">팝니다</a>
+                        <a th:href="@{/book/list}" class="btn btn-info ml-2">전체목록</a>
                     </div>
                 </div>
                 <div class="col-6 text-right">
@@ -41,18 +43,19 @@
                 <thead class="thead-strong">
                 <tr>
                     <th width="10%">번호</th>
-                    <th width="">제목</th>
+                    <th width="">책이름</th>
                     <th width="20%">작성자</th>
                     <th width="20%">작성일시</th>
                     <th width="20%">수정일시</th>
                     <th width="10%">조회수</th>
-                    <th width="10%">댓글수</th>
+                    <th width="10%">거래상태</th>
                 </tr>
                 </thead>
                 <tbody>
                 <!-- 게시글 목록을 출력하는 Thymeleaf 코드 작성 -->
-                <tr  class="text-center" th:each="post, loop : ${paging}">
-                    <td th:text="${paging.getTotalElements - (paging.number * paging.size) - loop.index}"></td>
+                <tr  class="text-center" th:each="post, loop : ${paging}" th:if="${post.purpose.equals('buy')}">
+<!--                    <td th:text="${paging.getTotalElements - (paging.number * paging.size) - loop.index}"></td>-->
+                    <td th:text="${post.purpose}">
                     <td>
                         <a th:href="@{|/buy_post/detail/${post.buyBookId}|}" th:text="${post.bookName}"></a>
                     </td>
@@ -61,7 +64,7 @@
                     <td th:text="${#temporals.format(post.createdDate, 'yyyy-MM-dd HH:mm')}"></td>
                     <td th:text="${#temporals.format(post.modifiedDate, 'yyyy-MM-dd HH:mm')}"></td>
                     <td th:text="${post.readCnt}"></td>
-<!--                    <td th:text="${post.commentList.size()}"></td>-->
+                    <td th:text="${post.completion}"></td>
                 </tr>
                 </tbody>
             </table>
