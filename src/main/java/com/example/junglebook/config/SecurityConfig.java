@@ -50,7 +50,7 @@ public class SecurityConfig {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
-                .antMatchers("/post/**").authenticated() //인증 필요
+                .antMatchers("/buy_post/**").authenticated() //인증 필요
                 .antMatchers("/user/joinForm").anonymous() //회원가입 페이지는 인증되지 않은 사람도 접근 가능
                 .antMatchers("/**").permitAll() //인증, 비인증 관계 없이 모두 접근 가능
                 .and()

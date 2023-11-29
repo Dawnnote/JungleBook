@@ -14,39 +14,118 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.security.Principal;
+import java.util.List;
 
 @RequestMapping("/buy_post")
 @RequiredArgsConstructor
 @Controller
 public class BuyBookPostController {
     private final BuyBookPostService buyBookPostService;
-    private final BuyBookPostResponse buyBookPostResponse;
+   // private final BuyBookPostResponse buyBookPostResponse;
     private final UserService userService;
 
     //삽니다 게시물 화면 불러오기
     @GetMapping(value = "/detail/{id}")
     public String detail(Model model, @PathVariable("id") Integer id) {
-        BuyBookPostResponse post = this.buyBookPostService.getPost(id);
+        BuyBookPostResponse post = this.buyBookPostService.getPostReadCnt(id);
 
         model.addAttribute("post", post);
-        return "buy_post_detail";
+        return "buy_post_detail2";
     }
 
     //삽니다 게시물 등록 화면 불러오기
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/create")
     public String post(BuyBookPostRequest buyBookPostRequest){
-        return "buy_post_form";
+        return "buy_post_form2";
     }
 
     //삽니다 게시물 등록 화면
+//    @PreAuthorize("isAuthenticated()")
+//    @PostMapping("/create")
+//    public String postCreate(@Valid BuyBookPostRequest buyBookPostRequest, BindingResult bindingResult, Principal principal){
+//        if (bindingResult.hasErrors()){
+//            return "buy_post_form";
+//        }
+//        if (principal == null){
+//            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "등록 권한이 없습니다");
+//        }
+//        //나중에 userService랑 합치고 getUser 다시 확인
+//        UserResponse userResponse = this.userService.getUser(principal.getName());
+//        this.buyBookPostService.create(buyBookPostRequest.getBookName(), buyBookPostRequest.getCategory(),
+//                buyBookPostRequest.getBookAuthor(), buyBookPostRequest.getPublisher(), buyBookPostRequest.getField(),
+//                 buyBookPostRequest.getPrice(), buyBookPostRequest.getContent(),
+//                buyBookPostRequest.getPayment(), buyBookPostRequest.getCompletion(), userResponse);
+//        System.out.println("post controller - postcreate redirect list");
+//        return "redirect:/buy_post/list";
+//    }
+
+//    //삽니다 게시물 수정 화면 불러오기
+//    @PreAuthorize("isAuthenticated()")
+//    @GetMapping("update/{id}")
+//    public String postUpdate(BuyBookPostRequest buyBookPostRequest, @PathVariable("id") Integer id, Principal principal) {
+//        BuyBookPostResponse buyBookPostResponse = this.buyBookPostService.getPost(id);
+//        if(!buyBookPostResponse.getAuthor().getNickname().equals(principal.getName())) {
+//            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정권한이 없습니다.");
+//        }
+//        buyBookPostRequest.setBookName(buyBookPostResponse.getBookName());
+//        buyBookPostRequest.setCategory(buyBookPostResponse.getCategory());
+//        buyBookPostRequest.setBookAuthor(buyBookPostResponse.getBookAuthor());
+//        buyBookPostRequest.setPublisher(buyBookPostResponse.getPublisher());
+//        buyBookPostRequest.setField(buyBookPostResponse.getField());
+//        //buyBookPostRequest.setField2(buyBookPostResponse.getField2());
+//        buyBookPostRequest.setPrice(buyBookPostResponse.getPrice());
+//        buyBookPostRequest.setContent(buyBookPostResponse.getContent());
+//        buyBookPostRequest.setPayment(buyBookPostResponse.getPayment());
+//        buyBookPostRequest.setCompletion(buyBookPostResponse.getCompletion());
+//
+//        return "buy_post_update";
+//    }
+
+//    //삽니다 게시물 수정 화면
+//    @PreAuthorize("isAuthenticated()")
+//    @PostMapping("update/{id}")
+//    public String postUpdate(@Valid BuyBookPostRequest buyBookPostRequest, BindingResult bindingResult, Principal principal,
+//                             @PathVariable("id") Integer id) {
+//        if (bindingResult.hasErrors()) {
+//            return "post_update";
+//        }
+//        BuyBookPostResponse buyBookPostResponse = this.buyBookPostService.getPost(id);
+//        if (!buyBookPostResponse.getAuthor().getNickname().equals(principal.getName())) {
+//            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정권한이 없습니다.");
+//        }
+//        this.buyBookPostService.update(buyBookPostResponse, buyBookPostRequest.getBookName(), buyBookPostRequest.getCategory(),
+//                buyBookPostRequest.getBookAuthor(), buyBookPostRequest.getPublisher(), buyBookPostRequest.getField(),
+//                 buyBookPostRequest.getPrice(), buyBookPostRequest.getContent(),
+//                buyBookPostRequest.getPayment(), buyBookPostRequest.getCompletion());
+//        return String.format("redirect:/buy_post/detail/%s", id);   //  /buy_post/detail/{id}로 리디렉션
+//    }
+
+    //삽니다 게시물 삭제
+//    @PreAuthorize("isAuthenticated()")
+//    @GetMapping("/delete/{id}")
+//    public String postdelete(Principal principal, @PathVariable("id") Integer id) {
+//        BuyBookPostResponse buyBookPostResponse = this.buyBookPostService.getPost(id);
+//        if (principal == null) {
+//            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "삭제권한이 없습니다..");
+//        }
+//        if (!buyBookPostResponse.getAuthor().getNickname().equals(principal.getName())) {
+//            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "삭제권한이 없습니다.");
+//        }
+//        this.buyBookPostService.delete(buyBookPostResponse);
+//        return "redirect:/buy_post/list";
+//    }
+
+    //삽니다 게시물 등록 화면 version2
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/create")
-    public String postCreate(@Valid BuyBookPostRequest buyBookPostRequest, BindingResult bindingResult, Principal principal){
+    public String postCreate(@Valid BuyBookPostRequest buyBookPostRequest, BindingResult bindingResult, Principal principal, List<MultipartFile> files) throws IOException {
         if (bindingResult.hasErrors()){
             return "buy_post_form";
         }
@@ -57,18 +136,29 @@ public class BuyBookPostController {
         UserResponse userResponse = this.userService.getUser(principal.getName());
         this.buyBookPostService.create(buyBookPostRequest.getBookName(), buyBookPostRequest.getCategory(),
                 buyBookPostRequest.getBookAuthor(), buyBookPostRequest.getPublisher(), buyBookPostRequest.getField(),
-                buyBookPostRequest.getField2(), buyBookPostRequest.getPrice(), buyBookPostRequest.getContent(),
-                buyBookPostRequest.getPayment(), buyBookPostRequest.getCompletion(), userResponse);
+                buyBookPostRequest.getPrice(), buyBookPostRequest.getContent(),
+                buyBookPostRequest.getPayment(), buyBookPostRequest.getCompletion(), userResponse, files, buyBookPostRequest.getPurpose());
         System.out.println("post controller - postcreate redirect list");
         return "redirect:/buy_post/list";
     }
 
-    //삽니다 게시물 수정 화면 불러오기
+    //삭제 version2
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/delete/{id}")
+    public String postdelete(Principal principal, @PathVariable("id") Integer id) {
+        BuyBookPostResponse buyBookPostResponse = this.buyBookPostService.getPost(id);
+
+        this.buyBookPostService.delete(buyBookPostResponse);
+        return "redirect:/buy_post/list";
+    }
+
+
+    //삽니다 게시물 수정 화면 불러오기 version2
     @PreAuthorize("isAuthenticated()")
     @GetMapping("update/{id}")
     public String postUpdate(BuyBookPostRequest buyBookPostRequest, @PathVariable("id") Integer id, Principal principal) {
         BuyBookPostResponse buyBookPostResponse = this.buyBookPostService.getPost(id);
-        if(!buyBookPostResponse.getAuthor().getNickname().equals(principal.getName())) {
+        if(!buyBookPostResponse.getAuthor().getUsername().equals(principal.getName())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정권한이 없습니다.");
         }
         buyBookPostRequest.setBookName(buyBookPostResponse.getBookName());
@@ -76,52 +166,36 @@ public class BuyBookPostController {
         buyBookPostRequest.setBookAuthor(buyBookPostResponse.getBookAuthor());
         buyBookPostRequest.setPublisher(buyBookPostResponse.getPublisher());
         buyBookPostRequest.setField(buyBookPostResponse.getField());
-        buyBookPostRequest.setField2(buyBookPostResponse.getField2());
+        //buyBookPostRequest.setField2(buyBookPostResponse.getField2());
         buyBookPostRequest.setPrice(buyBookPostResponse.getPrice());
         buyBookPostRequest.setContent(buyBookPostResponse.getContent());
         buyBookPostRequest.setPayment(buyBookPostResponse.getPayment());
         buyBookPostRequest.setCompletion(buyBookPostResponse.getCompletion());
+        buyBookPostRequest.setImg(buyBookPostResponse.getImg());
+        buyBookPostRequest.setId(buyBookPostResponse.getBuyBookId());
 
-        return "buy_post_update";
+        return "buy_post_update2";
     }
 
-    //삽니다 게시물 수정 화면
+
+    //삽니다 게시물 수정 화면 version2
     @PreAuthorize("isAuthenticated()")
     @PostMapping("update/{id}")
     public String postUpdate(@Valid BuyBookPostRequest buyBookPostRequest, BindingResult bindingResult, Principal principal,
-                             @PathVariable("id") Integer id) {
+                             @PathVariable("id") Integer id, List<MultipartFile> files) throws IOException {
         if (bindingResult.hasErrors()) {
             return "post_update";
         }
         BuyBookPostResponse buyBookPostResponse = this.buyBookPostService.getPost(id);
-        if (!buyBookPostResponse.getAuthor().getNickname().equals(principal.getName())) {
+        if (!buyBookPostResponse.getAuthor().getUsername().equals(principal.getName())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정권한이 없습니다.");
         }
         this.buyBookPostService.update(buyBookPostResponse, buyBookPostRequest.getBookName(), buyBookPostRequest.getCategory(),
                 buyBookPostRequest.getBookAuthor(), buyBookPostRequest.getPublisher(), buyBookPostRequest.getField(),
-                buyBookPostRequest.getField2(), buyBookPostRequest.getPrice(), buyBookPostRequest.getContent(),
-                buyBookPostRequest.getPayment(), buyBookPostRequest.getCompletion());
+                buyBookPostRequest.getPrice(), buyBookPostRequest.getContent(),
+                buyBookPostRequest.getPayment(), buyBookPostRequest.getCompletion(), files);
         return String.format("redirect:/buy_post/detail/%s", id);   //  /buy_post/detail/{id}로 리디렉션
     }
-
-    //삽니다 게시물 삭제
-    @PreAuthorize("isAuthenticated()")
-    @GetMapping("/delete/{id}")
-    public String postdelete(Principal principal, @PathVariable("id") Integer id) {
-        BuyBookPostResponse buyBookPostResponse = this.buyBookPostService.getPost(id);
-        if (principal == null) {
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "삭제권한이 없습니다..");
-        }
-        if (!buyBookPostResponse.getAuthor().getNickname().equals(principal.getName())) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "삭제권한이 없습니다.");
-        }
-        this.buyBookPostService.delete(buyBookPostResponse);
-        return "redirect:/buy_post/list";
-    }
-
-
-
-
 
 
 }
