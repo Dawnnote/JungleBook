@@ -27,7 +27,7 @@ import java.util.Optional;
 public class SellBookPostService {
     private final SellBookPostRepository sellBookPostRepository;
     private final ModelMapper modelMapper;
-    private final User user;
+    //private final User user;
 
     private SellBookPostResponse of(SellBookPost sellBookPost) {
         return modelMapper.map(sellBookPost, SellBookPostResponse.class);

@@ -21,6 +21,7 @@ public class User extends BaseTimeEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private int id;
     @Column(unique = true)
     private String username; //email로 받기
