@@ -1,8 +1,8 @@
 package com.example.junglebook.service;
 
 import com.example.junglebook.config.DataNotFoundException;
-
 import com.example.junglebook.data.common.UserRole;
+import com.example.junglebook.data.dto.UserRequest;
 import com.example.junglebook.data.dto.UserResponse;
 import com.example.junglebook.data.entity.User;
 import com.example.junglebook.repository.UserRepository;
@@ -10,9 +10,13 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.transaction.Transactional;
+import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.util.Optional;
+import java.util.UUID;
 
 @RequiredArgsConstructor
 @Service
@@ -27,9 +31,7 @@ private UserResponse of (User user) {
 }
 
 //create
-
-public UserResponse create(String username, String nickname, String password, String name) throws IOException {
-//public UserResponse create(String username, String name, String nickname, String password) throws IOException {
+    public UserResponse create(String username, String name, String nickname, String password) throws IOException {
         User user = new User();
         user.setUsername(username);
         user.setNickname(nickname);
@@ -49,11 +51,11 @@ public UserResponse create(String username, String nickname, String password, St
         else {
             throw new DataNotFoundException("USER NOT FOUNDED");
         }
-
-        //UPDATE
-
-        //DELETE
     }
+
+    //UPDATE
+
+    //DELETE
 
 
 }

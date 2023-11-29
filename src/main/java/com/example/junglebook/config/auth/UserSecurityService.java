@@ -1,4 +1,4 @@
-package com.example.junglebook.service;
+package com.example.junglebook.config.auth;
 
 import com.example.junglebook.data.entity.User;
 import com.example.junglebook.repository.UserRepository;

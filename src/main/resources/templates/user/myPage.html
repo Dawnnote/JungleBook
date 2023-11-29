@@ -1,10 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <!-- head 내용 생략 -->
 </head>
 <body>
+<h2>프로필 수정</h2>
+<form th:action="@{/user/update}" th:object="${user}" method="post">
+    <!-- 사용자 정보 수정 폼 입력 필드들 -->
+    <input type="text" th:field="*{nickname}" />
+    <input type="text" th:field="*{username}" />
 
+    <!-- 비밀번호 수정 필드 -->
+    <div>
+        <label for="currentPassword">현재 비밀번호:</label>
+        <input type="password" id="currentPassword" name="currentPassword" />
+    </div>
+
+    <div>
+        <label for="newPassword">새로운 비밀번호:</label>
+        <input type="password" id="newPassword" name="newPassword" />
+    </div>
+
+    <div>
+        <label for="confirmPassword">비밀번호 확인:</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" />
+    </div>
+    <!-- 비밀번호 수정 필드 끝 -->
+
+    <button type="submit">저장</button>
+</form>
 </body>
 </html>
