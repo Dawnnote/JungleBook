@@ -1,17 +1,21 @@
 package com.example.junglebook.controller;
 
+
+import com.example.junglebook.data.dto.ReviewDto;
 import com.example.junglebook.data.dto.UserRequest;
 import com.example.junglebook.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RequiredArgsConstructor
 @RequestMapping("/user")
@@ -40,6 +44,7 @@ public class UserController {
         try {
             userService.create(userRequest.getUsername(), userRequest.getNickname(), userRequest.getPassword1(), userRequest.getName());
 
+
         } catch (DataIntegrityViolationException e) {
             e.printStackTrace();
             bindingResult.reject("signupFailed", "이미 가입된 회원입니다.");
@@ -60,6 +65,4 @@ public class UserController {
     }
 
     //user -> mypage -> update user information -> upload profile photo
-
-
 }

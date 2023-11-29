@@ -9,6 +9,7 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.PrePersist;
 import java.time.LocalDateTime;
 
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -27,4 +28,5 @@ public class BaseTimeEntity {
         this.createdDate = LocalDateTime.now();
     }
 }
+
 
