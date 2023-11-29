@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class SellBookMainController {
-    @GetMapping("/")
-    public String root(){
-        return "redirect:/sell_post/create";
-    }
+//    @GetMapping("/")
+//    public String root(){
+//        return "redirect:/sell_post/create";
+//    }
 }
