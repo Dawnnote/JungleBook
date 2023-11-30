@@ -219,6 +219,7 @@ public class BuyBookPostService {
                 .orElseThrow(() -> new IllegalArgumentException("not found: " + id));
     }
 
+<<<<<<< Updated upstream
     // 신고하기 dto
     public ReportResponse reportCreate(BuyBookPost book, User author, String reportType) {
         ReportResponse report = new ReportResponse();
@@ -227,4 +228,9 @@ public class BuyBookPostService {
         report.setReportType(reportType);
         return report;
     }
+=======
+//    public User findUser() {
+//        return buyBookPostRepository.findByAuthor_Id();
+//    }
+>>>>>>> Stashed changes
 }
