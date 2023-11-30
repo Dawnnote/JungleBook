@@ -1,6 +1,7 @@
 package com.example.junglebook.data.dto;
 
 import com.example.junglebook.data.category.Category;
+import com.example.junglebook.data.entity.Comment;
 import com.example.junglebook.data.entity.SellBookPost;
 import com.example.junglebook.data.entity.User;
 import lombok.Data;
@@ -10,6 +11,7 @@ import lombok.Setter;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Getter

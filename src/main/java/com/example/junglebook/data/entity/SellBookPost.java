@@ -4,6 +4,7 @@ import com.example.junglebook.data.category.Category;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -54,4 +55,5 @@ public class SellBookPost {
 
     //거래 완료 여부
     private Boolean completion;
+
 }
