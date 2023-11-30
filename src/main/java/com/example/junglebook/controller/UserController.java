@@ -32,8 +32,8 @@ public class UserController {
         if (bindingResult.hasErrors()) {
             return "user/joinForm";
         }
-        if (!userRequest.getPassword1().equals(userRequest.getPassword2())) {
-            bindingResult.rejectValue("password2", "passIncorrect", "패스워드가 일치하지 않습니다.");
+        if (!userRequest.getPassword1().equals(userRequest.getConfirmWord())) {
+            bindingResult.rejectValue("confirmWord", "passIncorrect", "패스워드가 일치하지 않습니다.");
             return "user/joinForm";
         }
 

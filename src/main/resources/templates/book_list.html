@@ -54,7 +54,7 @@
                 <tbody>
                 <!-- 게시글 목록을 출력하는 Thymeleaf 코드 작성 -->
                 <input type="hidden" id="categoryVal" value="">
-                <tr  class="text-center" th:each="post, loop : ${paging}" th:if="${post.category.equals('sell')}">
+                <tr  class="text-center" th:each="post, loop : ${paging}" >
 <!--                    <td th:text="${paging.getTotalElements - (paging.number * paging.size) - loop.index}"></td>-->
                     <td th:text="${post.purpose}">
                     <td>

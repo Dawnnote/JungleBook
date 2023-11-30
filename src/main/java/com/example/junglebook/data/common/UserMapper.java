@@ -10,6 +10,7 @@ public class UserMapper implements EntityMapper<UserRequest, User> {
 
     @Override
     public User toEntity(UserRequest userRequest) {
+
         return null;
     }
 }

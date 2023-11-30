@@ -21,7 +21,8 @@ public class UserResponse extends BaseTimeEntity {
     private String nickname;
     private String password1;
     @NotEmpty(message = "비밀번호 확인은 필수 항목입니다.")
-    private String password2;
+//    private String password2;
+    private String confirmWord;
     private String name;
     private String filename;
     private String filepath;
@@ -33,7 +34,8 @@ public class UserResponse extends BaseTimeEntity {
         this.username = entity.getUsername();
         this.nickname = entity.getNickname();
         this.password1 = entity.getPassword();
-        this.password2 = entity.getPassword();
+        //this.password2 = entity.getPassword();
+        this.confirmWord = entity.getPassword();
         this.name = entity.getName();
         this.filename = entity.getFilename();
         this.filepath = entity.getFilepath();
