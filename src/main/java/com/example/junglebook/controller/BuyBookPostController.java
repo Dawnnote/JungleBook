@@ -1,5 +1,6 @@
 package com.example.junglebook.controller;
 
+import com.example.junglebook.data.category.ReportType;
 import com.example.junglebook.data.dto.BuyBookPostRequest;
 import com.example.junglebook.data.dto.BuyBookPostResponse;
 import com.example.junglebook.data.dto.ReportResponse;
@@ -33,12 +34,17 @@ public class BuyBookPostController {
    // private final BuyBookPostResponse buyBookPostResponse;
     private final UserService userService;
 
+    @ModelAttribute("reportTypes")
+    public ReportType[] reportTypes() {
+        return ReportType.values();
+    }
+
     //삽니다 게시물 화면 불러오기
     @GetMapping(value = "/detail/{id}")
     public String detail(Model model, @PathVariable("id") Integer id) {
         BuyBookPostResponse post = this.buyBookPostService.getPostReadCnt(id);
         model.addAttribute("post", post);
-        model.addAttribute("")
+        model.addAttribute("report", new ReportResponse());
         return "buy_post_detail2";
     }
 
@@ -49,6 +55,7 @@ public class BuyBookPostController {
         return "buy_post_detail2";
     }
 
+    // 신고하기
     @PostMapping("/detail/create")
     public String report(@ModelAttribute ReportResponse dto) {
         log.info("getId={}", dto.getId());
