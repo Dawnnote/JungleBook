@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
     <script src="https://kit.fontawesome.com/f0556abec9.js" crossorigin="anonymous"></script>
@@ -130,50 +130,50 @@
 </style>
 
 <body>
-    <div class="container">
-        <h2 class="join-title"><i class="fa-solid fa-book-open"></i> <span class="bold">J</span>ungle <span
-                class="bold">B</span>ook</h2>
-        <form th:action="@{/user/signup}" th:object="${userRequest}" method="post">
-            <div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
-                <div th:each="err : ${#fields.allErrors()}" th:text="${err}"></div>
+<div class="container">
+    <h2 class="join-title"><i class="fa-solid fa-book-open"></i> <span class="bold">J</span>ungle <span
+            class="bold">B</span>ook</h2>
+    <form th:action="@{/user/signup}" th:object="${userRequest}" method="post">
+        <div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
+            <div th:each="err : ${#fields.allErrors()}" th:text="${err}"></div>
+        </div>
+        <div class="form-group-border">
+            <div class="form-group">
+                <label for="username" class="form-label"><i class="fa-regular fa-envelope"></i> email</label><br />
+                <input type="text" th:field="*{username}" class="form-control">
             </div>
-            <div class="form-group-border">
-                <div class="form-group">
-                    <label for="username" class="form-label"><i class="fa-regular fa-envelope"></i> email</label><br />
-                    <input type="text" th:field="*{username}" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="password1" class="form-label"><i class="fa-solid fa-lock"></i> password</label><br />
-                    <input type="password" th:field="*{password1}" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="password2" class="form-label"><i class="fa-solid fa-lock"></i> check
-                        password</label><br />
-                    <input type="password" th:field="*{password2}" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="name" class="form-label"><i class="fa-solid fa-user"></i> name</label><br />
-                    <input type="text" th:field="*{name}" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="nickname" class="form-label"><i class="fa-regular fa-user"></i> nickname</label><br />
-                    <input type="text" th:field="*{nickname}" class="form-control">
-                </div>
+            <div class="form-group">
+                <label for="password1" class="form-label"><i class="fa-solid fa-lock"></i> password</label><br />
+                <input type="password" th:field="*{password1}" class="form-control">
             </div>
-            <button type="submit" class="join-btn">JOIN</button>
-            <a href="#"></a><button type="button" class="cancel-btn">CANCEL</button></a>
-            <div class="sns">
-                <!--sns login-->
-                <a href="/oauth2/authorization/google" class="google"><img class="google-logo" src="/logo/구글__2_500.png"/></a>
-                <a href="/oauth2/authorization/facebook" class="facebook"><img class="facebook-logo" src="/logo/Facebook_Logo_Primary.png"/></a>
-                <a href="/oauth2/authorization/naver" class="naver"><img class="naver-logo" src="/logo/btnG_아이콘원형.png"/></a>
+            <div class="form-group">
+                <label for="password2" class="form-label"><i class="fa-solid fa-lock"></i> check
+                    password</label><br />
+                <input type="password" th:field="*{password2}" class="form-control">
             </div>
-        </form>
-    </div>
+            <div class="form-group">
+                <label for="name" class="form-label"><i class="fa-solid fa-user"></i> name</label><br />
+                <input type="text" th:field="*{name}" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="nickname" class="form-label"><i class="fa-regular fa-user"></i> nickname</label><br />
+                <input type="text" th:field="*{nickname}" class="form-control">
+            </div>
+        </div>
+        <button type="submit" class="join-btn">JOIN</button>
+        <a th:href="@{/}"><button type="button" class="cancel-btn">CANCEL</button></a>
+        <div class="sns">
+            <!--sns login-->
+            <a href="/oauth2/authorization/google" class="google"><img class="google-logo" src="/logo/구글__2_500.png"/></a>
+            <a href="/oauth2/authorization/facebook" class="facebook"><img class="facebook-logo" src="/logo/Facebook_Logo_Primary.png"/></a>
+            <a href="/oauth2/authorization/naver" class="naver"><img class="naver-logo" src="/logo/btnG_아이콘원형.png"/></a>
+        </div>
+    </form>
+</div>
 
-    <!-- 부트스트랩 js, jquery 추가 -->
-    <script src="/js/lib/jquery.min.js"></script>
-    <script src="/js/lib/bootstrap.min.js"></script>
+<!-- 부트스트랩 js, jquery 추가 -->
+<script src="/js/lib/jquery.min.js"></script>
+<script src="/js/lib/bootstrap.min.js"></script>
 </body>
 
 </html>

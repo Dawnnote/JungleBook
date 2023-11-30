@@ -10,9 +10,9 @@
                 <a href="#"><span class="highlight">J</span>ungle <span class="highlight">B</span>ook</a>
             </div>
             <div class="nav-user">
-                <li><a th:href="@{user/login}" sec:authorize="isAnonymous()">Login</a></li> <!--모든 사용자 (회원/비회원 접근 가능)-->
-                <li><a th:href="@{user/mypage}" sec:authorize="isAuthenticated()">My Page</a></li> <!--로그인 한 사용자만 접근 가능-->
-                <li><a th:href="@{user/logout}" sec:authorize="isAuthenticated()">Logout</a></li> <!--로그인 한 사용자만 접근 가능-->
+                <li><a th:href="@{user/login}" sec:authorize="isAnonymous()">Login</a></li>
+                <li><a th:href="@{|/user/myPage/${id}|}" sec:authorize="isAuthenticated()">My Page</a></li>
+                <li><a th:href="@{user/logout}" sec:authorize="isAuthenticated()">Logout</a></li>
                 <li><a href=""><i class="fa-solid fa-bell" id="bell"></i></a></li>
             </div>
             <a href="" class="navbar-btn"><i class="fa-solid fa-bars"></i></a>
