@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 </head>
 <body>
-<include th:insert="fragment/header.html"></include>
+<include th:insert="fragments/header.html"></include>
 <div layout:fragment="content" class="container my-3">
     <h2 class="border-bottom py-2" th:text="${post.bookName}"></h2>
 
@@ -71,7 +71,7 @@
     <button type="button" class="btn btn-success" onclick="javascript:location.href='/sell_post/list'">목록으로</button>
 
 </div>
-<include th:insert="fragment/footer.html"></include>
+<include th:insert="fragments/footer.html"></include>
 
 <script >
 

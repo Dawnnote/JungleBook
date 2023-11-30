@@ -41,7 +41,7 @@
     </style>
 </head>
 <body>
-<include th:insert="fragment/header.html"></include>
+<include th:insert="fragments/header.html"></include>
 <div layout:fragment="content" class="container my-3">
     <h2 class="border-bottom py-2" th:text="${post.bookName}"></h2>
 
@@ -148,7 +148,7 @@
     </div>
     <button class="btn-open-modal btn btn-success">신고</button>
 </div>
-<include th:insert="fragment/footer.html"></include>
+<include th:insert="fragments/footer.html"></include>
 
 <script >
 

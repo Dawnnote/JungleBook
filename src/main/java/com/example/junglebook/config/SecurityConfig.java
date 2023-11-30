@@ -70,4 +70,5 @@ public class SecurityConfig {
             response.sendRedirect("/error/forbidden");
         };
     }
+
 }
