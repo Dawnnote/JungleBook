@@ -66,4 +66,7 @@ public class BuyBookPost extends BaseTimeEntity {
     //조회수
     @Column(columnDefinition = "integer default 0", nullable = false)
     private int readCnt;
+
+    //삽니다or 팝니다
+    private String purpose;
 }

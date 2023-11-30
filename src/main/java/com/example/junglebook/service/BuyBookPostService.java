@@ -122,7 +122,7 @@ public class BuyBookPostService {
         List<Sort.Order> orders = new ArrayList<>();
         orders.add(Sort.Order.desc("createdDate"));
 
-        Pageable pageable = PageRequest.of(page, 10, Sort.by(orders));
+        Pageable pageable = PageRequest.of(page, 3, Sort.by(orders));
 
         //검색해서 보여주는 기능
         if(kw != null && !kw.isEmpty()){
@@ -161,7 +161,7 @@ public class BuyBookPostService {
     public BuyBookPostResponse create(String bookName, String category, String bookAuthor,
                                       String publisher, String field,
                                       Long price, String content, String payment,
-                                      String completion, UserResponse userResponse, List<MultipartFile> files) throws IOException {
+                                      String completion, UserResponse userResponse, List<MultipartFile> files, String purpose) throws IOException {
         BuyBookPostResponse buyBookPostResponse = new BuyBookPostResponse();
         buyBookPostResponse.setBookName(bookName);
         buyBookPostResponse.setCategory(category);
@@ -173,6 +173,7 @@ public class BuyBookPostService {
         buyBookPostResponse.setContent(content);
         buyBookPostResponse.setPayment(payment);
         buyBookPostResponse.setCompletion(completion);
+        buyBookPostResponse.setPurpose(purpose);
 
 
         //작성자(User) 정보 (UserResponse)
