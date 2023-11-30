@@ -3,13 +3,11 @@ package com.example.junglebook.controller;
 import com.example.junglebook.data.category.ReportType;
 import com.example.junglebook.data.dto.BuyBookPostRequest;
 import com.example.junglebook.data.dto.BuyBookPostResponse;
-import com.example.junglebook.data.dto.ReportResponse;
+import com.example.junglebook.data.dto.ReportDto;
 import com.example.junglebook.data.dto.UserResponse;
 import com.example.junglebook.data.entity.BuyBookPost;
-import com.example.junglebook.data.entity.Report;
 import com.example.junglebook.data.entity.User;
 import com.example.junglebook.service.BuyBookPostService;
-import com.example.junglebook.service.ReportService;
 import com.example.junglebook.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,9 +21,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.security.Principal;
+import java.util.Arrays;
 import java.util.List;
 
 @Slf4j
@@ -37,8 +37,6 @@ public class BuyBookPostController {
    // private final BuyBookPostResponse buyBookPostResponse;
     private final UserService userService;
 
-    private final ReportService reportService;
-
     @ModelAttribute("reportTypes")
     public ReportType[] reportTypes() {
         return ReportType.values();
@@ -48,33 +46,28 @@ public class BuyBookPostController {
     @GetMapping(value = "/detail/{id}")
     public String detail(Model model, @PathVariable("id") Integer id) {
         BuyBookPostResponse post = this.buyBookPostService.getPostReadCnt(id);
+        model.addAttribute("report", new ReportDto());
         model.addAttribute("post", post);
-        model.addAttribute("report", new ReportResponse());
         return "buy_post_detail2";
+    }
+
+    // 게시물 신고하기
+    @PostMapping("/detail/{id}")
+    public String report(@PathVariable("id") Integer id, @ModelAttribute ReportDto dto) {
+        log.info("ReportType={}", dto.getReportType());
+        log.info("dtoId={}", dto.getId());
+        log.info("getBuyBookId={}", dto.getBuyBookId());
+
+
+
+        return "redirect:/book/list";
     }
 
     //삽니다 게시물 등록 화면 불러오기
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/create")
     public String post(BuyBookPostRequest buyBookPostRequest){
-        return "buy_post_detail2";
-    }
-
-    // 신고하기
-    @PostMapping("/detail/create")
-    public String report(@ModelAttribute ReportResponse dto, @RequestParam("bookId") Integer bookId,
-                         @RequestParam("userId") Integer userId) {
-        // buybook 게시글 찾기
-        BuyBookPost book = buyBookPostService.findById(bookId);
-        // 작성 유저 찾기
-        User author = userService.findById(userId);
-
-        ReportResponse reportDto = buyBookPostService.reportCreate(book, author, dto.getReportType());
-        Report report = dto.toEntity(reportDto);
-
-        reportService.save(report);
-
-        return "redirect:/book/list";
+        return "buy_post_form2";
     }
 
     //삽니다 게시물 등록 화면

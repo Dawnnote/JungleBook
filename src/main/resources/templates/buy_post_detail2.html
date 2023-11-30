@@ -50,8 +50,7 @@
 
 
                 <a class="btn btn-sm btn-outline-secondary" id="modifyPost"
-                   sec:authorize="isAuthenticated()"
-                   th:href="@{|/buy_post/update/${post.buyBookId}|}"
+                   sec:authorize="isAuthenticated()" th:href="@{|/buy_post/update/${post.buyBookId}|}"
                    th:if="${post.author != null and #authentication.getPrincipal().getUsername() == post.author.username}"
                    th:text="수정"></a>
                 <a class="delete btn btn-sm btn-outline-secondary" href="javascript:void(0);"
@@ -70,46 +69,57 @@
     <button class="btn btn-success" onclick="location.href='/buy_post/list'" type="button">목록으로</button>
 
     <!-- Button trigger modal -->
-    <button class="btn btn-danger" data-target="#exampleModal" data-toggle="modal" type="button">
+    <button class="btn btn-danger" data-target="#staticBackdrop" data-toggle="modal" type="button">
         신고
     </button>
 
+<form th:action="@{'/buy_post/detail/' + ${post.getBuyBookId()}}" th:object="${report}" method="post">
     <!-- Modal -->
-    <form th:action="@{/buy_post/detail/create}" th:object="${report}" method="post">
-        <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="exampleModal" role="dialog"
-             tabindex="-1">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h2 class="modal-title" id="exampleModalLabel">신고 유형</h2>
-                        <button aria-label="Close" class="close" data-dismiss="modal" type="button">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div th:each="type : ${reportTypes}" class="custom-control custom-radio">
-                                        <input type="radio" th:field="*{reportType}" th:value="${type.name()}" class="custom-control-input">
-                                        <label th:for="${#ids.prev('reportType')}" th:text="${type.description}" class="custom-control-label"></label>
-                                    </div>
+    <div aria-hidden="true" aria-labelledby="staticBackdropLabel" class="modal fade" data-backdrop="static"
+         id="staticBackdrop"
+         role="dialog" tabindex="-1">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="staticBackdropLabel">신고 목록</h2>
+                    <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div th:each="type : ${reportTypes}" class="custom-control custom-radio">
+                                    <input type="radio" th:field="*{reportType}" th:value="${type.name()}" class="custom-control-input">
+                                    <label th:for="${#ids.prev('reportType')}" th:text="${type.description}" class="custom-control-label">Test</label>
+
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <input type="hidden" name="bookId" th:value="${post.getBuyBookId()}"/>
-                        <input type="hidden" name="userId" th:value="${post.getAuthor().getId()}"/>
-                        <button class="btn btn-secondary" data-dismiss="modal" type="button">취소</button>
-                        <button class="btn btn-danger" type="submit">신고하기</button>
+
+                </div>
+                <div class="modal-footer">
+                    <div>
+                        <h1 th:text="${post.getBuyBookId()}" th:value="${post.getBuyBookId()}"></h1>
+                        <h2 th:text="${post.author.getId()}" th:value="${post.author.getId()}"></h2>
                     </div>
+                    <div th:object="${post}">
+                        <input type="hidden" th:value="*{author.id}"/>
+                        <input type="hidden" th:value="*{buyBookId}"/>
+                    </div>
+                    <button class="btn btn-secondary" data-dismiss="modal" type="button">취소</button>
+                    <button class="btn btn-danger" type="submit">신고하기</button>
                 </div>
             </div>
         </div>
-    </form>
+    </div>
+</form>
 
 </div>
+
 <include th:insert="fragment/footer.html"></include>
 
 <script crossorigin="anonymous"
