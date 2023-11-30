@@ -1,0 +1,19 @@
+[33m846234b[m[33m ([m[1;36mHEAD -> [m[1;32mKGY[m[33m, [m[1;31morigin/KGY[m[33m)[m HEAD@{0}: checkout: moving from KGY to KGY
+[33m846234b[m[33m ([m[1;36mHEAD -> [m[1;32mKGY[m[33m, [m[1;31morigin/KGY[m[33m)[m HEAD@{1}: branch: Reset to origin/KGY
+[33m846234b[m[33m ([m[1;36mHEAD -> [m[1;32mKGY[m[33m, [m[1;31morigin/KGY[m[33m)[m HEAD@{2}: reset: moving to head~1
+[33m3769e9c[m HEAD@{3}: reset: moving to head~1
+[33mae943e9[m HEAD@{4}: commit (merge): Merge branch 'develop' of https://github.com/Dawnnote/JungleBook into KGY
+[33m3769e9c[m HEAD@{5}: reset: moving to head~1
+[33mb42e9a2[m HEAD@{6}: commit (amend): 찜하기 코드 추가
+[33m995b842[m HEAD@{7}: commit (merge): Merge branch 'develop' of https://github.com/Dawnnote/JungleBook into KGY
+[33m3769e9c[m HEAD@{8}: commit (merge): Merge branch 'develop' of https://github.com/Dawnnote/JungleBook into KGY
+[33m846234b[m[33m ([m[1;36mHEAD -> [m[1;32mKGY[m[33m, [m[1;31morigin/KGY[m[33m)[m HEAD@{9}: commit: .
+[33meb6e133[m HEAD@{10}: pull --no-stat -v --progress origin develop: updating HEAD
+[33meb6e133[m HEAD@{11}: pull --no-stat -v --progress origin master: updating HEAD
+[33meb6e133[m HEAD@{12}: pull --no-stat -v --progress origin main: updating HEAD
+[33meb6e133[m HEAD@{13}: checkout: moving from KYS to KGY
+[33m3b2cf8d[m[33m ([m[1;32mKYS[m[33m)[m HEAD@{14}: checkout: moving from KGY to KYS
+[33meb6e133[m HEAD@{15}: checkout: moving from KYS to KGY
+[33m3b2cf8d[m[33m ([m[1;32mKYS[m[33m)[m HEAD@{16}: checkout: moving from KGY to KYS
+[33meb6e133[m HEAD@{17}: checkout: moving from master to KGY
+[33m84f9633[m[33m ([m[1;32mmaster[m[33m)[m HEAD@{18}: commit (initial): a
