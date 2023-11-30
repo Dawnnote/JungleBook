@@ -1,6 +1,5 @@
 package com.example.junglebook.data.dto;
 
-import com.example.junglebook.data.category.Category;
 import com.example.junglebook.data.entity.BuyBookPost;
 import com.example.junglebook.data.entity.Img;
 import lombok.*;

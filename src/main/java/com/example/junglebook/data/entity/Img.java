@@ -15,7 +15,7 @@ public class Img {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonIgnore //Post와 json객체로 파싱할때 순환참조 문제때문에 한곳에 걸어줌
+    @JsonIgnore //Post와 json객체로 변환할때 순환참조 문제때문에 한곳에 걸어줌
     @ManyToOne
     private BuyBookPost buyBookPost; //게시글번호
 

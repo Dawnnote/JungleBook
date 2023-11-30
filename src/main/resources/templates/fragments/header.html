@@ -1,4 +1,5 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="ko">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml"
+      lang="ko">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" type="text/css" th:href="@{/css.lib/header.css}"/>
     <script src="https://kit.fontawesome.com/f0556abec9.js" crossorigin="anonymous"></script>
@@ -9,9 +10,9 @@
                 <a href="#"><span class="highlight">J</span>ungle <span class="highlight">B</span>ook</a>
             </div>
             <div class="nav-user">
-                <li><a href="#">Login / Join</a></li>
-                <li><a href="#">Logout</a></li>
-                <li><a href="#">My Page</a></li>
+                <li><a th:href="@{user/login}" sec:authorize="isAnonymous()">Login</a></li>
+                <li><a th:href="@{|/user/myPage/${username}|}" sec:authorize="isAuthenticated()">My Page</a></li>
+                <li><a th:href="@{user/logout}" sec:authorize="isAuthenticated()">Logout</a></li>
                 <li><a href=""><i class="fa-solid fa-bell" id="bell"></i></a></li>
             </div>
             <a href="" class="navbar-btn"><i class="fa-solid fa-bars"></i></a>
@@ -45,7 +46,7 @@
         </div>
         <!--write / cart / chat-->
         <ul class="icon-box">
-            <li><a class="li-text" href="#"><i class="fa-solid fa-pen-to-square"></i></a></li>
+            <li><a class="li-text" th:href="@{/sell_post/create}"><i class="fa-solid fa-pen-to-square"></i></a></li>
             <li><a class="li-text" href="#"><i class="fa-solid fa-cart-arrow-down"></i></a></li>
             <li><a class="li-text" href="#"><i class="fa-brands fa-rocketchat"></i></a></li>
         </ul>
