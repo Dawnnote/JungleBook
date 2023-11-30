@@ -1,14 +1,11 @@
 package com.example.junglebook.data.dto;
 
-import com.example.junglebook.data.category.Category;
 import com.example.junglebook.data.entity.BuyBookPost;
 import com.example.junglebook.data.entity.Img;
 import com.example.junglebook.data.entity.User;
 import lombok.*;
 import org.springframework.stereotype.Component;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.List;
 

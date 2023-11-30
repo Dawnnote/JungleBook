@@ -11,7 +11,7 @@
             </div>
             <div class="nav-user">
                 <li><a th:href="@{user/login}" sec:authorize="isAnonymous()">Login</a></li>
-                <li><a th:href="@{|/user/myPage/${id}|}" sec:authorize="isAuthenticated()">My Page</a></li>
+                <li><a th:href="@{|/user/myPage/${username}|}" sec:authorize="isAuthenticated()">My Page</a></li>
                 <li><a th:href="@{user/logout}" sec:authorize="isAuthenticated()">Logout</a></li>
                 <li><a href=""><i class="fa-solid fa-bell" id="bell"></i></a></li>
             </div>
