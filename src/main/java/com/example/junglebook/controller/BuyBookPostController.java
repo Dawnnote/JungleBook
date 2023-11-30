@@ -43,7 +43,7 @@ public class BuyBookPostController {
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/create")
     public String post(BuyBookPostRequest buyBookPostRequest){
-        return "buy_post_form2";
+        return "buy_post_detail2";
     }
 
     //삽니다 게시물 등록 화면
