@@ -29,10 +29,9 @@ public class AdminController {
 
 
     // id 값이 제대로 안넘어감
-    @DeleteMapping("/{id}")
-    public String deleteMovie(@PathVariable("id") int id) {
-        log.info(String.valueOf(id));
-//        userInfoService.delete(id);
+    @DeleteMapping("/list/delete")
+    public String deleteMovie(@RequestParam("userId") Integer userId) {
+        userInfoService.delete(userId);
         return "redirect:/user/admin/list";
     }
 }

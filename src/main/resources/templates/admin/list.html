@@ -10,6 +10,7 @@
 <body>
 <include th:insert="fragment/header.html"></include>
 
+
 <div class="row gx-5">
     <div class="col-1">
     </div>
@@ -26,16 +27,17 @@
             </thead>
             <tbody th:each="user : ${users}">
             <tr>
-                <th th:text="${user.getId()}" scope="row">Id</th>
+                <th scope="row" th:text="${user.getId()}">Id</th>
                 <td th:text="${user.getUsername()}">Email</td>
                 <td th:text="${user.getNickname()}">Nick Name</td>
                 <td th:text="${user.getName()}">Name</td>
                 <td class="col-1">
-                    <form id="delete_form" th:action="@{'/user/admin/' + ${user.getId()}}" method="post">
-                    <input type="hidden" name="_method" value="delete"/>
-                    <input type="hidden" name="id" th:value="${user.getId()}"/>
-                    <a onclick="if (confirm('해당 유저를 삭제하시겠습니까?')) document.getElementById('delete_form').submit();" class="btn btn-danger">Delete</a>
-<!--                    <a th:onclick="|location.href='@{/user/admin/' + ${user.getId()} + '}'|" class="btn btn-danger">Delete</a>-->
+                    <form id="delete_form" method="post" th:action="@{/user/admin/list/delete}">
+                        <input name="_method" type="hidden" value="delete"/>
+                        <input name="userId" th:value="${user.getId()}" type="hidden"/>
+                        <button class="btn btn-danger" onclick="if(!confirm('해당 유저를 삭제하시겠습니까?')){return false;}"
+                                type="submit">Delete
+                        </button>
                     </form>
                 </td>
             </tr>
@@ -44,8 +46,8 @@
     </div>
     <div class="col-1">
     </div>
-</div>
 
+</div>
 
 
 <script crossorigin="anonymous"
