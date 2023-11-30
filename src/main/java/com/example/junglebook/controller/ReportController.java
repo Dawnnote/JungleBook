@@ -1,9 +1,11 @@
 package com.example.junglebook.controller;
 
+import com.example.junglebook.data.dto.BuyBookPostResponse;
 import com.example.junglebook.data.dto.ReportRequest;
 import com.example.junglebook.data.dto.ReportResponse;
 import com.example.junglebook.data.dto.UserResponse;
 import com.example.junglebook.data.entity.User;
+import com.example.junglebook.service.BuyBookPostService;
 import com.example.junglebook.service.ReportService;
 import com.example.junglebook.service.UserService;
 import groovyjarjarasm.asm.tree.AbstractInsnNode;
@@ -27,30 +29,19 @@ import java.security.Principal;
 public class ReportController {
     private final ReportService reportService;
     private final UserService userService;
+    private final BuyBookPostService buyBookPostService;
 
-    //신고하기 화면 불러오기
-    @GetMapping(value = "/detail/{id}")
-    public String detail(Model model, @PathVariable("id") Integer id){
-        ReportResponse report = this.reportService.getPost(id);
-        model.addAttribute("post", post);
-        return "report_post_detail";
-    }
-
-    //신고하기 등록 화면 불러오기
-    @GetMapping("/create")
-    public String post(ReportRequest reportRequest){
-        return "report_post_form";
-    }
-
-    //신고하기 등록 화면
-    @PostMapping("/create")
-    public String postCreate(@Valid ReportRequest reportRequest, BindingResult bindingResult, Principal principal) throws IOException{
-        if (bindingResult.hasErrors()){
-            return "report_post_form";
-        }
-
+    //신고하기 작성
+    @PostMapping("/create/{id}")
+    public String createReport(Model model, @PathVariable("id") Integer id, @Valid ReportRequest reportRequest, BindingResult bindingResult, Principal principal){
+        BuyBookPostResponse buyBookPostResponse = this.buyBookPostService.getPost(id);
         UserResponse userResponse = this.userService.getUser(principal.getName());
-        this.reportService.create(reportRequest.getReportedId(), reportRequest.getReportType(), userResponse);
-        return "redirect:/sell_post/detail";
+        if (bindingResult.hasErrors()){
+            model.addAttribute("post", buyBookPostResponse);
+            return "buy_post_detail";
+        }
+        ReportResponse reportResponse = this.reportService.create(buyBookPostResponse, reportRequest.getReportType(), userResponse);
+        return "redirect:/buy_post/list";
     }
+
 }

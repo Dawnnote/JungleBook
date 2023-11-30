@@ -9,24 +9,19 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Entity
 public class Report extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int reportId;
+    private int id;
 
     @ManyToOne
-    private User reporter;
+    private User author;
 
     //신고된 게시물Id
-    private int reportedId;
+    @ManyToOne
+    private BuyBookPost buyBookId;
 
     private String reportType;
 
-    public Report(User reporter, int reportedId, String reportType){
-        this.reporter = reporter;
-        this.reportedId = reportedId;
-        this.reportType = reportType;
-    }
 }

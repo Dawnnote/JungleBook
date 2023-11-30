@@ -1,5 +1,6 @@
 package com.example.junglebook.data.dto;
 
+import com.example.junglebook.data.entity.BuyBookPost;
 import com.example.junglebook.data.entity.Report;
 import com.example.junglebook.data.entity.User;
 import lombok.*;
@@ -13,21 +14,10 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Component
 public class ReportResponse {
-    private int reportId;
-    private User reporter;
-    private int reportedId;
+    private int id;
+    private User author;
+    private BuyBookPostResponse buyBookId;
     private String reportType;
     private LocalDateTime createdDate;
-
-    public ReportResponse (Report entity){
-    this.reportId = entity.getReportId();
-    this.reporter = entity.getReporter();
-    this.reportedId = entity.getReportedId();
-    this.reportType = entity.getReportType();
-    }
-
-    public void setId(User reporter){
-
-    }
 
 }
