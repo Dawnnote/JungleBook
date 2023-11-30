@@ -3,7 +3,7 @@ package com.example.junglebook.service;
 import com.example.junglebook.config.DataNotFoundException;
 import com.example.junglebook.data.category.Category;
 import com.example.junglebook.data.dto.SellBookPostResponse;
-import com.example.junglebook.data.dto.UserResponse;
+import com.example.junglebook.data.dto.user.UserResponse;
 import com.example.junglebook.data.entity.SellBookPost;
 import com.example.junglebook.data.entity.User;
 import com.example.junglebook.repository.SellBookPostRepository;

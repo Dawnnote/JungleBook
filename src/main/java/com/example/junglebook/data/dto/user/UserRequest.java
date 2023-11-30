@@ -1,11 +1,11 @@
-package com.example.junglebook.data.dto;
+package com.example.junglebook.data.dto.user;
 
 
+import com.example.junglebook.data.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import javax.validation.constraints.NotEmpty;
 
 @Getter
@@ -24,6 +24,10 @@ public class UserRequest {
     private String password2;
     @NotEmpty(message = "사용자 이름은 필수 항목입니다.")
     private String name;
+    private String filename;
+    private String filepath;
+    private String phone;
+    private String address;
 
 
 

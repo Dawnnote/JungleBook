@@ -1,10 +1,349 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <!--부트스트랩 css 추가-->
+    <link rel="stylesheet" href="/css/lib/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/f0556abec9.js" crossorigin="anonymous"></script>
+    <style>
+        /* 노멀라이즈 시작 */
+        body,
+        ul,
+        li {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            /* 해당 태그의 list-style을 none으로 하는 것으로 ●을 제거한다 */
+        }
+
+        a {
+            color: inherit;
+            /* 부모 엘리먼트의 값을 물려받는다 */
+            text-decoration: none;
+            /* 해당 태그의 text-decoration 속성을 none 값으로 하는 것으로 밑줄을 제거한다 */
+        }
+
+        /* 노멀라이즈 끝 */
+
+        /* 커스텀 시작 */
+        .side-bar>ul ul {
+            display: none;
+        }
+
+        /* 사이트의 높이를 5000px로 만들어 스크롤 생성 */
+        body {
+            height: 5000px;
+        }
+
+        /* 사이드바 시작 */
+
+        /* 사이드바의 너비와 높이를 변수를 통해 통제 */
+        :root {
+            --side-bar-width: 270px;
+            --side-bar-height: 90vh;
+        }
+
+        .side-bar {
+            position: fixed;
+            /* 스크롤을 따라오도록 지정 */
+            background-color: #B0D69C;
+            width: var(--side-bar-width);
+            min-height: var(--side-bar-height);
+            /* 사이드바의 높이를 전체 화면 높이의 90%로 지정 */
+            margin-top: calc((100vh - var(--side-bar-height)) / 2);
+            /* 사이드바 위와 아래의 마진을 동일하게 지정 */
+        }
+
+        /* 아이콘 시작 */
+        .side-bar__icon-box {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .side-bar__icon-1 {
+            position: relative;
+            width: 23px;
+            height: 17px;
+            margin: 15px;
+            margin-top: 20px;
+            transition: .5s;
+        }
+
+        :root {
+            --side-bar__icon: .5s;
+        }
+
+        .side-bar__icon-1>div {
+            position: absolute;
+            width: 100%;
+            height: 20%;
+            background-color: white;
+            transition: all var(--side-bar__icon);
+        }
+
+        .side-bar__icon-1>div:nth-of-type(1) {
+            top: 0;
+            width: auto;
+            left: 0;
+            right: 0;
+            transition: all var(--side-bar__icon), left calc(var(--side-bar__icon) / 2) calc(var(--side-bar__icon) / 2), right calc(var(--side-bar__icon) / 2) calc(var(--side-bar__icon) / 2), height calc(var(--side-bar__icon) / 2) 0s;
+        }
+
+        .side-bar__icon-1>div:nth-of-type(2) {
+            top: 40%;
+            transform-origin: bottom left;
+        }
+
+        .side-bar__icon-1>div:nth-of-type(3) {
+            top: 80%;
+            left: auto;
+            right: 0;
+            transform-origin: bottom right;
+        }
+
+
+        .side-bar:hover .side-bar__icon-1 {
+            transform: translate(-198px, 0);
+        }
+
+        .side-bar:hover .side-bar__icon-1>div:nth-of-type(2) {
+            transform: rotate(45deg);
+            width: 70.5%;
+            height: 25%;
+        }
+
+        .side-bar:hover .side-bar__icon-1>div:nth-of-type(3) {
+            top: 40%;
+            transform: rotate(-45deg);
+            width: 70.5%;
+            height: 25%;
+        }
+
+        .side-bar:hover .side-bar__icon-1>div:nth-of-type(1) {
+            left: 41%;
+            right: 41%;
+            height: 100%;
+            transition: all var(--side-bar__icon), left calc(var(--side-bar__icon) / 2) 0s, right calc(var(--side-bar__icon) / 2) 0s, height calc(var(--side-bar__icon) / 2) calc(var(--side-bar__icon) / 2);
+        }
+
+        /* 아이콘 끝 */
+
+        /* 모든 메뉴의 a에 속성값 부여 */
+        .side-bar ul>li>a {
+            display: block;
+            color: white;
+            font-size: 1.4rem;
+            font-weight: bold;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            padding-left: 50px;
+            transition: .5s;
+        }
+
+        /* 자식의 position이 absolute일 때 자식을 영역 안에 가두어 준다 */
+        .side-bar>ul>li {
+            position: relative;
+        }
+
+        /* 모든 메뉴가 마우스 인식 시 반응 */
+        .side-bar ul>li:hover>a {
+            background-color: #506147;
+        }
+
+        /* 1차 메뉴의 항목이 마우스 인식 시에 2차 메뉴 등장 */
+        .side-bar>ul>li:hover>ul {
+            display: block;
+            position: absolute;
+            background-color: #888;
+            top: 0;
+            /* 2차 메뉴의 상단을 1차 메뉴의 상단에 고정 */
+            left: 100%;
+            /* 2차 메뉴를 1차 메뉴의 너비만큼 이동 */
+            width: 100%;
+            /* 1차 메뉴의 너비를 상속 */
+        }
+
+        /* 사이드바 너비의 80%만큼 왼쪽으로 이동 */
+        .side-bar {
+            border-radius: 20px;
+            transform: translate(calc(var(--side-bar-width) * -0.8), 0);
+            transition: .5s;
+        }
+
+        /* 마우스 인식 시 원래의 위치로 이동 */
+        .side-bar:hover {
+            transform: translate(-20px, 0);
+            /* 둥근 모서리의 너비만큼 숨겨주기 */
+        }
+
+        /* 사이드바 끝 */
+
+        /* 중앙 정렬을 위한 스타일 */
+        #mainContent {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* 각 화면에 해당하는 내용의 스타일 (예시) */
+        .mypage,
+        .mypost,
+        .mycart,
+        .myqna {
+            text-align: center;
+            /* 내용을 가운데 정렬할 수 있도록 설정 */
+            display: none;
+            /* 초기에는 모두 숨김 */
+        }
+
+        /* 활성화된 화면만 보여주기 */
+        .mypage.active,
+        .mypost.active,
+        .mycart.active,
+        .myqna.active {
+            display: block;
+        }
+
+        /**/
+    </style>
 </head>
+
 <body>
+    <!-- 1. 사이드바 (회원정보 수정 / 내가 쓴 글 목록 / 찜한 목록 / 신고 목록 / 문의 목록)-->
+    <aside class="side-bar">
+        <section class="side-bar__icon-box">
+            <section class="side-bar__icon-1">
+                <div></div>
+                <div></div>
+                <div></div>
+            </section>
+        </section>
+        <ul>
+            <li id="home"><a href="#"><i class="fa-solid fa-house-chimney"></i> HOME</a></li>
+            <li id="mypage"><a href="#"><i class="fa-solid fa-circle-user"></i> My Page</a></li>
+            <li id="mypost"><a href="#"><i class="fa-solid fa-signs-post"></i> My Post</a></li>
+            <li id="mycart"><a href="#"><i class="fa-solid fa-cart-shopping"></i> My Cart</a></li>
+            <li id="myqna"><a href="#"><i class="fa-solid fa-screwdriver-wrench"></i> Q&A</a></li>
+        </ul>
+    </aside>
+    <!-- 메인 컨텐츠 영역 -->
+    <div class="main-content" id="mainContent">
+        <!-- 각 화면에 해당하는 내용을 추가 (초기에는 비어있음) -->
+        <div class="mypage">
+            <h1>Profile Information</h1>
+            <p>Nickname: ${userResponse.nickname}</p>
+            <form th:object="${userRequest}" method="post" enctype="multipart/form-data" th:action="@{/user/updateUser}">
+            <input type="hidden"/>
+            <div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
+                    <div th:each="err : ${#fields.allErrors()}" th:text="${err}"></div>
+                </div>
+                <div class="form-group-border">
+                    <div class="form-group">
+                        <label for="file" class="form-label"><i class="fa-solid fa-circle-user"></i> Profile Photo</label><br />
+                        <input type="file" th:field="*{file}" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="username" class="form-label"><i class="fa-regular fa-envelope"></i>
+                            email</label><br />
+                        <input type="text" th:field="*{username}" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="password1" class="form-label"><i class="fa-solid fa-lock"></i>
+                            password</label><br />
+                        <input type="password" th:field="*{password1}" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="password2" class="form-label"><i class="fa-solid fa-lock"></i> check
+                            password</label><br />
+                        <input type="password" th:field="*{password2}" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="form-label"><i class="fa-solid fa-user"></i> name</label><br />
+                        <input type="text" th:field="*{name}" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="nickname" class="form-label"><i class="fa-regular fa-user"></i>
+                            nickname</label><br />
+                        <input type="text" th:field="*{nickname}" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone" class="form-label"><i class="fa-solid fa-mobile-screen"></i>
+                            phone</label><br />
+                        <input type="text" th:field="*{phone}" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="address" class="form-label"><i class="fa-solid fa-location-dot"></i>
+                            address</label><br />
+                        <input type="text" th:field="*{address}" class="form-control">
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button type="submit" class="update-btn">Update</button>
+                    <a th:href="@{/user/mypage}" class="update-btn">Cancel</a>
+                </div>
+            </form>
+        </div>
+        <div class="mypost">
+            <h1>my post page</h1>
+        </div>
+        <div class="mycart">
+            <h1>my cart page</h1>
+        </div>
+        <div class="myqna">
+            <h1>my qna page</h1>
+        </div>
+    </div>
+
+    <!-- JavaScript를 추가하는 부분 -->
+    <script>
+        // JavaScript로 작성된 코드는 HTML 문서의 어느 곳이든지 위치할 수 있습니다.
+
+        // 각 리스트에 대한 클릭 이벤트를 처리하는 함수
+        function showContent(contentId) {
+            // 모든 메인 컨텐츠를 숨깁니다.
+            var allContents = document.querySelectorAll('.main-content > div');
+            allContents.forEach(function (content) {
+                content.style.display = 'none';
+            });
+
+            // 클릭된 리스트에 해당하는 메인 컨텐츠를 보여줍니다.
+            var selectedContent = document.querySelector('.' + contentId);
+            if (selectedContent) {
+                selectedContent.style.display = 'block';
+            }
+        }
+
+        // 각 리스트에 대한 클릭 이벤트를 할당
+        document.getElementById('home').addEventListener('click', function () {
+            showContent('home');
+        });
+        document.getElementById('mypage').addEventListener('click', function () {
+            showContent('mypage');
+        });
+        document.getElementById('mypost').addEventListener('click', function () {
+            showContent('mypost');
+        });
+        document.getElementById('mycart').addEventListener('click', function () {
+            showContent('mycart');
+        });
+        document.getElementById('myqna').addEventListener('click', function () {
+            showContent('myqna');
+        });
+        function showContent(contentId) {
+            var allContents = document.querySelectorAll('.main-content > div');
+            allContents.forEach(function (content) {
+                content.classList.remove('active');
+            });
+
+            var selectedContent = document.querySelector('.' + contentId);
+            if (selectedContent) {
+                selectedContent.classList.add('active');
+            }
+        }
+
+    </script>
 
 </body>
+
 </html>

@@ -1,7 +1,6 @@
 package com.example.junglebook.repository;
 
 import com.example.junglebook.data.entity.User;
-
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -21,5 +20,9 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     //로그인 시 member role loading
     @EntityGraph(attributePaths = "userRole")
     Optional<User> findByUserRole(int id);
+    //findBynickname
+    Optional<User> findByNickname(String nickname);
 
+    //유효성검사 - 중복체크 @return true / false
+    boolean existsByUsername(String username);
 }

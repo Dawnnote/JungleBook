@@ -1,37 +1,173 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
 <head>
+    <script src="https://kit.fontawesome.com/f0556abec9.js" crossorigin="anonymous"></script>
+
     <meta charset="UTF-8">
     <title>JOIN PAGE</title>
 </head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Josefin+Sans:wght@700&family=Nanum+Gothic:wght@800&family=Press+Start+2P&display=swap');
+
+    .container {
+        text-align: center;
+        font-family: 'Nanum Gothic', serif;
+    }
+
+    .join-title {
+        padding-top: 20px;
+        color: #506147;
+        font-weight: 800;
+        font-size: xx-large;
+    }
+
+    .bold {
+        color: #B0D69C;
+    }
+
+    /*border line*/
+    .form-group-border {
+        margin-left: 100px;
+        margin-right: 100px;
+        padding: 20px;
+        border-top: 2px solid #B0D69C;
+
+    }
+
+    /*input margin*/
+    .form-group {
+        padding: 20px;
+    }
+
+    .form-group>input {
+        width: 300px;
+        height: 30px;
+        border-radius: 5px;
+        border: 1px solid #B0D69C;
+    }
+
+    input:focus {
+        outline: 2px solid #506147;
+    }
+
+    /*form label*/
+    .form-label {
+        font-size: medium;
+        color: #506147;
+        font-weight: 500;
+    }
+
+    /*button*/
+    button {
+        width: 70px;
+        height: 35px;
+        border-radius: 5px;
+    }
+
+    /*JOIN BTN*/
+    .join-btn {
+
+        border: 2px solid #809b72;
+        background-color: #fff;
+        font-weight: 700;
+        color: #809b72;
+
+    }
+
+    .join-btn:hover {
+        background-color: #809b72;
+        color: #fff;
+    }
+
+    /*go back to main page*/
+    .cancel-btn {
+        border: 2px solid #B0D69C;
+        background-color: #fff;
+        font-weight: 700;
+        color: #B0D69C;
+    }
+
+    .cancel-btn a {
+        color: #B0D69C;
+        text-decoration: none;
+    }
+
+    .cancel-btn:hover {
+        background-color: #B0D69C;
+        color: #fff;
+    }
+
+
+    /*sns*/
+    .sns {
+        margin-left: 100px;
+        margin-right: 100px;
+        padding-top: 30px;
+        padding-bottom: 20px;
+        border-bottom: 2px solid #B0D69C;
+    }
+
+    .sns a {
+        text-decoration: none;
+        padding-right: 10px;
+    }
+
+    .google-logo {
+        width: 30px;
+        height: 30px;
+    }
+
+    .facebook-logo {
+        width: 30px;
+        height: 30px;
+    }
+
+    .naver-logo {
+        width: 30px;
+        height: 30px;
+    }
+</style>
+
 <body>
 <div class="container">
-    <h2 style="font-size: 16px;">회원 가입</h2>
+    <h2 class="join-title"><i class="fa-solid fa-book-open"></i> <span class="bold">J</span>ungle <span
+            class="bold">B</span>ook</h2>
     <form th:action="@{/user/signup}" th:object="${userRequest}" method="post">
         <div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
-            <div th:each="err : ${#fields.allErrors()}" th:text="${err}" />
+            <div th:each="err : ${#fields.allErrors()}" th:text="${err}"></div>
         </div>
-        <div class="form-group">
-            <label for="username" class="form-label">email</label>
-            <input type="email" th:field="*{username}" class="form-control">
+        <div class="form-group-border">
+            <div class="form-group">
+                <label for="username" class="form-label"><i class="fa-regular fa-envelope"></i> email</label><br />
+                <input type="text" th:field="*{username}" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="password1" class="form-label"><i class="fa-solid fa-lock"></i> password</label><br />
+                <input type="password" th:field="*{password1}" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="password2" class="form-label"><i class="fa-solid fa-lock"></i> check
+                    password</label><br />
+                <input type="password" th:field="*{password2}" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="name" class="form-label"><i class="fa-solid fa-user"></i> name</label><br />
+                <input type="text" th:field="*{name}" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="nickname" class="form-label"><i class="fa-regular fa-user"></i> nickname</label><br />
+                <input type="text" th:field="*{nickname}" class="form-control">
+            </div>
         </div>
-        <div class="mb-3">
-            <label for="password1" class="form-label">password</label>
-            <input type="password" th:field="*{password1}" class="form-control">
+        <button type="submit" class="join-btn">JOIN</button>
+        <a th:href="@{/}"><button type="button" class="cancel-btn">CANCEL</button></a>
+        <div class="sns">
+            <!--sns login-->
+            <a href="/oauth2/authorization/google" class="google"><img class="google-logo" src="/logo/구글__2_500.png"/></a>
+            <a href="/oauth2/authorization/facebook" class="facebook"><img class="facebook-logo" src="/logo/Facebook_Logo_Primary.png"/></a>
+            <a href="/oauth2/authorization/naver" class="naver"><img class="naver-logo" src="/logo/btnG_아이콘원형.png"/></a>
         </div>
-        <div class="mb-3">
-            <label for="password2" class="form-label">password 확인</label>
-            <input type="password" th:field="*{password2}" class="form-control">
-        </div>
-        <div class="mb-3">
-            <label for="name" class="form-label">name</label>
-            <input type="text" th:field="*{name}" class="form-control">
-        </div>
-        <div class="mb-3">
-            <label for="nickname" class="form-label">nickname</label>
-            <input type="text" th:field="*{nickname}" class="form-control">
-        </div>
-        <button type="submit" class="btn btn-primary">회원가입</button>
     </form>
 </div>
 
@@ -39,4 +175,5 @@
 <script src="/js/lib/jquery.min.js"></script>
 <script src="/js/lib/bootstrap.min.js"></script>
 </body>
+
 </html>
