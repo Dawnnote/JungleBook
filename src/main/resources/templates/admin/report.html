@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--    <link rel="stylesheet" href="/css/lib/bootstrap.min.css">-->
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" rel="stylesheet">
+</head>
+<body>
+<include th:insert="fragment/header.html"></include>
+
+
+<div class="row gx-5">
+    <div class="col-1">
+    </div>
+    <div class="col">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Report Type</th>
+                <th scope="col">Post</th>
+                <th scope="col">Email</th>
+                <th scope="col">Nick Name</th>
+                <th scope="col">Name</th>
+            </tr>
+            </thead>
+            <tbody th:each="report : ${reports}">
+            <tr>
+                <th scope="row" th:text="${report.getId()}">Id</th>
+                <td th:text="${report.reportType}">Report Type</td>
+<!--                <td OnClick="location.href='/buy_post/detail/' + [[${report.buyBookId.getBuyBookId}]]" th:text="${report.buyBookId.getBookName()}">Post</td>-->
+                <td>
+                    <a style="color: blue" th:href="@{'/buy_post/detail/' + ${report.buyBookId.getBuyBookId()}}" th:text="${report.buyBookId.getBookName()}" />
+                </td>
+                <td th:text="${report.author.getUsername()}">Email</td>
+                <td th:text="${report.author.getNickname()}">Nick Name</td>
+                <td th:text="${report.author.getName()}">Name</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-1">
+    </div>
+
+</div>
+
+
+<script crossorigin="anonymous"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"></script>
+</body>
+<include th:insert="fragment/footer.html"></include>
+</html>

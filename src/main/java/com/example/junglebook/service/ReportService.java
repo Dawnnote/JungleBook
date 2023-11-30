@@ -17,6 +17,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -35,6 +36,10 @@ public class ReportService {
 
     public void save(Report report) {
        reportRepository.save(report);
+    }
+
+    public List<Report> findAll() {
+       return reportRepository.findAll();
     }
 
 //    public ReportResponse create(BuyBookPostResponse buyBookPostResponse, String reportType, UserResponse userResponse){

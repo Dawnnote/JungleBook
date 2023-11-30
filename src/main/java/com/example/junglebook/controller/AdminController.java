@@ -1,6 +1,8 @@
 package com.example.junglebook.controller;
 
+import com.example.junglebook.data.entity.Report;
 import com.example.junglebook.data.entity.User;
+import com.example.junglebook.service.ReportService;
 import com.example.junglebook.service.UserInfoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,9 @@ public class AdminController {
     @Autowired
     private UserInfoService userInfoService;
 
+    @Autowired
+    private ReportService reportService;
+
     @GetMapping("/list")
     public String list(Model model) {
         List<User> users = userInfoService.show();
@@ -27,8 +32,16 @@ public class AdminController {
         return "admin/list";
     }
 
+    // 신고 리스트
+    @GetMapping("/report")
+    public String reportList(Model model) {
+        List<Report> reports = reportService.findAll();
+        model.addAttribute("reports", reports);
+        return "admin/report";
+    }
 
-    // id 값이 제대로 안넘어감
+
+    // 유저 삭제
     @DeleteMapping("/list/delete")
     public String deleteMovie(@RequestParam("userId") Integer userId) {
         userInfoService.delete(userId);
