@@ -5,12 +5,14 @@ import com.example.junglebook.data.common.BaseTimeEntity;
 
 import com.example.junglebook.data.entity.User;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.NotEmpty;
 import java.util.Optional;
 
 @Data
+@NoArgsConstructor
 public class UserResponse extends BaseTimeEntity {
 
     //pk, username(=email), nickname, password
