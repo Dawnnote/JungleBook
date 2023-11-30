@@ -2,11 +2,13 @@ package com.example.junglebook.controller;
 
 import com.example.junglebook.data.dto.BuyBookPostRequest;
 import com.example.junglebook.data.dto.BuyBookPostResponse;
+import com.example.junglebook.data.dto.ReportResponse;
 import com.example.junglebook.data.dto.UserResponse;
 import com.example.junglebook.data.entity.BuyBookPost;
 import com.example.junglebook.service.BuyBookPostService;
 import com.example.junglebook.service.UserService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -22,6 +24,7 @@ import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
 
+@Slf4j
 @RequestMapping("/buy_post")
 @RequiredArgsConstructor
 @Controller
@@ -34,8 +37,8 @@ public class BuyBookPostController {
     @GetMapping(value = "/detail/{id}")
     public String detail(Model model, @PathVariable("id") Integer id) {
         BuyBookPostResponse post = this.buyBookPostService.getPostReadCnt(id);
-
         model.addAttribute("post", post);
+        model.addAttribute("")
         return "buy_post_detail2";
     }
 
@@ -44,6 +47,12 @@ public class BuyBookPostController {
     @GetMapping("/create")
     public String post(BuyBookPostRequest buyBookPostRequest){
         return "buy_post_detail2";
+    }
+
+    @PostMapping("/detail/create")
+    public String report(@ModelAttribute ReportResponse dto) {
+        log.info("getId={}", dto.getId());
+        return "redirect:/book/list";
     }
 
     //삽니다 게시물 등록 화면
