@@ -3,7 +3,7 @@ package com.example.junglebook.service;
 import com.example.junglebook.data.dto.BuyBookPostResponse;
 import com.example.junglebook.data.dto.ReportRequest;
 import com.example.junglebook.data.dto.ReportResponse;
-import com.example.junglebook.data.dto.UserResponse;
+import com.example.junglebook.data.dto.user.UserResponse;
 import com.example.junglebook.data.entity.BuyBookPost;
 import com.example.junglebook.data.entity.Report;
 import com.example.junglebook.data.entity.SellBookPost;

@@ -3,21 +3,19 @@ package com.example.junglebook.controller;
 import com.example.junglebook.data.dto.BuyBookPostResponse;
 import com.example.junglebook.data.dto.ReportRequest;
 import com.example.junglebook.data.dto.ReportResponse;
-import com.example.junglebook.data.dto.UserResponse;
-import com.example.junglebook.data.entity.User;
+import com.example.junglebook.data.dto.user.UserResponse;
+
 import com.example.junglebook.service.BuyBookPostService;
 import com.example.junglebook.service.ReportService;
 import com.example.junglebook.service.UserService;
-import groovyjarjarasm.asm.tree.AbstractInsnNode;
+
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import okhttp3.Response;
-import org.springframework.http.HttpStatus;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
+
 
 import javax.validation.Valid;
 import java.io.IOException;
