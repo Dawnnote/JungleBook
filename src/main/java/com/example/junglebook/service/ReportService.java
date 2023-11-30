@@ -33,6 +33,10 @@ public class ReportService {
        return modelMapper.map(reportResponse, Report.class);
    }
 
+    public void save(Report report) {
+       reportRepository.save(report);
+    }
+
 //    public ReportResponse create(BuyBookPostResponse buyBookPostResponse, String reportType, UserResponse userResponse){
 //       ReportResponse reportResponse = new ReportResponse();
 //       reportResponse.setReportType(reportType);

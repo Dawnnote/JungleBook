@@ -56,4 +56,8 @@ public UserResponse create(String username, String nickname, String password, St
     }
 
 
+    public User findById(Integer id) {
+        return userRepository.findById(id).
+                orElseThrow(() -> new IllegalArgumentException("not found: " + id));
+    }
 }

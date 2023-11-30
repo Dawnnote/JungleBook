@@ -1,8 +1,8 @@
 package com.example.junglebook.service;
 
 import com.example.junglebook.config.DataNotFoundException;
-import com.example.junglebook.data.category.Category;
 import com.example.junglebook.data.dto.BuyBookPostResponse;
+import com.example.junglebook.data.dto.ReportResponse;
 import com.example.junglebook.data.dto.UserResponse;
 import com.example.junglebook.data.entity.BuyBookPost;
 import com.example.junglebook.data.entity.Img;
@@ -219,4 +219,12 @@ public class BuyBookPostService {
                 .orElseThrow(() -> new IllegalArgumentException("not found: " + id));
     }
 
+    // 신고하기 dto
+    public ReportResponse reportCreate(BuyBookPost book, User author, String reportType) {
+        ReportResponse report = new ReportResponse();
+        report.setBuyBookId(book);
+        report.setAuthor(author);
+        report.setReportType(reportType);
+        return report;
+    }
 }

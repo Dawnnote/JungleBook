@@ -15,9 +15,17 @@ import java.time.LocalDateTime;
 @Component
 public class ReportResponse {
     private int id;
-    private int author;
-    private int buyBookId;
+    private User author;
+    private BuyBookPost buyBookId;
     private String reportType;
     private LocalDateTime createdDate;
 
+
+    public Report toEntity(ReportResponse reportDto) {
+        Report report = new Report();
+        report.setAuthor(reportDto.getAuthor());
+        report.setBuyBookId(reportDto.getBuyBookId());
+        report.setReportType(reportDto.getReportType());
+        return report;
+    }
 }

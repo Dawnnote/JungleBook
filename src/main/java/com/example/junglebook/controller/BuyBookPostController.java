@@ -6,7 +6,10 @@ import com.example.junglebook.data.dto.BuyBookPostResponse;
 import com.example.junglebook.data.dto.ReportResponse;
 import com.example.junglebook.data.dto.UserResponse;
 import com.example.junglebook.data.entity.BuyBookPost;
+import com.example.junglebook.data.entity.Report;
+import com.example.junglebook.data.entity.User;
 import com.example.junglebook.service.BuyBookPostService;
+import com.example.junglebook.service.ReportService;
 import com.example.junglebook.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -34,6 +37,8 @@ public class BuyBookPostController {
    // private final BuyBookPostResponse buyBookPostResponse;
     private final UserService userService;
 
+    private final ReportService reportService;
+
     @ModelAttribute("reportTypes")
     public ReportType[] reportTypes() {
         return ReportType.values();
@@ -59,11 +64,15 @@ public class BuyBookPostController {
     @PostMapping("/detail/create")
     public String report(@ModelAttribute ReportResponse dto, @RequestParam("bookId") Integer bookId,
                          @RequestParam("userId") Integer userId) {
-        log.info("getReportType={}", dto.getReportType());
-        log.info("BookId={}", bookId);
-        log.info("UserId={}", userId);
+        // buybook 게시글 찾기
+        BuyBookPost book = buyBookPostService.findById(bookId);
+        // 작성 유저 찾기
+        User author = userService.findById(userId);
 
+        ReportResponse reportDto = buyBookPostService.reportCreate(book, author, dto.getReportType());
+        Report report = dto.toEntity(reportDto);
 
+        reportService.save(report);
 
         return "redirect:/book/list";
     }
