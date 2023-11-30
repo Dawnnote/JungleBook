@@ -3,7 +3,7 @@ package com.example.junglebook.controller;
 import com.example.junglebook.data.dto.BuyBookPostRequest;
 import com.example.junglebook.data.dto.BuyBookPostResponse;
 import com.example.junglebook.data.dto.CommentRequest;
-import com.example.junglebook.data.dto.UserResponse;
+import com.example.junglebook.data.dto.user.UserResponse;
 import com.example.junglebook.data.entity.BuyBookPost;
 import com.example.junglebook.service.BuyBookPostService;
 import com.example.junglebook.service.UserService;

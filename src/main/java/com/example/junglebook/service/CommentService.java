@@ -2,6 +2,7 @@ package com.example.junglebook.service;
 
 import com.example.junglebook.config.DataNotFoundException;
 import com.example.junglebook.data.dto.*;
+import com.example.junglebook.data.dto.user.UserResponse;
 import com.example.junglebook.data.entity.Comment;
 import com.example.junglebook.repository.CommentRepository;
 import lombok.RequiredArgsConstructor;
@@ -19,17 +20,19 @@ public class CommentService {
     private final ModelMapper modelMapper;
 
     private Comment of(CommentResponse commentResponse){
+
         return modelMapper.map(commentResponse, Comment.class);
     }
     private CommentResponse of(Comment comment){
+
         return modelMapper.map(comment, CommentResponse.class);
     }
 
-    public CommentResponse create(BuyBookPostResponse buyBookPostResponse, String content, UserResponse author){
+    public CommentResponse create(BuyBookPostResponse buyBookPostResponse, String content, UserResponse userResponse){
         CommentResponse commentResponse = new CommentResponse();
         commentResponse.setContent(content);
         commentResponse.setPost(buyBookPostResponse);
-        commentResponse.setAuthor(author);
+        commentResponse.setAuthor(userResponse);
         Comment comment = of(commentResponse);
         comment = this.commentRepository.save(comment);
         commentResponse.setId(comment.getId());

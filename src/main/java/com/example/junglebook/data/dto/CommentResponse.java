@@ -1,5 +1,6 @@
 package com.example.junglebook.data.dto;
 
+import com.example.junglebook.data.dto.user.UserResponse;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -1,6 +1,7 @@
 package com.example.junglebook.controller;
 
 import com.example.junglebook.data.dto.*;
+import com.example.junglebook.data.dto.user.UserResponse;
 import com.example.junglebook.service.BuyBookPostService;
 import com.example.junglebook.service.CommentService;
 import com.example.junglebook.service.SellBookPostService;
