@@ -33,7 +33,7 @@ public class BuyBookPostController {
     //삽니다 게시물 화면 불러오기
     @GetMapping(value = "/detail/{id}")
     public String detail(Model model, @PathVariable("id") Integer id) {
-        BuyBookPostResponse post = this.buyBookPostService.getPost(id);
+        BuyBookPostResponse post = this.buyBookPostService.getPostReadCnt(id);
 
         model.addAttribute("post", post);
         return "buy_post_detail2";
@@ -137,7 +137,7 @@ public class BuyBookPostController {
         this.buyBookPostService.create(buyBookPostRequest.getBookName(), buyBookPostRequest.getCategory(),
                 buyBookPostRequest.getBookAuthor(), buyBookPostRequest.getPublisher(), buyBookPostRequest.getField(),
                 buyBookPostRequest.getPrice(), buyBookPostRequest.getContent(),
-                buyBookPostRequest.getPayment(), buyBookPostRequest.getCompletion(), userResponse, files);
+                buyBookPostRequest.getPayment(), buyBookPostRequest.getCompletion(), userResponse, files, buyBookPostRequest.getPurpose());
         System.out.println("post controller - postcreate redirect list");
         return "redirect:/buy_post/list";
     }

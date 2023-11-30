@@ -4,6 +4,7 @@ import com.example.junglebook.data.common.BaseTimeEntity;
 
 import com.example.junglebook.data.entity.User;
 import lombok.Data;
+import lombok.Setter;
 
 @Data
 public class UserResponse extends BaseTimeEntity {

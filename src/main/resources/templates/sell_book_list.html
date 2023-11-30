@@ -25,7 +25,7 @@
                         <a th:href="@{/user/login}" class="btn btn-info ml-2" sec:authorize="isAnonymous()">로그인</a>
                         <a th:href="@{/user/logout}" class="btn btn-danger ml-2" sec:authorize="isAuthenticated()">로그아웃</a>
                         <a th:href="@{/user/signup}" class="btn btn-info ml-2">회원가입</a>
-                        <a th:href="@{/sell_post/list}" class="btn btn-info ml-2">팝니다</a>
+                        <a th:href="@{/buy_post/list}" class="btn btn-info ml-2">삽니다</a>
                         <a th:href="@{/book/list}" class="btn btn-info ml-2">전체목록</a>
                     </div>
                 </div>
@@ -36,7 +36,7 @@
                             <button class="btn btn-outline-secondary" type="button" id="btn_search">검색</button>
                         </div>
                     </div>
-                    <a th:href="@{/buy_post/create}" class="btn btn-primary ml-2">게시글 쓰기</a>
+                    <a th:href="@{/sell_post/create}" class="btn btn-primary ml-2">게시글 쓰기</a>
                 </div>
             </div>
             <table class="table table-striped table-horizontal table-bordered mt-3">
@@ -53,7 +53,7 @@
                 </thead>
                 <tbody>
                 <!-- 게시글 목록을 출력하는 Thymeleaf 코드 작성 -->
-                <tr  class="text-center" th:each="post, loop : ${paging}" th:if="${post.purpose.equals('buy')}">
+                <tr  class="text-center" th:each="post, loop : ${paging}" th:if="${post.purpose.equals('sell')}">
 <!--                    <td th:text="${paging.getTotalElements - (paging.number * paging.size) - loop.index}"></td>-->
                     <td th:text="${post.purpose}">
                     <td>
@@ -90,7 +90,7 @@
                 </ul>
             </div>
             <!-- 페이징처리 끝 -->
-            <form th:action="@{/buy_post/list}" method="get" id="searchForm">
+            <form th:action="@{/sell_post/list}" method="get" id="searchForm">
                 <input type="hidden" id="kw" name="kw" th:value="${kw}">
                 <input type="hidden" id="page" name="page" th:value="${paging.number}">
             </form>

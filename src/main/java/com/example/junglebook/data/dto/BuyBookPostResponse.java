@@ -4,10 +4,7 @@ import com.example.junglebook.data.category.Category;
 import com.example.junglebook.data.entity.BuyBookPost;
 import com.example.junglebook.data.entity.Img;
 import com.example.junglebook.data.entity.User;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.stereotype.Component;
 
 import javax.validation.constraints.NotEmpty;
@@ -19,11 +16,11 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Component
 public class BuyBookPostResponse  {
     private int buyBookId;
     private User author;
-
     private String bookName;
     //private Category category;
     private String category;
@@ -43,12 +40,13 @@ public class BuyBookPostResponse  {
 
     private List<Img> img;
 
+    private int readCnt;
+
+    private String purpose;
     public BuyBookPostResponse(BuyBookPost entity){
         this.buyBookId = entity.getBuyBookId();
         this.bookName = entity.getBookName();
-
         this.author = entity.getAuthor();
-
         this.category = entity.getCategory();
         this.bookAuthor = entity.getBookAuthor();
         this.publisher = entity.getPublisher();
@@ -59,6 +57,8 @@ public class BuyBookPostResponse  {
         this.payment = entity.getPayment();
         this.completion = entity.getCompletion();
         this.img = entity.getImg();
+        this.readCnt = entity.getReadCnt();
+        this.purpose =entity.getPurpose();
 
     }
 

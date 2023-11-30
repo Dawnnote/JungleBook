@@ -122,7 +122,7 @@ public class BuyBookPostService {
         List<Sort.Order> orders = new ArrayList<>();
         orders.add(Sort.Order.desc("createdDate"));
 
-        Pageable pageable = PageRequest.of(page, 10, Sort.by(orders));
+        Pageable pageable = PageRequest.of(page, 3, Sort.by(orders));
 
         //검색해서 보여주는 기능
         if(kw != null && !kw.isEmpty()){
@@ -142,13 +142,26 @@ public class BuyBookPostService {
             throw new DataNotFoundException("해당 글이 없습니다");
         }
     }
+    //조회수를 증가시키는 getPost
+    public BuyBookPostResponse getPostReadCnt(Integer id) {
+        Optional<BuyBookPost> post = this.buyBookPostRepository.findById(id);
+        if (post.isPresent()) {
+            BuyBookPost p1 = post.get();
+            p1.setReadCnt(p1.getReadCnt() + 1);
+            System.out.println(p1.getReadCnt());
+            this.buyBookPostRepository.save(p1);
+            return of(post.get());
+        } else {
+            throw new DataNotFoundException("해당 글이 없습니다");
+        }
+    }
 
 
     //삽니다 게시물 작성 version2
     public BuyBookPostResponse create(String bookName, String category, String bookAuthor,
                                       String publisher, String field,
                                       Long price, String content, String payment,
-                                      String completion, UserResponse userResponse, List<MultipartFile> files) throws IOException {
+                                      String completion, UserResponse userResponse, List<MultipartFile> files, String purpose) throws IOException {
         BuyBookPostResponse buyBookPostResponse = new BuyBookPostResponse();
         buyBookPostResponse.setBookName(bookName);
         buyBookPostResponse.setCategory(category);
@@ -160,6 +173,7 @@ public class BuyBookPostService {
         buyBookPostResponse.setContent(content);
         buyBookPostResponse.setPayment(payment);
         buyBookPostResponse.setCompletion(completion);
+        buyBookPostResponse.setPurpose(purpose);
 
 
         //작성자(User) 정보 (UserResponse)

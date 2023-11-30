@@ -7,16 +7,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
-@RestController
+@RequestMapping("/wishlist")
+@Controller
 public class WishListApiController {
     private final WishListService wishListService;
 
-    @PostMapping("/api/wishlist")
+    @PostMapping("/post")
     public int save(@RequestBody WishListDto wishListDto){
         return wishListService.save(wishListDto);
     }
 
-    @DeleteMapping("/api/wishlist")
+    @DeleteMapping("/delete/{id}")
     public int delete(@PathVariable int wishListId){
         wishListService.delete(wishListId);
         return wishListId;

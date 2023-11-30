@@ -1,10 +1,6 @@
 package com.example.junglebook.data.dto;
 
-import com.example.junglebook.data.entity.SellBook;
-import com.example.junglebook.data.entity.SellBookPost;
-import com.example.junglebook.data.entity.User;
 import com.example.junglebook.data.entity.WishList;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,5 +24,4 @@ public class WishListDto {
 //                .sellBookId(sellBookId)
                 .build();
     }
-
 }

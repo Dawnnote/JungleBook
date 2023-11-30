@@ -14,7 +14,6 @@ import java.util.List;
 @Entity
 @Builder
 public class BuyBookPost extends BaseTimeEntity {
-
     //삽니다 상품ID
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +22,6 @@ public class BuyBookPost extends BaseTimeEntity {
     //게시물 작성자(User)
     @ManyToOne
     private User author;
-
 
     //책 제목(= 게시물 제목)
     @Column(length = 30)
@@ -64,4 +62,11 @@ public class BuyBookPost extends BaseTimeEntity {
     //이미지
     @OneToMany(mappedBy = "buyBookPost", cascade = CascadeType.REMOVE)
     private List<Img> img;
+
+    //조회수
+    @Column(columnDefinition = "integer default 0", nullable = false)
+    private int readCnt;
+
+    //삽니다or 팝니다
+    private String purpose;
 }

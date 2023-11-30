@@ -38,6 +38,8 @@ public class BuyBookPostRequest {
     private List<Img> img;
 
     private int id;
+
+    private String purpose;
     public BuyBookPostRequest(BuyBookPost entity){
         this.bookName = entity.getBookName();
         this.category = entity.getCategory();
