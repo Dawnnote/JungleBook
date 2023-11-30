@@ -1,5 +1,6 @@
 package com.example.junglebook.controller;
 
+import com.example.junglebook.data.dto.ReportResponse;
 import com.example.junglebook.data.entity.Report;
 import com.example.junglebook.data.entity.User;
 import com.example.junglebook.service.ReportService;

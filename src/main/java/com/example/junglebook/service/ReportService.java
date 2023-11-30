@@ -1,23 +1,14 @@
 package com.example.junglebook.service;
 
-import com.example.junglebook.data.dto.BuyBookPostResponse;
-import com.example.junglebook.data.dto.ReportRequest;
 import com.example.junglebook.data.dto.ReportResponse;
-import com.example.junglebook.data.dto.UserResponse;
-import com.example.junglebook.data.entity.BuyBookPost;
 import com.example.junglebook.data.entity.Report;
-import com.example.junglebook.data.entity.SellBookPost;
-import com.example.junglebook.data.entity.User;
 import com.example.junglebook.repository.ReportRepository;
-import com.example.junglebook.repository.SellBookPostRepository;
-import com.example.junglebook.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -41,6 +32,7 @@ public class ReportService {
     public List<Report> findAll() {
        return reportRepository.findAll();
     }
+
 
 //    public ReportResponse create(BuyBookPostResponse buyBookPostResponse, String reportType, UserResponse userResponse){
 //       ReportResponse reportResponse = new ReportResponse();

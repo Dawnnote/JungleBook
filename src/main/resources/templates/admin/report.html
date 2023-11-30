@@ -29,8 +29,11 @@
             <tbody th:each="report : ${reports}">
             <tr>
                 <th scope="row" th:text="${report.getId()}">Id</th>
-                <td th:text="${report.reportType}">Report Type</td>
-<!--                <td OnClick="location.href='/buy_post/detail/' + [[${report.buyBookId.getBuyBookId}]]" th:text="${report.buyBookId.getBookName()}">Post</td>-->
+                <td th:if="${report.reportType == 'AD'}">광고성 콘텐츠</td>
+                <td th:if="${report.reportType == 'LACK'}">상품 정보 부족</td>
+                <td th:if="${report.reportType == 'FORBID'}">거래 금지 품목</td>
+                <td th:if="${report.reportType == 'FRAUD'}">안전 거래 거부 / 사기 의심</td>
+                <td th:if="${report.reportType == 'ETC'}">ETC</td>
                 <td>
                     <a style="color: blue" th:href="@{'/buy_post/detail/' + ${report.buyBookId.getBuyBookId()}}" th:text="${report.buyBookId.getBookName()}" />
                 </td>
