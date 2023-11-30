@@ -1,6 +1,7 @@
 package com.example.junglebook.controller;
 
 import com.example.junglebook.data.dto.*;
+import com.example.junglebook.data.dto.user.UserResponse;
 import com.example.junglebook.service.BuyBookPostService;
 import com.example.junglebook.service.SellBookPostService;
 import com.example.junglebook.service.UserService;
@@ -42,7 +43,7 @@ public class SellBookPostController {
 
     //팝니다 게시물 화면 불러오기
     @GetMapping(value = "/detail/{id}")
-    public String detail(Model model, @PathVariable("id") Integer id) {
+    public String detail(Model model, @PathVariable("id") Integer id, CommentRequest commentRequest) {
         BuyBookPostResponse post = this.buyBookPostService.getPostReadCnt(id);
 
         model.addAttribute("post", post);

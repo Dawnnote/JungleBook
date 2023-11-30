@@ -1,7 +1,7 @@
 package com.example.junglebook.controller;
 
 
-import com.example.junglebook.data.dto.UserRequest;
+import com.example.junglebook.data.dto.user.UserRequest;
 import com.example.junglebook.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -34,7 +34,7 @@ public class UserController {
         }
         if (!userRequest.getPassword1().equals(userRequest.getPassword2())) {
             bindingResult.rejectValue("password2", "passIncorrect", "패스워드가 일치하지 않습니다.");
-       return "user/joinForm";
+            return "user/joinForm";
         }
 
         try {
@@ -58,6 +58,13 @@ public class UserController {
     @GetMapping("/login")
     public String login() {
         return "user/loginForm";
+    }
+
+    //admin
+    @Secured("ROLE_ADMIN")
+    @GetMapping("/admin")
+    public @ResponseBody String admin() {
+        return "admin page";
     }
 
 }

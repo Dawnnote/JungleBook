@@ -3,7 +3,7 @@ package com.example.junglebook.service;
 import com.example.junglebook.config.DataNotFoundException;
 
 import com.example.junglebook.data.common.UserRole;
-import com.example.junglebook.data.dto.UserResponse;
+import com.example.junglebook.data.dto.user.UserResponse;
 import com.example.junglebook.data.entity.User;
 import com.example.junglebook.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,17 +18,17 @@ import java.util.*;
 @Service
 public class UserService {
 
-private final UserRepository userRepository;
-private final PasswordEncoder passwordEncoder;
-private final ModelMapper modelMapper;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final ModelMapper modelMapper;
 
-private UserResponse of (User user) {
-    return this.modelMapper.map(user, UserResponse.class);
-}
+    private UserResponse of (User user) {
+        return this.modelMapper.map(user, UserResponse.class);
+    }
 
 //create
 
-public UserResponse create(String username, String nickname, String password, String name) throws IOException {
+    public UserResponse create(String username, String nickname, String password, String name) throws IOException {
 //public UserResponse create(String username, String name, String nickname, String password) throws IOException {
         User user = new User();
         user.setUsername(username);
@@ -42,7 +42,7 @@ public UserResponse create(String username, String nickname, String password, St
 
     //nickname select
     public UserResponse getUser(String username) {
-       Optional<User> user = Optional.ofNullable(userRepository.findByUsername(username));
+        Optional<User> user = Optional.ofNullable(userRepository.findByUsername(username));
         if(user.isPresent()) {
             return of(user.get());
         }
@@ -56,8 +56,4 @@ public UserResponse create(String username, String nickname, String password, St
     }
 
 
-    public User findById(Integer id) {
-        return userRepository.findById(id).
-                orElseThrow(() -> new IllegalArgumentException("not found: " + id));
-    }
 }

@@ -1,6 +1,5 @@
 package com.example.junglebook.data.entity;
 
-import com.example.junglebook.data.category.Category;
 import com.example.junglebook.data.common.BaseTimeEntity;
 import lombok.*;
 
@@ -69,4 +68,8 @@ public class BuyBookPost extends BaseTimeEntity {
 
     //삽니다or 팝니다
     private String purpose;
+
+    //댓글리스트
+    @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
+    private List<Comment> commentList;
 }

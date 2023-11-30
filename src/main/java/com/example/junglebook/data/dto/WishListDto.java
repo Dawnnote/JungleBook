@@ -1,28 +1,27 @@
 package com.example.junglebook.data.dto;
 
+import com.example.junglebook.data.entity.WishList;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
 public class WishListDto {
-//    //User id, 판매상품 sellbookid로 안해도 되는지??
-//    private Long id;
-//    private Long sellbookId;
-//
-//    @Builder
-//    public WishListDto(Long id, Long sellbookId){
-//        this.id = id;
-//        this.sellbookId = sellbookId;
-//    }
-//
-//    public WishListDto(SellBook sellBook) {
-//    }
-//
-//    public WishList toEntity(){
-//        return WishList.builder()
-////                .id(id)
-////                .sellbookId(sellbookId)
-//                .build();
-//    }
+    private int id;
+    private int sellBookId;
+
+
+    @Builder
+    public WishListDto(int id, int sellBookId){
+        this.id=id;
+        this.sellBookId=sellBookId;
+    }
+
+    public WishList toEntity() {
+        return WishList.builder()
+//                .id(id)
+//                .sellBookId(sellBookId)
+                .build();
+    }
 }

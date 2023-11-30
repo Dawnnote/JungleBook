@@ -5,10 +5,8 @@ import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-@NoArgsConstructor
-@AllArgsConstructor
+
 @Getter
-@Setter
 @Entity
 @DynamicInsert
 public class WishList {
@@ -16,7 +14,22 @@ public class WishList {
     //위시리스트 아이디
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long wishListId;
+    @Column(name = "wishListId", nullable = false)
+    private int wishListId;
+
+    @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
+    @JoinColumn(name="id")
+    private User id;
+
+    @ManyToOne(targetEntity = SellBookPost.class, fetch = FetchType.LAZY)
+    @JoinColumn(name="sellBookId")
+    private SellBookPost sellBookId;
+
+    @Builder
+    public WishList(User id, SellBookPost sellBookId){
+        this.id=id;
+        this.sellBookId=sellBookId;
+    }
 //
 //    //회원 ID
 //    @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
