@@ -98,6 +98,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
+                        <input type="hidden" name="bookId" th:value="${post.getBuyBookId()}"/>
+                        <input type="hidden" name="userId" th:value="${post.getAuthor().getId()}"/>
                         <button class="btn btn-secondary" data-dismiss="modal" type="button">취소</button>
                         <button class="btn btn-danger" type="submit">신고하기</button>
                     </div>

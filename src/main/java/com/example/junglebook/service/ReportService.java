@@ -33,19 +33,19 @@ public class ReportService {
        return modelMapper.map(reportResponse, Report.class);
    }
 
-    public ReportResponse create(BuyBookPostResponse buyBookPostResponse, String reportType, UserResponse userResponse){
-       ReportResponse reportResponse = new ReportResponse();
-       reportResponse.setReportType(reportType);
-       reportResponse.setBuyBookId(buyBookPostResponse);
-
-       User author = new User();
-       author.setId(userResponse.getId());
-       buyBookPostResponse.setAuthor(author);
-
-       Report report = of(reportResponse);
-       this.reportRepository.save(report);
-       return reportResponse;
-
-    }
+//    public ReportResponse create(BuyBookPostResponse buyBookPostResponse, String reportType, UserResponse userResponse){
+//       ReportResponse reportResponse = new ReportResponse();
+//       reportResponse.setReportType(reportType);
+//       reportResponse.setBuyBookId(buyBookPostResponse);
+//
+//       User author = new User();
+//       author.setId(userResponse.getId());
+//       buyBookPostResponse.setAuthor(author);
+//
+//       Report report = of(reportResponse);
+//       this.reportRepository.save(report);
+//       return reportResponse;
+//
+//    }
 
 }

@@ -57,8 +57,14 @@ public class BuyBookPostController {
 
     // 신고하기
     @PostMapping("/detail/create")
-    public String report(@ModelAttribute ReportResponse dto) {
-        log.info("getId={}", dto.getId());
+    public String report(@ModelAttribute ReportResponse dto, @RequestParam("bookId") Integer bookId,
+                         @RequestParam("userId") Integer userId) {
+        log.info("getReportType={}", dto.getReportType());
+        log.info("BookId={}", bookId);
+        log.info("UserId={}", userId);
+
+
+
         return "redirect:/book/list";
     }
 

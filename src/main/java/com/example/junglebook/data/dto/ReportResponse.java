@@ -15,8 +15,8 @@ import java.time.LocalDateTime;
 @Component
 public class ReportResponse {
     private int id;
-    private User author;
-    private BuyBookPostResponse buyBookId;
+    private int author;
+    private int buyBookId;
     private String reportType;
     private LocalDateTime createdDate;
 
