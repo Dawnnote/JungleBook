@@ -218,4 +218,23 @@ public class BuyBookPostService {
                 .orElseThrow(() -> new IllegalArgumentException("not found: " + id));
     }
 
+//getPage version2
+//    public Page<BuyBookPost> getPage(String kw, int page, String category){
+//        List<Sort.Order> orders = new ArrayList<>();
+//        orders.add(Sort.Order.desc("createdDate"));
+//
+//        Pageable pageable = PageRequest.of(page, 3, Sort.by(orders));
+//
+//        //검색해서 보여주는 기능
+//        if(kw != null && !kw.isEmpty()){
+//            return buyBookPostRepository.findByBookNameContaining(kw, pageable);
+//        } else {
+//            return this.buyBookPostRepository.findAll(pageable);
+//        }
+//    }
+
+
+
+
+
 }

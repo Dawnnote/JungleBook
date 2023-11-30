@@ -7,7 +7,7 @@
     <div class="header-container">
         <nav class="navbar">
             <div class="nav-logo"><i class="fa-solid fa-book-bookmark"></i>
-                <a href="#"><span class="highlight">J</span>ungle <span class="highlight">B</span>ook</a>
+                <a href="/"><span class="highlight">J</span>ungle <span class="highlight">B</span>ook</a>
             </div>
             <div class="nav-user">
                 <li><a th:href="@{user/login}" sec:authorize="isAnonymous()">Login</a></li>
@@ -27,20 +27,22 @@
         <div class="search-box">
             <div class="search">
                 <!-- select box -->
-                    <select name="book Category" class="option">
-                        <option value="none">All</option>
-                        <option value="시/소설">시/소설</option>
-                        <option value="자기계발">자기계발</option>
-                        <option value="교양/인문">교양/인문</option>
-                        <option value="경제/경영">경제/경영</option>
-                        <option value="학습/사전/참고서">학습/사전/참고서</option>
-                        <option value="아동/어린이">아동/어린이</option>
-                        <option value="만화">만화</option>
-                        <option value="기타">기타</option>
+                    <select name="book Category" class="option" id="categorySelect" onchange="changeCategory()">
+                        <option value="none" id="none">All</option>
+                        <option value="시/소설" id="NOVEL_POEM">시/소설</option>
+                        <option value="자기계발" id="SELF_HELP">자기계발</option>
+                        <option value="교양/인문" id="HUMANITIES">교양/인문</option>
+                        <option value="경제/경영" id="BUSINESS_MONEY">경제/경영</option>
+                        <option value="학습/사전/참고서" id="EDUCATION">학습/사전/참고서</option>
+                        <option value="아동/어린이" id="CHILDREN">아동/어린이</option>
+                        <option value="만화" id="COMICS">만화</option>
+<!--                        <option value="기타" id="">기타</option>-->
                     </select>
                 <label>
-                    <input class="search-input" type="text" placeholder="search">
-                <button class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+<!--                    <input class="search-input" type="text" placeholder="search">-->
+<!--                <button class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>-->
+                    <input class="search-input" id="search_kw" type="text" placeholder="search" th:value="${kw}">
+                    <button class="search-btn" type="button" id="btn_search"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </label>
             </div>
         </div>
@@ -73,5 +75,9 @@
             }
         });
     });
+
+
+
+
 </script>
 </html>

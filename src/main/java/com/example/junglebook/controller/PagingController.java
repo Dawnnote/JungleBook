@@ -49,7 +49,18 @@ public class PagingController {
         return "book_list";
     }
 
-
+//    //삽니다 페이징 version2
+//    @GetMapping("/buy_post/list")
+//    public String buy_list(Model model, @RequestParam(value = "page", defaultValue = "0")
+//    int page, @RequestParam(value = "kw", required = false) String kw, @RequestParam(value = "kw", required = false) String category){
+//        Page<BuyBookPost> paging = buyBookPostService.getPage(kw, page, category);
+//        System.out.println(paging.get());
+//        model.addAttribute("paging", paging);
+//        model.addAttribute("kw", kw);
+//        model.addAttribute("category", category);
+//
+//        return "buy_book_list";
+//    }
 
 
 

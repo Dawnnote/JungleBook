@@ -22,22 +22,22 @@
                 <div class="col-6">
                     <div class="input-group">
                         <a href="/book/list" class="navbar-brand" style="font-size: 20px; font-weight: bold;">Home</a>
-                        <a th:href="@{/user/login}" class="btn btn-info ml-2" sec:authorize="isAnonymous()">로그인</a>
-                        <a th:href="@{/user/logout}" class="btn btn-danger ml-2" sec:authorize="isAuthenticated()">로그아웃</a>
-                        <a th:href="@{/user/signup}" class="btn btn-info ml-2">회원가입</a>
+<!--                        <a th:href="@{/user/login}" class="btn btn-info ml-2" sec:authorize="isAnonymous()">로그인</a>-->
+<!--                        <a th:href="@{/user/logout}" class="btn btn-danger ml-2" sec:authorize="isAuthenticated()">로그아웃</a>-->
+<!--                        <a th:href="@{/user/signup}" class="btn btn-info ml-2">회원가입</a>-->
                         <a th:href="@{/buy_post/list}" class="btn btn-info ml-2">삽니다</a>
                         <a th:href="@{/book/list}" class="btn btn-info ml-2">전체목록</a>
                     </div>
                 </div>
-                <div class="col-6 text-right">
-                    <div class="input-group">
-                        <input type="text" id="search_kw" class="form-control" th:value="${kw}">
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" type="button" id="btn_search">검색</button>
-                        </div>
-                    </div>
-<!--                    <a th:href="@{/sell_post/create}" class="btn btn-primary ml-2">게시글 쓰기</a>-->
-                </div>
+<!--                <div class="col-6 text-right">-->
+<!--                    <div class="input-group">-->
+<!--                        <input type="text" id="search_kw" class="form-control" th:value="${kw}">-->
+<!--                        <div class="input-group-append">-->
+<!--                            <button class="btn btn-outline-secondary" type="button" id="btn_search">검색</button>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--&lt;!&ndash;                    <a th:href="@{/sell_post/create}" class="btn btn-primary ml-2">게시글 쓰기</a>&ndash;&gt;-->
+<!--                </div>-->
             </div>
             <table class="table table-striped table-horizontal table-bordered mt-3">
                 <thead class="thead-strong">
@@ -117,6 +117,9 @@
         document.getElementById('page').value = 0;  // 검색 버튼을 클릭할 경우 0페이지부터 조회합니다.
         document.getElementById('searchForm').submit();
     });
+
+
+
 </script>
 <include th:insert="fragments/footer.html"></include>
 <script src="/js/lib/jquery.min.js"></script>
