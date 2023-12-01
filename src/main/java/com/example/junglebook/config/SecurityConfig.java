@@ -6,14 +6,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandler;
+
+import static com.example.junglebook.JunglebookApplication.passwordEncoder;
 
 //1. 코드 받기 2. 액세스 토큰 받기(권한)
 //3. 사용자 프로필 정보 가져오기
@@ -21,15 +27,22 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 // 4-2. 그러나 필요한 정보가 부족할 경우 추가적으로 집 주소가 필요함
 // 이 경우 추가적인 회원가입 창이 나와서 회원가입을 따로 완료해야 함
 
-@AllArgsConstructor
+//@AllArgsConstructor
 @Configuration
-@EnableWebSecurity //Security 활성화 -> 스프링 시큐리티 필터가 스프링 필터체인에 등록이 됨
+//@EnableWebSecurity //Security 활성화 -> 스프링 시큐리티 필터가 스프링 필터체인에 등록이 됨
 //prePostEnabled = true -> preAuthorize, postAuthorize 활성화
 //@EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true) //secured annotaion 활성화
 public class SecurityConfig {
 
     @Autowired
     private PrincipalOauth2UserService principalOauth2UserService;
+    @Autowired
+    private UserDetailsService userDetailsService;
+
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+        return authenticationConfiguration.getAuthenticationManager();
+    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {

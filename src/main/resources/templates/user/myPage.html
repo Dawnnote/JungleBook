@@ -230,18 +230,20 @@
     <!-- 메인 컨텐츠 영역 -->
     <div class="main-content" id="mainContent">
         <!-- 각 화면에 해당하는 내용을 추가 (초기에는 비어있음) -->
-        <div class="mypage">
+        <div class="mypage active">
             <h1>Profile Information</h1>
-            <p>Nickname: ${userResponse.nickname}</p>
-            <form th:object="${userRequest}" method="post" enctype="multipart/form-data" th:action="@{/user/updateUser}">
+            <p>Nickname: ${user.nickname}</p>
+            <form th:object="${userRequest}" method="post" enctype="multipart/form-data">
+<!--                <input type="hidden" value="${user.id}">-->
             <input type="hidden"/>
-            <div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
-                    <div th:each="err : ${#fields.allErrors()}" th:text="${err}"></div>
+                <div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
+                    <div th:each="err : ${#fields.allErrors()}" th:text="${err}" />
                 </div>
                 <div class="form-group-border">
                     <div class="form-group">
                         <label for="file" class="form-label"><i class="fa-solid fa-circle-user"></i> Profile Photo</label><br />
-                        <input type="file" th:field="*{file}" class="form-control">
+                        <input type="file" name="newFile" class="form-control">
+                        <input type="hidden" th:if="${userRequest.filename ne null}" th:field="*{filename}" th:value="${userRequest.filename}"/>
                     </div>
                     <div class="form-group">
                         <label for="username" class="form-label"><i class="fa-regular fa-envelope"></i>
@@ -280,7 +282,7 @@
                 </div>
                 <div class="btn-group">
                     <button type="submit" class="update-btn">Update</button>
-                    <a th:href="@{/user/mypage}" class="update-btn">Cancel</a>
+                    <a th:href="@{/user/myPage/${id}}" class="update-btn">Cancel</a>
                 </div>
             </form>
         </div>

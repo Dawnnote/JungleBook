@@ -1,18 +1,219 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:javascript="http://www.w3.org/1999/xhtml"
       lang="ko">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <link rel="stylesheet" type="text/css" th:href="@{/css.lib/header.css}"/>
+<!--    <link rel="stylesheet" type="text/css" th:href="@{/css.lib/header.css}"/>-->
     <script src="https://kit.fontawesome.com/f0556abec9.js" crossorigin="anonymous"></script>
 <th:block th:fragment="headerFragment">
+    <style>
+        
+    /*nav bar*/
+body {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: #f6fcf2;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #B0D69C;
+    padding: 8px 12px;
+    margin-bottom: 30px;
+}
+
+.nav-logo {
+    font-size: 24px;
+    color: #f6fcf2;
+}
+
+.nav-logo i {
+    color: #506147;
+}
+
+.nav-user {
+    display: flex;
+    list-style: none;
+    padding-left: 0;
+
+}
+
+.nav-user li {
+    padding: 8px 12px;
+}
+
+#bell {
+    color: #506147;
+    font-size: 24px;
+}
+
+.nav-user li:hover {
+    font-weight: bolder;
+    color: #f6fcf2;
+}
+
+.nav-user li #bell:hover {
+    color: #f6fcf2;
+}
+
+
+.navbar-btn {
+    display: none;
+    position: absolute;
+    right: 32px;
+    font-size: 24px;
+    color: #506147;
+}
+
+/*select box*/
+.option {
+    width: 100px;
+    height: 38.4px;
+    border: 0px;
+    float: left;
+    position: relative;
+    border-right: 1px solid #B0D69C;
+    border: 0 none;
+    outline: 0 none;
+    padding: 0 5px;
+    position: relative;
+    z-index: 3;
+}
+
+/*header-box*/
+.header-box {
+    padding-left: 30px;
+    padding-right: 30px;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    padding-bottom: 30px;
+}
+
+.search {
+    height: 40px;
+    width: 550px;
+    border: 1px solid #B0D69C;
+    background: #ffffff;
+}
+
+.search-input {
+    font-size: 16px;
+    width: 397px;
+    height: 38.4px;
+    border: 0px;
+    outline: none;
+    float: left;
+}
+
+.search-btn {
+    width: 51.2px;
+    height: 38.4px;
+    border: 0px;
+    background: #B0D69C;
+    outline: none;
+    float: right;
+    color: #ffffff;
+}
+
+
+.icon-box {
+    display: flex;
+    list-style: none;
+    padding-left: 0;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+
+}
+
+.icon-box li {
+    padding: 8px 12px;
+}
+
+.li-text {
+    color: #B0D69C;
+    font-size: 24px;
+}
+
+.icon-box li :hover {
+    color: #506147;
+}
+
+/* 각각의 Flex 아이템 내부의 요소들을 가로로 정렬합니다. */
+.icon-box li {
+    margin-right: 10px;
+    /* 아이콘 간 간격 조정을 위한 속성 */
+}
+
+.img-logo {
+width: 100px;
+height: 100px;
+}
+
+
+@media screen and (max-width:768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 8px 24px;
+    }
+
+    .nav-user {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .nav-user li {
+        width: 100%;
+        text-align: center;
+    }
+
+    .navbar-btn {
+        display: block;
+    }
+
+    .nav-user.active {
+        display: flex;
+    }
+
+    /*header box media query*/
+    .header-box {
+        flex-direction: column;
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .icon-box {
+        justify-content: flex-end;
+    }
+
+    .icon-box li {
+        margin-right: 0;
+        margin-left: 10px;
+    }
+
+    .logo {
+        display: none;
+    }
+}
+
+    </style>
     <div class="header-container">
         <nav class="navbar">
             <div class="nav-logo"><i class="fa-solid fa-book-bookmark"></i>
                 <a href="#"><span class="highlight">J</span>ungle <span class="highlight">B</span>ook</a>
             </div>
             <div class="nav-user">
-                <li><a th:href="@{user/login}" sec:authorize="isAnonymous()">Login</a></li>
-                <li><a th:href="@{|/user/myPage/${username}|}" sec:authorize="isAuthenticated()">My Page</a></li>
-                <li><a th:href="@{user/logout}" sec:authorize="isAuthenticated()">Logout</a></li>
+                <li><a th:href="@{/user/login}" sec:authorize="isAnonymous()">Login</a></li>
+                <li><a   th:href="@{/user/userInfo}" sec:authorize="isAuthenticated()">User Information</a></li>
+                <li><a th:href="@{/user/logout}" sec:authorize="isAuthenticated()">Logout</a></li>
                 <li><a href=""><i class="fa-solid fa-bell" id="bell"></i></a></li>
             </div>
             <a href="" class="navbar-btn"><i class="fa-solid fa-bars"></i></a>
@@ -22,11 +223,12 @@
     <div class="header-box">
         <!--logo-->
         <div class="logo">
-            <img src="#" />
+            <img class = "img-logo" th:src="@{/logo/logo.png}"/>
         </div>
         <div class="search-box">
             <div class="search">
                 <!-- select box -->
+                <label>
                     <select name="book Category" class="option">
                         <option value="none">All</option>
                         <option value="시/소설">시/소설</option>
@@ -38,7 +240,7 @@
                         <option value="만화">만화</option>
                         <option value="기타">기타</option>
                     </select>
-                <label>
+
                     <input class="search-input" type="text" placeholder="search">
                 <button class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </label>
@@ -53,25 +255,39 @@
     </div>
 </th:block>
 <!--navbar toggle btn js-->
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const navBtn = document.querySelector('.navbar-btn');
-        const menu = document.querySelector('.nav-user');
+    <script layout:fragment="script" type='text/javascript'>
+        document.addEventListener('DOMContentLoaded', function () {
 
-        navBtn.addEventListener('click', function (event) {
-            event.preventDefault(); // 링크 이동을 막음
-            menu.classList.toggle('active');
-        });
+     const navBtn = document.querySelector('.navbar-btn');
+     const menu = document.querySelector('.nav-user');
 
-        // 다른 곳을 클릭하면 메뉴를 닫음
-        document.addEventListener('click', function (event) {
-            const isClickInsideMenu = menu.contains(event.target);
-            const isClickOnBtn = navBtn.contains(event.target);
+     navBtn.addEventListener('click', function (event) {
+         event.preventDefault(); // 링크 이동을 막음
+         menu.classList.toggle('active');
+     });
 
-            if (!isClickInsideMenu && !isClickOnBtn) {
-                menu.classList.remove('active');
-            }
-        });
-    });
-</script>
+     // 다른 곳을 클릭하면 메뉴를 닫음
+     document.addEventListener('click', function (event) {
+         const isClickInsideMenu = menu.contains(event.target);
+         const isClickOnBtn = navBtn.contains(event.target);
+
+         if (!isClickInsideMenu && !isClickOnBtn) {
+             menu.classList.remove('active');
+         }
+     });
+ });
+
+
+
+
+
+     const recommend_elements = document.getElementsByClassName("recommend");
+     Array.from(recommend_elements).forEach(function(element) {
+         element.addEventListener('click', function() {
+             if(confirm("정말로 추천하시겠습니까?")) {
+                 location.href = this.dataset.uri;
+             };
+         });
+     });
+    </script>
 </html>

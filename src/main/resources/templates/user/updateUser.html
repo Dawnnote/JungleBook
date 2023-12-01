@@ -5,7 +5,7 @@
     <script src="https://kit.fontawesome.com/f0556abec9.js" crossorigin="anonymous"></script>
 
     <meta charset="UTF-8">
-    <title>JOIN PAGE</title>
+    <title>USER INFORMATION PAGE</title>
 </head>
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Josefin+Sans:wght@700&family=Nanum+Gothic:wght@800&family=Press+Start+2P&display=swap');
@@ -65,8 +65,8 @@
         border-radius: 5px;
     }
 
-    /*JOIN BTN*/
-    .join-btn {
+    /*update BTN*/
+    .update-btn {
 
         border: 2px solid #809b72;
         background-color: #fff;
@@ -75,7 +75,7 @@
 
     }
 
-    .join-btn:hover {
+    .update-btn:hover {
         background-color: #809b72;
         color: #fff;
     }
@@ -98,42 +98,65 @@
         color: #fff;
     }
 
-
-    /*sns*/
-    .sns {
-        margin-left: 100px;
-        margin-right: 100px;
-        padding-top: 30px;
-        padding-bottom: 20px;
-        border-bottom: 2px solid #B0D69C;
+    /*delete-user*/
+    .delete-user-btn {
+        padding-top: 20px;
+        color: #809b72;
     }
 
-    .sns a {
-        text-decoration: none;
-        padding-right: 10px;
+    .delete-user-btn :hover {
+        color: #506147;
+        cursor: pointer;
     }
 
-    .google-logo {
-        width: 30px;
-        height: 30px;
-    }
+    /* styles.css */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 60px;
+}
 
-    .facebook-logo {
-        width: 30px;
-        height: 30px;
-    }
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
 
-    .naver-logo {
-        width: 30px;
-        height: 30px;
-    }
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
 </style>
 
 <body>
 <div class="container">
     <h2 class="join-title"><i class="fa-solid fa-book-open"></i> <span class="bold">J</span>ungle <span
             class="bold">B</span>ook</h2>
-    <form th:action="@{/user/signup}" th:object="${userRequest}" method="post">
+    <form method="post" th:action="@{/user/update}" th:object="${userRequest}">
+        <input type="hidden" id="id" value="${principal.user.id}" />
+        <!-- id는 숨겨진 필드로 전달 -->
+        <input type="hidden" th:field="*{id}" />
         <div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
             <div th:each="err : ${#fields.allErrors()}" th:text="${err}"></div>
         </div>
@@ -151,14 +174,14 @@
                 <input type="text" th:field="*{username}" class="form-control">
             </div>
             <div class="form-group">
-                <label for="password1" class="form-label"><i class="fa-solid fa-lock"></i> password</label><br />
-                <input type="password" th:field="*{password1}" class="form-control">
+                <label for="password" class="form-label"><i class="fa-solid fa-lock"></i> password</label><br />
+                <input type="password" th:field="*{password}" class="form-control">
             </div>
-            <div class="form-group">
-                <label for="password2" class="form-label"><i class="fa-solid fa-lock"></i> check
-                    password</label><br />
-                <input type="password" th:field="*{password2}" class="form-control">
-            </div>
+<!--            <div class="form-group">-->
+<!--                <label for="password2" class="form-label"><i class="fa-solid fa-lock"></i> check-->
+<!--                    password</label><br />-->
+<!--                <input type="password" th:field="*{password2}" class="form-control">-->
+<!--            </div>-->
             <div class="form-group">
                 <label for="phone" class="form-label"><i class="fa-solid fa-mobile-screen"></i> phone</label><br />
                 <input type="text" th:field="*{phone}" class="form-control">
@@ -168,17 +191,27 @@
                 <input type="text" th:field="*{address}" class="form-control">
             </div>
         </div>
-        <button type="submit" class="join-btn">JOIN</button>
+        <button type="submit" class="update-btn" th:onclick="Update()">UPDATE</button>
         <a th:href="@{/}"><button type="button" class="cancel-btn">CANCEL</button></a>
-        <div class="sns">
-            <!--sns login-->
-            <a href="/oauth2/authorization/google" class="google"><img class="google-logo" src="/logo/구글__2_500.png"/></a>
-            <a href="/oauth2/authorization/facebook" class="facebook"><img class="facebook-logo" src="/logo/Facebook_Logo_Primary.png"/></a>
-            <a href="/oauth2/authorization/naver" class="naver"><img class="naver-logo" src="/logo/btnG_아이콘원형.png"/></a>
-        </div>
     </form>
+    <div class="delete-user-btn">
+        <form method="delete" th:action="@{/user/delete}" th:object="${userRequest}">
+        <a class="delete-user-btn" th:onclick="deleteUser()">Do you want to leave?</a>
+        </form>
+    </div>
 </div>
+<script>
 
+    //update
+                  function deleteUser() {
+                      confirm("Are you sure?");
+                  }
+
+                  //update
+                  function Update() {
+                      confirm("Information update completed!");
+                  }
+</script>
 <!-- 부트스트랩 js, jquery 추가 -->
 <script src="/js/lib/jquery.min.js"></script>
 <script src="/js/lib/bootstrap.min.js"></script>

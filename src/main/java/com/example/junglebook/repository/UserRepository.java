@@ -25,4 +25,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
     //유효성검사 - 중복체크 @return true / false
     boolean existsByUsername(String username);
+
+    void deleteByUsername(String username);
 }

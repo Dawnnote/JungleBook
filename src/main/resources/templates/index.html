@@ -6,8 +6,15 @@
 <th:block th:insert="fragments/head.html"></th:block>
 <th:block th:insert="fragments/header.html"></th:block>
 <th:block layout:fragment="content">
+    <style>
+        .main-container {
+        padding-top: 30px;
+        padding-bottom:30px;
+    </style>
     <!-- page content -->
+    <div class="main-container">
     <h1>main</h1>
+    </div>
 </th:block>
 <th:block th:insert="fragments/footer.html"></th:block>
 </html>

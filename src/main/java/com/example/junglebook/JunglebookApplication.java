@@ -22,4 +22,6 @@ public class JunglebookApplication {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 
+
+
 }
