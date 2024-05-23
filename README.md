@@ -72,12 +72,6 @@ JungleBook은 번개장터를 모티브로 제작된 중고 도서 거래 사이
 <img src="https://img.shields.io/badge/GoogleSheets-34A853?style=for-the-badge&logo=GoogleSheets&logoColor=white">
 
 
-## ☁️**ERD 다이어그램**
-![erd](https://github.com/Dawnnote/JungleBook/assets/148731548/0bfc6d3c-0d02-4c56-a4e8-e6f9d1bb165f)
-
-
-## 💻결과 화면
-
 ## 💬프로젝트 진행 소감
 
 
